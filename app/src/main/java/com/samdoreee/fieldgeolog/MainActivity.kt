@@ -1,43 +1,154 @@
 package com.samdoreee.fieldgeolog
 
+import android.Manifest
+import android.content.Intent
+import android.content.pm.PackageManager
+import android.location.LocationManager
+import android.net.Uri
 import android.os.Bundle
-import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Surface
-import androidx.compose.material.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
-import com.samdoreee.fieldgeolog.ui.theme.FieldGeoLogTheme
+import android.provider.Settings
+import android.util.Log
+import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
+import com.samdoreee.fieldgeolog.databinding.MainBinding
+import net.daum.mf.map.api.MapPOIItem
+import net.daum.mf.map.api.MapPoint
+import net.daum.mf.map.api.MapView
+import net.daum.mf.map.api.MapView.CurrentLocationTrackingMode
 
-class MainActivity : ComponentActivity() {
+
+class MainActivity : AppCompatActivity() {
+    private lateinit var binding : MainBinding
+    private lateinit var mapView : MapView
+    private val ACCESS_FINE_LOCATION = 1000     // Request Code
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContent {
-            FieldGeoLogTheme {
-                // A surface container using the 'background' color from the theme
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colors.background
-                ) {
-                    Greeting("Android")
+        binding = MainBinding.inflate(layoutInflater)
+        val view = binding.root
+        mapView = binding.mapView
+        setContentView(view)
+
+        // 위치추적 버튼
+        binding.btnStart.setOnClickListener {
+            if (checkLocationService()) {
+                // GPS가 켜져있을 경우
+                Log.d("test", "start btn clicked")
+                permissionCheck()
+                addMarker(36.6287, 127.4606, "spot1")
+                addMarker(36.6300, 127.4551, "spot2")
+                addMarker(36.6294, 127.4515, "spot3")
+                addMarker(36.6238, 127.4615, "spot4")
+
+            }
+            else {
+                // GPS가 꺼져있을 경우
+                Toast.makeText(this, "GPS를 켜주세요", Toast.LENGTH_SHORT).show()
+            }
+        }
+
+        // 추적중지 버튼
+        binding.btnStop.setOnClickListener {
+            stopTracking()
+        }
+    }
+
+    // 위치 권한 확인
+    private fun permissionCheck() {
+        val preference = getPreferences(MODE_PRIVATE)
+        val isFirstCheck = preference.getBoolean("isFirstPermissionCheck", true)
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            // 권한이 없는 상태
+            if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.ACCESS_FINE_LOCATION)) {
+                // 권한 거절 (다시 한 번 물어봄)
+                val builder = AlertDialog.Builder(this)
+                builder.setMessage("현재 위치를 확인하시려면 위치 권한을 허용해주세요.")
+                builder.setPositiveButton("확인") { dialog, which ->
+                    ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), ACCESS_FINE_LOCATION)
                 }
+                builder.setNegativeButton("취소") { dialog, which ->
+
+                }
+                builder.show()
+            } else {
+                if (isFirstCheck) {
+                    // 최초 권한 요청
+                    preference.edit().putBoolean("isFirstPermissionCheck", false).apply()
+                    ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), ACCESS_FINE_LOCATION)
+                } else {
+                    // 다시 묻지 않음 클릭 (앱 정보 화면으로 이동)
+                    val builder = AlertDialog.Builder(this)
+                    builder.setMessage("현재 위치를 확인하시려면 설정에서 위치 권한을 허용해주세요.")
+                    builder.setPositiveButton("설정으로 이동") { dialog, which ->
+                        val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS, Uri.parse("package:$packageName"))
+                        startActivity(intent)
+                    }
+                    builder.setNegativeButton("취소") { dialog, which ->
+
+                    }
+                    builder.show()
+                }
+            }
+        } else {
+            Log.d("test", "권한 확인 완료")
+
+            // 권한이 있는 상태
+            startTracking()
+        }
+    }
+
+    // 권한 요청 후 행동
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if (requestCode == ACCESS_FINE_LOCATION) {
+            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                // 권한 요청 후 승인됨 (추적 시작)
+                Toast.makeText(this, "위치 권한이 승인되었습니다", Toast.LENGTH_SHORT).show()
+                startTracking()
+            } else {
+                // 권한 요청 후 거절됨 (다시 요청 or 토스트)
+                Toast.makeText(this, "위치 권한이 거절되었습니다", Toast.LENGTH_SHORT).show()
+                permissionCheck()
             }
         }
     }
-}
 
-@Composable
-fun Greeting(name: String) {
-    Text(text = "Hello $name!")
-}
+    // GPS가 켜져있는지 확인
+    private fun checkLocationService(): Boolean {
+        val locationManager = getSystemService(LOCATION_SERVICE) as LocationManager
+        return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)
+    }
 
-@Preview(showBackground = true)
-@Composable
-fun DefaultPreview() {
-    FieldGeoLogTheme {
-        Greeting("Android")
+    // 위치추적 시작
+    private fun startTracking() {
+        binding.mapView.currentLocationTrackingMode = CurrentLocationTrackingMode.TrackingModeOnWithoutHeading
+        //Log.d("위도", mapView.mapCenterPoint.mapPointGeoCoord.latitude.toString())
+
+        //val latitude =mapView.mapCenterPoint.mapPointGeoCoord.latitude
+        //val longitude = mapView.mapCenterPoint.mapPointGeoCoord.longitude
+    }
+    // 위치추적 중지
+    private fun stopTracking() {
+        binding.mapView.currentLocationTrackingMode = CurrentLocationTrackingMode.TrackingModeOff
+    }
+
+    private fun addMarker(lat: Double, long: Double, name: String) {
+        val marker = MapPOIItem()
+        marker.apply {
+            itemName = name   // 마커 이름
+            mapPoint = MapPoint.mapPointWithGeoCoord(lat, long)
+            markerType = MapPOIItem.MarkerType.CustomImage
+            customImageResourceId = R.drawable.custom_marker_red
+            selectedMarkerType = MapPOIItem.MarkerType.CustomImage
+            customSelectedImageResourceId = R.drawable.custom_marker_red
+            isCustomImageAutoscale = false
+            setCustomImageAnchor(0.25f, 0.5f)
+        }
+        mapView.addPOIItem(marker)
     }
 }
+
+
