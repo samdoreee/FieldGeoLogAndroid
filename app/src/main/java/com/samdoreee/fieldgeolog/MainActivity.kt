@@ -1,24 +1,19 @@
 package com.samdoreee.fieldgeolog
 
 import android.Manifest
-import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.location.LocationManager
 import android.net.Uri
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.Settings
 import android.util.Log
-import android.view.LayoutInflater
-import android.view.View
-import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.samdoreee.fieldgeolog.databinding.MainBinding
-import net.daum.mf.map.api.CalloutBalloonAdapter
 import net.daum.mf.map.api.MapPOIItem
 import net.daum.mf.map.api.MapPoint
 import net.daum.mf.map.api.MapView
@@ -27,23 +22,29 @@ import net.daum.mf.map.api.MapView.CurrentLocationTrackingMode
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding : MainBinding
-    private lateinit var mapView: MapView
+    private lateinit var mapView : MapView
     private val ACCESS_FINE_LOCATION = 1000     // Request Code
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = MainBinding.inflate(layoutInflater)
         val view = binding.root
+        mapView = binding.mapView
         setContentView(view)
 
         // 위치추적 버튼
         binding.btnStart.setOnClickListener {
             if (checkLocationService()) {
                 // GPS가 켜져있을 경우
-
                 Log.d("test", "start btn clicked")
                 permissionCheck()
-            } else {
+                addMarker(36.6287, 127.4606, "spot1")
+                addMarker(36.6300, 127.4551, "spot2")
+                addMarker(36.6294, 127.4515, "spot3")
+                addMarker(36.6238, 127.4615, "spot4")
+
+            }
+            else {
                 // GPS가 꺼져있을 경우
                 Toast.makeText(this, "GPS를 켜주세요", Toast.LENGTH_SHORT).show()
             }
@@ -124,12 +125,30 @@ class MainActivity : AppCompatActivity() {
     // 위치추적 시작
     private fun startTracking() {
         binding.mapView.currentLocationTrackingMode = CurrentLocationTrackingMode.TrackingModeOnWithoutHeading
-//        val latitude =mapView.mapCenterPoint.mapPointGeoCoord.latitude
-//        val longitude = mapView.mapCenterPoint.mapPointGeoCoord.longitude
+        //Log.d("위도", mapView.mapCenterPoint.mapPointGeoCoord.latitude.toString())
+
+        //val latitude =mapView.mapCenterPoint.mapPointGeoCoord.latitude
+        //val longitude = mapView.mapCenterPoint.mapPointGeoCoord.longitude
     }
     // 위치추적 중지
     private fun stopTracking() {
         binding.mapView.currentLocationTrackingMode = CurrentLocationTrackingMode.TrackingModeOff
     }
+
+    private fun addMarker(lat: Double, long: Double, name: String) {
+        val marker = MapPOIItem()
+        marker.apply {
+            itemName = name   // 마커 이름
+            mapPoint = MapPoint.mapPointWithGeoCoord(lat, long)
+            markerType = MapPOIItem.MarkerType.CustomImage
+            customImageResourceId = R.drawable.custom_marker_red
+            selectedMarkerType = MapPOIItem.MarkerType.CustomImage
+            customSelectedImageResourceId = R.drawable.custom_marker_red
+            isCustomImageAutoscale = false
+            setCustomImageAnchor(0.25f, 0.5f)
+        }
+        mapView.addPOIItem(marker)
+    }
 }
+
 
