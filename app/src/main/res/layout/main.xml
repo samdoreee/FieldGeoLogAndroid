@@ -36,7 +36,6 @@
                 android:layout_marginStart="8dp"
                 android:text="기록 시작"
                 android:textAllCaps="false"
-                android:onClick="clickBtn"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"/>
 

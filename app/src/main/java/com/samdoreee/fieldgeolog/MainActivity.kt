@@ -41,13 +41,7 @@ class MainActivity : AppCompatActivity() {
 
         permissionCheck()
 
-        // 기록 기능으로 전환
-        binding.btnRecordStart.setOnClickListener {
-            val intent = Intent(this, MemoActivity::class.java)
-            startActivity(intent)
-        }
-
-        // 기록된 위치 표시
+        // (좌) 기록된 위치 표시
         binding.btnStart.setOnClickListener {
             mapView.removeAllPOIItems()
             runBlocking {
@@ -67,7 +61,12 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        // 현재 위치 기록 표시
+        // (중앙) 기록시작 모드로 전환
+        binding.btnRecordStart.setOnClickListener {
+            val intent = Intent(this, ProjectRecordActivity::class.java)
+            startActivity(intent)
+        }
+        // (우) 현재 위치 기록 표시
         binding.btnStop.setOnClickListener {
             if (checkLocationService()) {
                 // GPS가 켜져있을 경우
@@ -207,9 +206,4 @@ class MainActivity : AppCompatActivity() {
         }
         mapView.addPOIItem(marker)
     }
-    public fun clickBtn(view: View) {
-        val intent = Intent(this, MemoActivity::class.java)
-        startActivity(intent)
-    }
-
 }
