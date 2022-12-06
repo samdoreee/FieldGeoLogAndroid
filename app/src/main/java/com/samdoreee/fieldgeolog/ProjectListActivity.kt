@@ -4,13 +4,12 @@ package com.samdoreee.fieldgeolog
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
-import android.widget.ImageView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.samdoreee.fieldgeolog.record.Project
 
-class ProjectRecordActivity : AppCompatActivity() {
+class ProjectListActivity : AppCompatActivity() {
     var projectList = arrayListOf<Project>(
         Project("1st record", "Hyerim Pung", "Cheongju", "igneous_3434"),
         Project("2nd record", "Minju Kim", "Yongin", "seimentary_1759"),
@@ -22,7 +21,7 @@ class ProjectRecordActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_project_record)
+        setContentView(R.layout.activity_project_list)
 
         val projectadapter = ProjectRvAdapter(this, projectList)
         val projectrecyclerview = findViewById<RecyclerView>(R.id.projectRecyclerView)
@@ -31,12 +30,6 @@ class ProjectRecordActivity : AppCompatActivity() {
         val layoutmanager = LinearLayoutManager(this)
         projectrecyclerview.layoutManager = layoutmanager
         projectrecyclerview.setHasFixedSize(true)
-    }
 
-    // 플로팅 버튼 클릭 시..! 새로운 기록 창으로 전환
-    public fun clickBtn(view: View) {
-        val intent = Intent(this, ProjectRecordActivity::class.java)
-        startActivity(intent)
     }
-
 }

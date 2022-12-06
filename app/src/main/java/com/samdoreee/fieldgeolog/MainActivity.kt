@@ -8,12 +8,12 @@ import android.net.Uri
 import android.os.Bundle
 import android.provider.Settings
 import android.util.Log
-import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.samdoreee.fieldgeolog.databinding.MainBinding
 import com.samdoreee.fieldgeolog.network.GeoApi
 import com.samdoreee.fieldgeolog.network.SpotRequest
@@ -63,7 +63,7 @@ class MainActivity : AppCompatActivity() {
 
         // (중앙) 기록시작 모드로 전환
         binding.btnRecordStart.setOnClickListener {
-            val intent = Intent(this, ProjectRecordActivity::class.java)
+            val intent = Intent(this, ProjectListActivity::class.java)
             startActivity(intent)
         }
         // (우) 현재 위치 기록 표시
@@ -84,6 +84,11 @@ class MainActivity : AppCompatActivity() {
                 // GPS가 꺼져있을 경우
                 Toast.makeText(this, "GPS를 켜주세요", Toast.LENGTH_SHORT).show()
             }
+        }
+
+        binding.btnToWriteactivity.setOnClickListener {
+            val intent = Intent(this, WriteActivity::class.java)
+            startActivity(intent)
         }
     }
 
