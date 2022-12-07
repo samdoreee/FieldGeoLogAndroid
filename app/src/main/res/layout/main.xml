@@ -41,7 +41,7 @@
                 android:id="@+id/btn_record_start"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="기록 시작"
+                android:text="기록 열람"
                 android:textAllCaps="false"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"

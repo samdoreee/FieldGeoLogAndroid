@@ -7,13 +7,12 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.samdoreee.fieldgeolog.record.Project
 import com.samdoreee.fieldgeolog.record.Record
 
 class WriteRvAdapter(val context: Context, val recordList: ArrayList<Record>): RecyclerView.Adapter<WriteRvAdapter.Holder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
-        val view = LayoutInflater.from(context).inflate(R.layout.activity_write_memo, parent, false)
+        val view = LayoutInflater.from(context).inflate(R.layout.activity_memo, parent, false)
         return Holder(view)
     }
 

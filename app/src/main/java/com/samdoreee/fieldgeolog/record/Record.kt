@@ -2,7 +2,6 @@ package com.samdoreee.fieldgeolog.record
 
 import java.io.Serializable
 
-
 class Record (
     val project_title: String,
     val project_thumbnail: String,

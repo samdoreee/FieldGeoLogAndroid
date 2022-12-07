@@ -1,6 +1,7 @@
 package com.samdoreee.fieldgeolog
 
 import android.app.Application
+import com.samdoreee.fieldgeolog.record.Memo
 import com.samdoreee.fieldgeolog.record.Project
 import com.samdoreee.fieldgeolog.record.Record
 
@@ -14,10 +15,8 @@ public class TempMemory : Application() {
             Project("5th record", "Minjeong Seo", "Jeonju", "seimentary_2389"),
             Project("6th record", "Seunghyeon Lee", "Daejeon", "igneous_3434")
         )
-        public var temprecordmemory = arrayListOf<Record>(
-
-        )
-        /*public var tempmemomemory = ArrayList<Record>()*/
+        public var temprecordmemory = arrayListOf<Record>()
+        public var tempmemomemory = arrayListOf<Memo>()
     }
 }
 
