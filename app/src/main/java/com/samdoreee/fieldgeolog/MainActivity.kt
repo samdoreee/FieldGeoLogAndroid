@@ -13,6 +13,8 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.samdoreee.fieldgeolog.databinding.MainBinding
 import com.samdoreee.fieldgeolog.network.GeoApi
 import com.samdoreee.fieldgeolog.network.SpotRequest
@@ -27,6 +29,8 @@ import net.daum.mf.map.api.MapView.CurrentLocationTrackingMode
 
 
 class MainActivity : AppCompatActivity() {
+    private lateinit var writeRecycler: RecyclerView
+
     private lateinit var binding: MainBinding
     private lateinit var mapView: MapView
     private val ACCESS_FINE_LOCATION = 1000     // Request Code
@@ -37,10 +41,11 @@ class MainActivity : AppCompatActivity() {
         val view = binding.root
         mapView = binding.mapView
         setContentView(view)
+        /*writeRecycler = findViewById(R.id.)*/
 
         permissionCheck()
 
-        // 기록된 위치 표시
+        // (좌) 기록된 위치 표시
         binding.btnStart.setOnClickListener {
             mapView.removeAllPOIItems()
             runBlocking {
@@ -50,7 +55,7 @@ class MainActivity : AppCompatActivity() {
                 }
                 for (it in allSpots.withIndex()) {
                     addMarker(it.value.latitude, it.value.longitude, it.value.weatherInfo)
-                    delay(2000)
+                   delay(2000)
                     mapView.setMapCenterPoint(
                         MapPoint.mapPointWithGeoCoord(it.value.latitude, it.value.longitude),
                         true
@@ -60,7 +65,12 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        // 현재 위치 기록 표시
+        // (중앙) 기록시작 모드로 전환
+        binding.btnRecordStart.setOnClickListener {
+            val intent = Intent(this, ProjectListActivity::class.java)
+            startActivity(intent)
+        }
+        // (우) 현재 위치 기록 표시
         binding.btnStop.setOnClickListener {
             if (checkLocationService()) {
                 // GPS가 켜져있을 경우
@@ -78,6 +88,12 @@ class MainActivity : AppCompatActivity() {
                 // GPS가 꺼져있을 경우
                 Toast.makeText(this, "GPS를 켜주세요", Toast.LENGTH_SHORT).show()
             }
+        }
+
+        // (플로팅버튼) 기록 모드로 전
+        binding.btnToWriteactivity.setOnClickListener {
+            val intent = Intent(this, WriteActivity::class.java)
+            startActivity(intent)
         }
     }
 

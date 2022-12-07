@@ -8,5 +8,5 @@ data class Spot(
     val latitude: Double,
     val longitude: Double,
     val createDt: String,
-    val weatherInfo: String
+    val weatherInfo: String = "날씨맑음"
 )
