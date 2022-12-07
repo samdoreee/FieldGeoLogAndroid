@@ -13,6 +13,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.samdoreee.fieldgeolog.databinding.MainBinding
 import com.samdoreee.fieldgeolog.network.GeoApi
@@ -28,6 +29,8 @@ import net.daum.mf.map.api.MapView.CurrentLocationTrackingMode
 
 
 class MainActivity : AppCompatActivity() {
+    private lateinit var writeRecycler: RecyclerView
+
     private lateinit var binding: MainBinding
     private lateinit var mapView: MapView
     private val ACCESS_FINE_LOCATION = 1000     // Request Code
@@ -38,6 +41,7 @@ class MainActivity : AppCompatActivity() {
         val view = binding.root
         mapView = binding.mapView
         setContentView(view)
+        /*writeRecycler = findViewById(R.id.)*/
 
         permissionCheck()
 
@@ -86,6 +90,7 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
+        // (플로팅버튼) 기록 모드로 전
         binding.btnToWriteactivity.setOnClickListener {
             val intent = Intent(this, WriteActivity::class.java)
             startActivity(intent)

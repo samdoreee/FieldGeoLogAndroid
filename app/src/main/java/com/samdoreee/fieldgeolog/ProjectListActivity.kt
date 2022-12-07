@@ -1,23 +1,17 @@
 package com.samdoreee.fieldgeolog
 
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.samdoreee.fieldgeolog.record.Project
+import com.samdoreee.fieldgeolog.record.Record
+import java.util.logging.Logger
 
 class ProjectListActivity : AppCompatActivity() {
-    var projectList = arrayListOf<Project>(
-        Project("1st record", "Hyerim Pung", "Cheongju", "igneous_3434"),
-        Project("2nd record", "Minju Kim", "Yongin", "seimentary_1759"),
-        Project("3rd record", "Chisan Ahn", "Seoul", "seimentary_2389"),
-        Project("4th record", "Jinyoung Lee", "Busan", ""),
-        Project("5th record", "Minjeong Seo", "Jeonju", "seimentary_2389"),
-        Project("6th record", "Seunghyeon Lee", "Daejeon", "igneous_3434")
-    )
+    var projectList = TempMemory.tempprojectmemory
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
