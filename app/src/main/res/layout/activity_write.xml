@@ -133,15 +133,73 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView"
-        android:layout_marginStart="8dp"
-        android:layout_width="378dp"
-        android:layout_height="465dp"
-        app:layout_constraintStart_toStartOf="@id/constraintLayout2"
-        app:layout_constraintTop_toBottomOf="@id/constraintLayout2" >
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/memoconstraintLayout"
+        android:layout_width="match_parent"
+        android:layout_height="220dp"
+        android:background="@drawable/item_border"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/constraintLayout2">
 
-    </androidx.recyclerview.widget.RecyclerView>
+        <ImageButton
+            android:id="@+id/camerabtn"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/item_border"
+            android:src="@drawable/add_photo"
+            android:adjustViewBounds="true"
+            android:scaleType="fitCenter"
+            app:layout_constraintStart_toStartOf="@id/memoconstraintLayout"
+            app:layout_constraintTop_toTopOf="@id/memoconstraintLayout" />
+
+        <ImageView
+            android:id="@+id/photo0"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/item_border"
+            app:layout_constraintStart_toEndOf="@id/camerabtn"
+            app:layout_constraintTop_toTopOf="@id/memoconstraintLayout" />
+
+        <ImageView
+            android:id="@+id/photo1"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/item_border"
+            app:layout_constraintStart_toEndOf="@id/photo0"
+            app:layout_constraintTop_toTopOf="@id/memoconstraintLayout" />
+
+        <ImageView
+            android:id="@+id/photo2"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/item_border"
+            app:layout_constraintStart_toEndOf="@id/photo1"
+            app:layout_constraintTop_toTopOf="@id/memoconstraintLayout" />
+
+
+        <EditText
+            android:id="@+id/memo"
+            android:layout_width="375dp"
+            android:layout_height="107dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/item_border"
+            android:hint="Location Information"
+            android:minHeight="30dp"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/camerabtn" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <Button
         android:id="@+id/btn_save"

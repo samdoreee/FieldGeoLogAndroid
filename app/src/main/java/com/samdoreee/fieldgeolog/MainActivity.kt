@@ -90,7 +90,7 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        // (플로팅버튼) 기록 모드로 전
+        // (플로팅버튼) 기록 모드로 전환
         binding.btnToWriteactivity.setOnClickListener {
             val intent = Intent(this, WriteActivity::class.java)
             startActivity(intent)
