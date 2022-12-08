@@ -20,9 +20,8 @@ class ProjectRvAdapter(val context: Context, val spotList: List<Spot>) : Recycle
     }
 
     override fun onBindViewHolder(holder: Holder, position: Int) {
-
         holder.itemView.setOnClickListener {
-            val intent = Intent(holder.itemView?.context, WriteActivity::class.java)
+            val intent = Intent(holder.itemView?.context, DetailActivity::class.java)
             ContextCompat.startActivity(holder.itemView.context, intent, null)
         }
     }

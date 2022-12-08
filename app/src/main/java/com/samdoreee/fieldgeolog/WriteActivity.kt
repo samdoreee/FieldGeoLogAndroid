@@ -16,6 +16,7 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.samdoreee.fieldgeolog.databinding.ActivityWriteBinding
 import com.samdoreee.fieldgeolog.network.GeoApi
+import com.samdoreee.fieldgeolog.network.Spot
 import com.samdoreee.fieldgeolog.network.SpotRequest
 import kotlinx.coroutines.runBlocking
 
@@ -25,7 +26,6 @@ class WriteActivity : AppCompatActivity() {
     lateinit var binding: ActivityWriteBinding
     private lateinit var btnSave: Button
     private lateinit var btnCancel: Button
-
     private lateinit var project_thumbnail: String
     private lateinit var dip: EditText
     private lateinit var strike: EditText
@@ -33,6 +33,8 @@ class WriteActivity : AppCompatActivity() {
     private lateinit var geo_struct: EditText
     private lateinit var memo_photo0: String
     private lateinit var content: String
+
+    private lateinit var spot: Spot
 
     val PERMISSIONS = arrayOf(
         Manifest.permission.CAMERA,
@@ -52,6 +54,7 @@ class WriteActivity : AppCompatActivity() {
         setContentView(view)
 
         checkPermissions(PERMISSIONS, PERMISSIONS_REQUEST)
+        /*받아온 spot에서 데이터를 추출!*/
 
         binding.btnSave.setOnClickListener {
             save()
@@ -62,12 +65,12 @@ class WriteActivity : AppCompatActivity() {
             finish()
             startActivity(Intent(this, MainActivity::class.java))
         }
-        binding.camerabtn.setOnClickListener {
+        /*binding.camerabtn.setOnClickListener {
             val takePictureIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
             takePictureIntent.resolveActivity(packageManager)?.also {
                 startActivityForResult(takePictureIntent, cameraButton)
             }
-        }
+        }*/
     }
 
     private fun save() {
@@ -96,19 +99,19 @@ class WriteActivity : AppCompatActivity() {
         val thumbnail = project_thumbnail
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+    /*override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (resultCode == Activity.RESULT_OK) {
             when (requestCode) {
                 cameraButton -> {
                     val imageBitmap = data?.extras?.get("data") as Bitmap
-                    /*memo_photo0 = data?.extras?.get("data") as String*/
+                    *//*memo_photo0 = data?.extras?.get("data") as String*//*
                     binding.photo0.setImageBitmap(imageBitmap)
                 }
             }
         }
     }
-
+*/
 
     private fun checkPermissions(permissions: Array<String>, permissionsRequest: Int): Boolean {
         val permissionList: MutableList<String> = mutableListOf()
