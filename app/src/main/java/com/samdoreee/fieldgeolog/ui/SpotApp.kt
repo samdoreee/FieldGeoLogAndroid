@@ -34,7 +34,7 @@ fun SpotApp(modifier: Modifier = Modifier) {
                 onClick = {
                     runBlocking {
                         launch {
-                            addSpot(SpotRequest(1.2, 12.0))
+//                            addSpot(SpotRequest(1.2, 12.0))
                         }
                     }
                     spotViewModel.getAllSpots()

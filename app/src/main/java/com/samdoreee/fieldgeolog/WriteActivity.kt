@@ -6,8 +6,11 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
+import com.samdoreee.fieldgeolog.network.GeoApi
+import com.samdoreee.fieldgeolog.network.SpotRequest
 import com.samdoreee.fieldgeolog.record.Project
 import com.samdoreee.fieldgeolog.record.Record
+import kotlinx.coroutines.runBlocking
 
 
 class WriteActivity : AppCompatActivity() {
@@ -52,22 +55,53 @@ class WriteActivity : AppCompatActivity() {
             startActivity(Intent(this, MainActivity::class.java))
         }
     }
+
     private fun save() {
         val title = project_title.text.toString()
         val location = project_location.text.toString()
         val weather = project_weather.text.toString()
-        val strike = strike.text.toString()
-        val dip = dip.text.toString()
-        val rocktype = rocktype.text.toString()
-        val geo_struct = geo_struct.text.toString()
+        val match = Regex("(\\d+)([A-Z]+)").find(strike.text.toString())!!
+        val strike = match.destructured.component1().toInt()
+        val direction = match.destructured.component2()
+        val dip = dip.text.toString().toInt()
+        val rockType = rocktype.text.toString()
+        val geoStructure = geo_struct.text.toString()
         val date = project_date.text.toString()
 
-        val rec_add = Record(title, project_thumbnail, date, location, weather, strike, dip, rocktype, geo_struct)
+        val rec_add = Record(
+            title,
+            project_thumbnail,
+            date,
+            location,
+            weather,
+            strike.toString(),
+            dip.toString(),
+            rockType,
+            geoStructure
+        )
         recordList.add(rec_add)
 
-        val project_add = Project(rec_add.project_title, rec_add.project_date, rec_add.project_location, rec_add.project_thumbnail)
+        val project_add = Project(
+            rec_add.project_title,
+            rec_add.project_date,
+            rec_add.project_location,
+            rec_add.project_thumbnail
+        )
         projectList.add(project_add)
-        
+
+        runBlocking {
+            val newSpot = SpotRequest(
+                latitude = intent.getDoubleExtra("latitude", 0.0),
+                longitude = intent.getDoubleExtra("longitude", 0.0),
+                strike = strike,
+                rockType = rockType,
+                geoStructure = geoStructure,
+                dip = dip,
+                direction = direction
+            )
+            println("newSpot = ${newSpot}")
+            GeoApi.retrofitService.addSpot(newSpot)
+        }
     }
 
     private fun onClickBtnSave() {

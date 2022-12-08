@@ -41,18 +41,8 @@
                 android:id="@+id/btn_record_start"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="기록 시작"
+                android:text="기록 목록 조회"
                 android:textAllCaps="false"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent" />
-
-            <Button
-                android:id="@+id/btn_stop"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
-                android:text="현재 위치 추가"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
