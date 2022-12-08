@@ -34,7 +34,7 @@ fun SpotApp(modifier: Modifier = Modifier) {
                 onClick = {
                     runBlocking {
                         launch {
-                            addSpot(SpotRequest(1.2, 12.0))
+//                            addSpot(SpotRequest(1.2, 12.0))
                         }
                     }
                     spotViewModel.getAllSpots()
@@ -73,7 +73,7 @@ private fun SpotList(
                 ) {
                     Text(text = spot.latitude.toString())
                     Text(text = spot.latitude.toString())
-                    Text(text = spot.createDt.toString())
+                    Text(text = spot.createDT.toString())
                 }
             }
         }

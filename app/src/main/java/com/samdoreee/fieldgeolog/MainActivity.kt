@@ -14,10 +14,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
-import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.samdoreee.fieldgeolog.databinding.MainBinding
 import com.samdoreee.fieldgeolog.network.GeoApi
-import com.samdoreee.fieldgeolog.network.SpotRequest
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.runBlocking
@@ -65,35 +63,27 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        // (중앙) 기록시작 모드로 전환
+
+        // (오른쪽) 기록시작 모드로 전환
         binding.btnRecordStart.setOnClickListener {
             val intent = Intent(this, ProjectListActivity::class.java)
             startActivity(intent)
         }
-        // (우) 현재 위치 기록 표시
-        binding.btnStop.setOnClickListener {
+
+        // (플로팅버튼) 기록 모드로 전
+        binding.btnToWriteactivity.setOnClickListener {
+            val intent = Intent(this, WriteActivity::class.java)
             if (checkLocationService()) {
                 // GPS가 켜져있을 경우
-                runBlocking {
-                    val curGeoCoord = mapView.mapCenterPoint.mapPointGeoCoord
-                    GeoApi.retrofitService.addSpot(
-                        SpotRequest(
-                            curGeoCoord.latitude,
-                            curGeoCoord.longitude
-                        )
-                    )
-                    addMarker(curGeoCoord.latitude, curGeoCoord.longitude, "currently added spot")
-                }
+                val curGeoCoord = mapView.mapCenterPoint.mapPointGeoCoord
+                intent.putExtra("latitude", curGeoCoord.latitude)
+                intent.putExtra("longitude", curGeoCoord.longitude)
+                startActivity(intent)
+                addMarker(curGeoCoord.latitude, curGeoCoord.longitude, "currently added spot")
             } else {
                 // GPS가 꺼져있을 경우
                 Toast.makeText(this, "GPS를 켜주세요", Toast.LENGTH_SHORT).show()
             }
-        }
-
-        // (플로팅버튼) 기록 모드로 전환
-        binding.btnToWriteactivity.setOnClickListener {
-            val intent = Intent(this, WriteActivity::class.java)
-            startActivity(intent)
         }
     }
 

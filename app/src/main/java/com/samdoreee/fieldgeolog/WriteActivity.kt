@@ -9,31 +9,23 @@ import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
-import android.util.Log
 import android.widget.Button
 import android.widget.EditText
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.samdoreee.fieldgeolog.databinding.ActivityMemoBinding
 import com.samdoreee.fieldgeolog.databinding.ActivityWriteBinding
-import com.samdoreee.fieldgeolog.record.Memo
-import com.samdoreee.fieldgeolog.record.Project
-import com.samdoreee.fieldgeolog.record.Record
+import com.samdoreee.fieldgeolog.network.GeoApi
+import com.samdoreee.fieldgeolog.network.SpotRequest
+import kotlinx.coroutines.runBlocking
 
 
 @Suppress("DEPRECATION")
 class WriteActivity : AppCompatActivity() {
-    lateinit var binding : ActivityWriteBinding
+    lateinit var binding: ActivityWriteBinding
     private lateinit var btnSave: Button
     private lateinit var btnCancel: Button
-    private lateinit var project_title: EditText
-    private lateinit var project_date: EditText
-    private lateinit var project_location: EditText
-    private lateinit var project_weather: EditText
+
     private lateinit var project_thumbnail: String
     private lateinit var dip: EditText
     private lateinit var strike: EditText
@@ -41,9 +33,6 @@ class WriteActivity : AppCompatActivity() {
     private lateinit var geo_struct: EditText
     private lateinit var memo_photo0: String
     private lateinit var content: String
-    private val projectList = TempMemory.tempprojectmemory
-    private val recordList = TempMemory.temprecordmemory
-    private val memoList = TempMemory.tempmemomemory
 
     val PERMISSIONS = arrayOf(
         Manifest.permission.CAMERA,
@@ -57,8 +46,6 @@ class WriteActivity : AppCompatActivity() {
     @SuppressLint("SimpleDateFormat")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-/*      super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_write)*/
 
         binding = ActivityWriteBinding.inflate(layoutInflater)
         val view = binding.root
@@ -83,44 +70,30 @@ class WriteActivity : AppCompatActivity() {
         }
     }
 
-
     private fun save() {
-        val title = project_title.text.toString()
-        val location = project_location.text.toString()
-        val weather = project_weather.text.toString()
-        val strike = strike.text.toString()
-        val dip = dip.text.toString()
-        val rocktype = rocktype.text.toString()
-        val geo_struct = geo_struct.text.toString()
-        val date = project_date.text.toString()
+        val match = Regex("(\\d+)([A-Z]+)").find(binding.strike.text.toString())!!
+        val strike = match.destructured.component1().toInt()
+        val direction = match.destructured.component2()
+        val dip = binding.dip.text.toString().toInt()
+        val rockType = binding.rocktype.text.toString()
+        val geoStructure = binding.geoStruct.text.toString()
+
+        runBlocking {
+            val newSpot = SpotRequest(
+                latitude = intent.getDoubleExtra("latitude", 0.0),
+                longitude = intent.getDoubleExtra("longitude", 0.0),
+                strike = strike,
+                rockType = rockType,
+                geoStructure = geoStructure,
+                dip = dip,
+                direction = direction
+            )
+            println("newSpot = ${newSpot}")
+            GeoApi.retrofitService.addSpot(newSpot)
+        }
+
         project_thumbnail = "samdoree"
         val thumbnail = project_thumbnail
-/*
-        val content = content.text.toString()
-*/
-
-        val rec_add = Record(title,
-            thumbnail,
-            date,
-            location,
-            weather,
-            strike,
-            dip,
-            rocktype,
-            geo_struct)
-        recordList.add(rec_add)
-        Log.d("rec_add", "{$rec_add}")
-
-        val project_add = Project(rec_add.project_title,
-            rec_add.project_date,
-            rec_add.project_location,
-            rec_add.project_thumbnail)
-        projectList.add(project_add)
-        Log.d("project_add", "{$project_add}")
-
-        val memo_add = Memo(content)
-        memoList.add(memo_add)
-        Log.d("memo_add", "{$memoList}")
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -138,15 +111,17 @@ class WriteActivity : AppCompatActivity() {
 
 
     private fun checkPermissions(permissions: Array<String>, permissionsRequest: Int): Boolean {
-        val permissionList : MutableList<String> = mutableListOf()
-        for(permission in permissions){
+        val permissionList: MutableList<String> = mutableListOf()
+        for (permission in permissions) {
             val result = ContextCompat.checkSelfPermission(this, permission)
-            if(result != PackageManager.PERMISSION_GRANTED){
+            if (result != PackageManager.PERMISSION_GRANTED) {
                 permissionList.add(permission)
             }
         }
-        if(permissionList.isNotEmpty()){
-            ActivityCompat.requestPermissions(this, permissionList.toTypedArray(), PERMISSIONS_REQUEST)
+        if (permissionList.isNotEmpty()) {
+            ActivityCompat.requestPermissions(this,
+                permissionList.toTypedArray(),
+                PERMISSIONS_REQUEST)
             return false
         }
         return true
@@ -165,4 +140,7 @@ class WriteActivity : AppCompatActivity() {
             }
         }
     }*/
+
 }
+
+
