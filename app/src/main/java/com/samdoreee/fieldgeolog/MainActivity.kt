@@ -63,7 +63,7 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        // (중앙) 기록시작 모드로 전환
+        // (오른쪽) 기록시작 모드로 전환
         binding.btnRecordStart.setOnClickListener {
             val intent = Intent(this, ProjectListActivity::class.java)
             startActivity(intent)

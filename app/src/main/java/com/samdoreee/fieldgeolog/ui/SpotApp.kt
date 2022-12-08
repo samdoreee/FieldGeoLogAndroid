@@ -73,7 +73,7 @@ private fun SpotList(
                 ) {
                     Text(text = spot.latitude.toString())
                     Text(text = spot.latitude.toString())
-                    Text(text = spot.createDt.toString())
+                    Text(text = spot.createDT.toString())
                 }
             }
         }
