@@ -1,11 +1,15 @@
 package com.samdoreee.fieldgeolog
 
 import android.content.Context
+import android.content.Intent
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.content.ContextCompat
+import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.samdoreee.fieldgeolog.record.Project
 
@@ -18,7 +22,14 @@ class ProjectRvAdapter(val context: Context, val projectList: ArrayList<Project>
     }
 
     override fun onBindViewHolder(holder: Holder, position: Int) {
+/*
         holder?.bind(projectList[position], context)
+*/
+        holder.itemView.setOnClickListener {
+            val intent = Intent(holder.itemView?.context, WriteActivity::class.java)
+            ContextCompat.startActivity(holder.itemView.context, intent, null)
+
+        }
     }
 
     override fun getItemCount(): Int {
@@ -44,5 +55,6 @@ class ProjectRvAdapter(val context: Context, val projectList: ArrayList<Project>
             author?.text = project.author
             location?.text = project.location
         }
+
     }
 }
