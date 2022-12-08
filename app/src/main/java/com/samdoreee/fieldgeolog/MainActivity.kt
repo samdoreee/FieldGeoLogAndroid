@@ -13,9 +13,9 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.recyclerview.widget.RecyclerView
 import com.samdoreee.fieldgeolog.databinding.MainBinding
 import com.samdoreee.fieldgeolog.network.GeoApi
-import com.samdoreee.fieldgeolog.network.SpotRequest
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.runBlocking
@@ -27,6 +27,8 @@ import net.daum.mf.map.api.MapView.CurrentLocationTrackingMode
 
 
 class MainActivity : AppCompatActivity() {
+    private lateinit var writeRecycler: RecyclerView
+
     private lateinit var binding: MainBinding
     private lateinit var mapView: MapView
     private val ACCESS_FINE_LOCATION = 1000     // Request Code
@@ -37,10 +39,11 @@ class MainActivity : AppCompatActivity() {
         val view = binding.root
         mapView = binding.mapView
         setContentView(view)
+        /*writeRecycler = findViewById(R.id.)*/
 
         permissionCheck()
 
-        // 기록된 위치 표시
+        // (좌) 기록된 위치 표시
         binding.btnStart.setOnClickListener {
             mapView.removeAllPOIItems()
             runBlocking {
@@ -60,20 +63,22 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        // 현재 위치 기록 표시
-        binding.btnStop.setOnClickListener {
+        // (오른쪽) 기록시작 모드로 전환
+        binding.btnRecordStart.setOnClickListener {
+            val intent = Intent(this, ProjectListActivity::class.java)
+            startActivity(intent)
+        }
+
+        // (플로팅버튼) 기록 모드로 전
+        binding.btnToWriteactivity.setOnClickListener {
+            val intent = Intent(this, WriteActivity::class.java)
             if (checkLocationService()) {
                 // GPS가 켜져있을 경우
-                runBlocking {
-                    val curGeoCoord = mapView.mapCenterPoint.mapPointGeoCoord
-                    GeoApi.retrofitService.addSpot(
-                        SpotRequest(
-                            curGeoCoord.latitude,
-                            curGeoCoord.longitude
-                        )
-                    )
-                    addMarker(curGeoCoord.latitude, curGeoCoord.longitude, "currently added spot")
-                }
+                val curGeoCoord = mapView.mapCenterPoint.mapPointGeoCoord
+                intent.putExtra("latitude", curGeoCoord.latitude)
+                intent.putExtra("longitude", curGeoCoord.longitude)
+                startActivity(intent)
+                addMarker(curGeoCoord.latitude, curGeoCoord.longitude, "currently added spot")
             } else {
                 // GPS가 꺼져있을 경우
                 Toast.makeText(this, "GPS를 켜주세요", Toast.LENGTH_SHORT).show()

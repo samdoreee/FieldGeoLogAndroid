@@ -7,6 +7,11 @@ data class Spot(
     val id: Long,
     val latitude: Double,
     val longitude: Double,
-    val createDt: String,
-    val weatherInfo: String
+    val createDT: String,
+    val weatherInfo: String,
+    val strike: Int,
+    val rockType: String,
+    val geoStructure: String,
+    val dip: Int,
+    val direction: String,
 )
