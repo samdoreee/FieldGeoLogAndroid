@@ -37,6 +37,7 @@ android {
     buildFeatures {
         compose true
         dataBinding true
+        viewBinding true
     }
     composeOptions {
         kotlinCompilerExtensionVersion '1.1.1'
@@ -96,6 +97,4 @@ dependencies {
 
     implementation 'androidx.recyclerview:recyclerview:1.2.1'
     implementation 'androidx.recyclerview:recyclerview-selection:1.1.0'
-    implementation 'com.android.support:cardview-v7:28.0.0'
-
 }

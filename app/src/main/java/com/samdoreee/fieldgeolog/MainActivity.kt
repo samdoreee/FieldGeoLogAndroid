@@ -53,7 +53,7 @@ class MainActivity : AppCompatActivity() {
                 }
                 for (it in allSpots.withIndex()) {
                     addMarker(it.value.latitude, it.value.longitude, it.value.weatherInfo)
-                    delay(2000)
+                   delay(2000)
                     mapView.setMapCenterPoint(
                         MapPoint.mapPointWithGeoCoord(it.value.latitude, it.value.longitude),
                         true
@@ -62,6 +62,7 @@ class MainActivity : AppCompatActivity() {
                 permissionCheck()
             }
         }
+
 
         // (오른쪽) 기록시작 모드로 전환
         binding.btnRecordStart.setOnClickListener {
