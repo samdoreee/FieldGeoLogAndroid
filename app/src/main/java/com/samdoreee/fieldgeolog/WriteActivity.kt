@@ -2,13 +2,10 @@ package com.samdoreee.fieldgeolog
 
 import android.Manifest
 import android.annotation.SuppressLint
-import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Bundle
-import android.provider.MediaStore
 import android.widget.Button
 import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
@@ -59,11 +56,11 @@ class WriteActivity : AppCompatActivity() {
         binding.btnSave.setOnClickListener {
             save()
             finish()
-            startActivity(Intent(this, MainActivity::class.java))
+            startActivity(Intent(this, OldNewRecordActivity::class.java))
         }
         binding.btnCancel.setOnClickListener {
             finish()
-            startActivity(Intent(this, MainActivity::class.java))
+            startActivity(Intent(this, OldNewRecordActivity::class.java))
         }
         /*binding.camerabtn.setOnClickListener {
             val takePictureIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)

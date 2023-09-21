@@ -5,7 +5,6 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-    <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
@@ -33,7 +32,164 @@
         </provider>
 
         <activity
+            android:name=".CommunityActivity"
+            android:exported="false"
+            android:theme="@style/Theme.AppCompat">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+
+        <activity
             android:name=".DetailActivity"
+            android:exported="false"
+            android:theme="@style/Theme.AppCompat">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+
+        <activity
+            android:name=".GeoMapActivity"
+            android:exported="false"
+            android:theme="@style/Theme.AppCompat">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+
+        <activity
+            android:name=".LoginActivity"
+            android:exported="false"
+            android:theme="@style/Theme.AppCompat">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:theme="@style/Theme.AppCompat">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+
+        <activity
+            android:name=".MyPageActivity"
+            android:exported="true"
+            android:theme="@style/Theme.AppCompat">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+
+        <activity
+            android:name=".MyRecordActivity"
+            android:exported="false"
+            android:theme="@style/Theme.AppCompat">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+
+        <activity
+            android:name=".NewRecordActivity"
+            android:exported="false"
+            android:theme="@style/Theme.AppCompat">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+
+        <activity
+            android:name=".OldNewRecordActivity"
+            android:exported="true"
+            android:theme="@style/Theme.AppCompat">
+        </activity>
+
+        <activity
+            android:name=".OneArticleActivity"
+            android:exported="true"
+            android:theme="@style/Theme.AppCompat">
+
+        </activity>
+
+        <activity
+            android:name=".OneRecordActivity"
+            android:exported="true"
+            android:theme="@style/Theme.AppCompat">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".ProjectListActivity"
+            android:exported="false"
+            android:theme="@style/Theme.AppCompat">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+
+        <activity
+            android:name=".ReadArticleActivity"
+            android:exported="false"
+            android:theme="@style/Theme.AppCompat">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+
+        <activity
+            android:name=".RockDicActivity"
+            android:exported="false"
+            android:theme="@style/Theme.AppCompat">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+
+        <activity
+            android:name=".RockDicDetailActivity"
+            android:exported="false"
+            android:theme="@style/Theme.AppCompat">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+
+
+
+        <activity
+            android:name=".ReadPersonalRecordActivity"
+            android:exported="false"
+            android:theme="@style/Theme.AppCompat">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+
+        <activity
+            android:name=".RecordWriteActivity"
+            android:exported="false"
+            android:theme="@style/Theme.AppCompat">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+
+        <activity
+            android:name=".SignUpActivity"
             android:exported="false"
             android:theme="@style/Theme.AppCompat">
             <meta-data
@@ -49,24 +205,7 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
-        <activity
-            android:name=".ProjectListActivity"
-            android:exported="false"
-            android:theme="@style/Theme.AppCompat">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
-            android:name=".MainActivity"
-            android:exported="true"
-            android:theme="@style/Theme.AppCompat">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
 
         <meta-data
             android:name="com.kakao.sdk.AppKey"
