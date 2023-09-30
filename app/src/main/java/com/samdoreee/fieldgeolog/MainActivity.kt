@@ -39,6 +39,10 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, MyPageActivity::class.java)
             startActivity(intent)
         }
+        binding.S3testbtn.setOnClickListener {
+            val intent = Intent(this, MyPageActivity::class.java)
+            startActivity(intent)
+        }
 
         // 로그에 로그인 정보 데이터 출력
         UserApiClient.instance.me { user, error ->
@@ -50,7 +54,6 @@ class MainActivity : AppCompatActivity() {
 
             // 아래 코드처럼 데이터 활용하면 됨
             // binding.txtNickName.text = user.kakaoAccount?.profile?.nickname
-
 
             }
         }
