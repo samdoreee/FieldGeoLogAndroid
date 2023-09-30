@@ -39,6 +39,14 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, MyPageActivity::class.java)
             startActivity(intent)
         }
+        binding.S3testbtn.setOnClickListener {
+            val intent = Intent(this, S3Activity::class.java)
+            startActivity(intent)
+        }
+        binding.S3downloadbtn.setOnClickListener {
+            val intent = Intent(this, S3DownloadActivity::class.java)
+            startActivity(intent)
+        }
 
         // 로그에 로그인 정보 데이터 출력
         UserApiClient.instance.me { user, error ->

@@ -16,3 +16,4 @@ dependencyResolutionManagement {
 }
 rootProject.name = "FieldGeoLog"
 include ':app'
+include ':s3media_files_uploader'
