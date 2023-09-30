@@ -51,6 +51,7 @@ class MainActivity : AppCompatActivity() {
             // 아래 코드처럼 데이터 활용하면 됨
             // binding.txtNickName.text = user.kakaoAccount?.profile?.nickname
 
+
             }
         }
 
