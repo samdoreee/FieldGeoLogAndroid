@@ -40,7 +40,7 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
         binding.S3testbtn.setOnClickListener {
-            val intent = Intent(this, MyPageActivity::class.java)
+            val intent = Intent(this, S3Activity::class.java)
             startActivity(intent)
         }
 
