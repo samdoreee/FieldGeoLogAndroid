@@ -108,49 +108,6 @@ class S3Activity : AppCompatActivity(), S3MediaUploader.UploadListener {
         }
     }
 
-
-//    fun getPath(uri: Uri?): String? {
-//        val projection = arrayOf(MediaStore.Images.Media.DATA)
-//        val cursor = contentResolver.query(uri!!, projection, null, null, null) ?: return null
-//        val column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA)
-//        cursor.moveToFirst()
-//        val s = cursor.getString(column_index)
-//        cursor.close()
-//        return s
-//    }
-
-    fun getPath(uri: Uri?, context: Context): String? {
-        val fileDescriptor: ParcelFileDescriptor?
-        try {
-            fileDescriptor = context.contentResolver.openFileDescriptor(uri!!, "r")
-        } catch (e: Exception) {
-            return null
-        }
-
-        fileDescriptor ?: return null
-
-        return fileDescriptor.fileDescriptor.toString()
-    }
-
-    private fun getRealPathFromURI(uri: Uri): String {
-        val buildName = Build.MANUFACTURER
-        if(buildName.equals("Xiaomi")) {
-            return uri.path.toString()
-        }
-
-        var columnIndex = 0
-        val proj = arrayOf(MediaStore.Images.Media.DATA)
-        var cursor = contentResolver.query(uri, proj, null, null, null)
-
-        if(cursor!!.moveToFirst()) {
-            columnIndex = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA)
-        }
-
-        var realfile = cursor.getString(columnIndex)
-        Log.e(TAG, "RealFilePath: $realfile")
-        return cursor.getString(columnIndex)
-    }
-
     fun getFilePathFromContentUri(context: Context, uri: Uri): String? {
         var filePath: String? = null
 

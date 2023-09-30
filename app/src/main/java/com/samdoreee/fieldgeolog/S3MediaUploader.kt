@@ -2,6 +2,7 @@ package com.samdoreee.fieldgeolog
 
 import android.content.Context
 import android.text.TextUtils
+import android.util.Log
 import com.amazonaws.auth.BasicSessionCredentials
 import com.amazonaws.mobile.client.AWSMobileClient
 import com.amazonaws.mobileconnectors.s3.transferutility.TransferListener
@@ -12,6 +13,7 @@ import com.amazonaws.regions.Region
 import com.amazonaws.regions.Regions
 import com.amazonaws.services.s3.AmazonS3Client
 import java.io.File
+import java.util.UUID
 
 class S3MediaUploader :TransferListener {
 
@@ -35,7 +37,7 @@ class S3MediaUploader :TransferListener {
         aListener: UploadListener?
     ) {
         imageUploadListener = aListener
-        val filename = filePath.substring(
+        val filename = UUID.randomUUID().toString() + "_" +  filePath.substring(
             filePath.lastIndexOf('/') + 1
         )
         urls.add(filePath)
