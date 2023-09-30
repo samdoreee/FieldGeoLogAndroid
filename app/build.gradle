@@ -69,7 +69,6 @@ dependencies {
     implementation "androidx.compose.ui:ui-tooling-preview:$compose_ui_version"
     implementation 'androidx.compose.material:material:1.1.1'
     implementation 'androidx.navigation:navigation-runtime-ktx:2.5.3'
-    implementation 'androidx.appcompat:appcompat:1.5.1'
     implementation 'com.google.android.material:material:1.4.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     implementation 'androidx.appcompat:appcompat:1.7.0-alpha01'
@@ -100,4 +99,13 @@ dependencies {
 
     // Kakao Login
     implementation 'com.kakao.sdk:v2-user:2.10.0'
+
+    //Amazon S3
+    implementation 'com.amazonaws:aws-android-sdk-core:2.26.0'
+    implementation 'com.amazonaws:aws-android-sdk-s3:2.26.0'
+    implementation 'com.amazonaws:aws-android-sdk-ddb:2.16.11'
+    implementation('com.amazonaws:aws-android-sdk-mobile-client:2.22.0@aar') { transitive = true }
+    implementation 'com.amazonaws:aws-android-sdk-cognito:2.20.1'
+
+    implementation project(path: ':s3media_files_uploader')
 }
