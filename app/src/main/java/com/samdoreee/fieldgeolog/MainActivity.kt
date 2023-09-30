@@ -47,6 +47,7 @@ class MainActivity : AppCompatActivity() {
             } else if (user != null) {
                 Log.d(Constants.TAG, "사용자 정보 요청 성공 : $user")
 
+
             // 아래 코드처럼 데이터 활용하면 됨
             // binding.txtNickName.text = user.kakaoAccount?.profile?.nickname
 
