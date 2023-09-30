@@ -3,6 +3,7 @@ package com.samdoreee.fieldgeolog
 import android.content.Context
 import android.text.TextUtils
 import android.util.Log
+import android.webkit.DownloadListener
 import com.amazonaws.auth.BasicSessionCredentials
 import com.amazonaws.mobile.client.AWSMobileClient
 import com.amazonaws.mobileconnectors.s3.transferutility.TransferListener
@@ -12,6 +13,7 @@ import com.amazonaws.mobileconnectors.s3.transferutility.TransferUtility
 import com.amazonaws.regions.Region
 import com.amazonaws.regions.Regions
 import com.amazonaws.services.s3.AmazonS3Client
+import com.amazonaws.services.s3.model.GetObjectRequest
 import java.io.File
 import java.util.UUID
 
@@ -98,6 +100,7 @@ class S3MediaUploader :TransferListener {
         } else if (aTransferState == TransferState.FAILED) {
             imageUploadListener!!.onUploadFailed()
         }
+
     }
 
     private fun finish(s3fileName: String?) {
@@ -136,4 +139,54 @@ class S3MediaUploader :TransferListener {
         fun onUploadCompleted(fileName: String?)
         fun onProgressUpdate(id: Int, current: Int) {}
     }
+    interface DownloadListener {
+        fun onProgressUpdate(id: Int, current: Int) {}
+
+        // 추가: 파일 다운로드 관련 메서드
+        fun onDownloadCompleted(file: File?) {}
+        fun onDownloadFailed() {}
+    }
+
+    fun downloadFileFromS3(
+        context: Context,
+        fileName: String,
+        AWSAccessKeyId: String,
+        SecretAccessKey: String,
+        bucketName: String,
+        regions: Regions,
+        downloadListener: DownloadListener?
+    ) {
+        credentials = BasicSessionCredentials(AWSAccessKeyId, SecretAccessKey, "")
+        sS3Client = AmazonS3Client(credentials, Region.getRegion(regions))
+        mTransferUtility = getTransferUtility(context, bucketName)
+
+        val file = File(context.getExternalFilesDir(null), fileName)
+        val observer = mTransferUtility!!.download(
+            bucketName,
+            fileName,
+            file
+        )
+
+        observer.setTransferListener(object : TransferListener {
+            override fun onStateChanged(id: Int, state: TransferState) {
+                if (state == TransferState.COMPLETED) {
+                    downloadListener?.onDownloadCompleted(file)
+                } else if (state == TransferState.FAILED || state == TransferState.CANCELED) {
+                    downloadListener?.onDownloadFailed()
+                }
+            }
+
+            override fun onProgressChanged(id: Int, bytesCurrent: Long, bytesTotal: Long) {
+                val percentDone = (bytesCurrent.toFloat() / bytesTotal.toFloat() * 100).toInt()
+                downloadListener?.onProgressUpdate(id, percentDone)
+            }
+
+            override fun onError(id: Int, ex: Exception) {
+                downloadListener?.onDownloadFailed()
+            }
+        })
+    }
+
+
+
 }

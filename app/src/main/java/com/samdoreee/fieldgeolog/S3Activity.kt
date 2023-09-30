@@ -214,5 +214,26 @@ class S3Activity : AppCompatActivity(), S3MediaUploader.UploadListener {
 
     override fun onUploadCompleted(fileName: String?) {
         TODO("Not yet implemented")
+
+        // 파일 다운로드 예시
+        S3MediaUploader().downloadFileFromS3(
+            this,
+            fileName!!,
+            "AKIAWTFYC3FPRCM4TVFA",
+            "H7pDlBF8pMJRloQ3pwuqLvRuxHhvt+v+uEEfCAkw",
+            "fieldgeolog/uploaded",
+            Regions.AP_NORTHEAST_2,
+            object : S3MediaUploader.DownloadListener {
+                override fun onDownloadCompleted(file: File?) {
+                    // 다운로드 성공 시 처리
+                    // file에 다운로드된 파일이 저장되어 있음
+                    Log.d(TAG, "downloaded file : $file")
+                }
+
+                override fun onDownloadFailed() {
+                    // 다운로드 실패 시 처리
+                }
+            }
+        )
     }
 }

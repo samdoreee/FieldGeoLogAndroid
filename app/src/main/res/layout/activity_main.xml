@@ -99,6 +99,18 @@
                     android:textStyle="bold">
 
                 </Button>
+                <Button
+                    android:id="@+id/S3downloadbtn"
+                    android:layout_width="150dp"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="50dp"
+                    android:background="@color/orange_1"
+                    android:text="S3 Download"
+                    android:textColor="@color/black"
+                    android:textSize="20sp"
+                    android:textStyle="bold">
+
+                </Button>
             </LinearLayout>
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
