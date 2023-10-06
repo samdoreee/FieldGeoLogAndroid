@@ -37,7 +37,7 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
 
     override fun onClick(v: View?) {
         when (v?.id) {
-            binding.btnKakaoLogin.id -> {
+            binding.kakaoLogin.id -> {
                 if (UserApiClient.instance.isKakaoTalkLoginAvailable(this)) {
                     UserApiClient.instance.loginWithKakaoTalk(this) { token, error ->
                         if (error != null) {
@@ -75,19 +75,7 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
         }
 
         setContentView(binding.root)
-
-        binding.btnKakaoLogin.setOnClickListener(this)
-
-        binding.btnLogin.setOnClickListener {
-            Toast.makeText(this, "환영합니다", Toast.LENGTH_SHORT).show()
-            var intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
-        }
-
-        binding.btnSignup.setOnClickListener {
-            var intent = Intent(this, SignUpActivity::class.java)
-            startActivity(intent)
-        }
+        binding.kakaoLogin.setOnClickListener(this)
     }
 
     private fun nextMainActivity() {
