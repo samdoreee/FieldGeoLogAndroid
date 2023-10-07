@@ -7,7 +7,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_margin="10dp"
-    android:background="@color/background"
+    android:background="@color/White"
     tools:context=".MyPageActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -32,7 +32,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="My Page"
-                android:textColor="@color/orange_2"
+                android:textColor="@color/Gray1"
                 android:textSize="30sp"
                 android:textStyle="bold"></TextView>
 
@@ -40,7 +40,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="환영합니다"
-                android:textColor="@color/black"
+                android:textColor="@color/Black"
                 android:textSize="15sp"
                 android:textStyle="bold"></TextView>
 
@@ -48,7 +48,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="1234님의 회원정보입니다."
-                android:textColor="@color/black"
+                android:textColor="@color/Black"
                 android:textSize="15sp"
                 android:textStyle="bold"></TextView>
         </LinearLayout>
@@ -88,7 +88,7 @@
                 android:minWidth="0dp"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:backgroundTint="@color/orange_2"
+                android:backgroundTint="@color/Gray1"
                 android:text="나의 Record"
                 android:textStyle="bold"></Button>
 
@@ -97,7 +97,7 @@
                 android:minWidth="0dp"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:backgroundTint="@color/gray_1"
+                android:backgroundTint="@color/Gray1"
                 android:text="나의 게시글"
                 android:textStyle="bold"></Button>
         </LinearLayout>
@@ -128,7 +128,7 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:background="@drawable/item_border"
-            android:backgroundTint="@color/orange_1">
+            android:backgroundTint="@color/Gray1">
         </TextView>
 
         <TextView
@@ -142,7 +142,7 @@
         </TextView>
         <EditText
             android:hint="**********"
-            android:backgroundTint="@color/gray_1"
+            android:backgroundTint="@color/Gray1"
             android:background="@drawable/item_border"
             android:layout_width="match_parent"
             android:layout_height="50dp">
@@ -158,7 +158,7 @@
         </TextView>
         <EditText
             android:hint="**********"
-            android:backgroundTint="@color/gray_1"
+            android:backgroundTint="@color/Gray1"
             android:background="@drawable/item_border"
             android:layout_width="match_parent"
             android:layout_height="50dp">
@@ -173,7 +173,7 @@
         <Button
             android:textStyle="bold"
             android:layout_weight="1"
-            android:background="@color/orange_2"
+            android:background="@color/Gray1"
             android:id="@+id/btn_record_start"
             android:layout_width="60dp"
             android:layout_height="wrap_content"
@@ -182,7 +182,7 @@
         <Button
             android:textStyle="bold"
             android:layout_weight="1"
-            android:background="@color/gray_1"
+            android:background="@color/Gray1"
             android:id="@+id/btn_start"
             android:layout_width="60dp"
             android:layout_height="wrap_content"

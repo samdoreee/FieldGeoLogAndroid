@@ -7,7 +7,7 @@
         android:id="@+id/mainview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/white">
+        android:background="@color/White">
 
         <ImageView
             android:id="@+id/logo"
@@ -38,9 +38,9 @@
                     android:layout_width="150dp"
                     android:layout_height="150dp"
                     android:layout_weight="1"
-                    android:background="@color/orange_1"
+                    android:background="@color/Gray1"
                     android:text="COMMUNITY"
-                    android:textColor="@color/black"
+                    android:textColor="@color/Black"
                     android:textSize="20sp"
                     android:textStyle="bold"></Button>
 
@@ -49,9 +49,9 @@
                     android:layout_width="150dp"
                     android:layout_height="150dp"
                     android:layout_weight="1"
-                    android:background="@color/gray_1"
+                    android:background="@color/Gray1"
                     android:text="MY RECORD"
-                    android:textColor="@color/black"
+                    android:textColor="@color/Black"
                     android:textSize="20sp"
                     android:textStyle="bold"></Button>
             </LinearLayout>
@@ -66,9 +66,9 @@
                     android:layout_width="150dp"
                     android:layout_height="150dp"
                     android:layout_weight="1"
-                    android:background="@color/gray_1"
+                    android:background="@color/Gray1"
                     android:text="MY PAGE"
-                    android:textColor="@color/black"
+                    android:textColor="@color/Black"
                     android:textSize="20sp"
                     android:textStyle="bold"></Button>
 
@@ -77,9 +77,9 @@
                     android:layout_width="150dp"
                     android:layout_height="150dp"
                     android:layout_weight="1"
-                    android:background="@color/orange_1"
+                    android:background="@color/Gray1"
                     android:text="NEW RECORD"
-                    android:textColor="@color/black"
+                    android:textColor="@color/Black"
                     android:textSize="20sp"
                     android:textStyle="bold"></Button>
             </LinearLayout>

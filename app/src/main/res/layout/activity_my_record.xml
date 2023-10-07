@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MyRecordActivity"
-    android:background="@color/background">
+    android:background="@color/White">
 
     <TextView
         android:id="@+id/myrecordtitle"
@@ -19,7 +19,7 @@
         android:textStyle="bold"
         app:layout_constraintTop_toTopOf="parent"
         tools:layout_editor_absoluteX="10dp"
-        android:background="@color/orange_2">
+        android:background="@color/Gray1">
     </TextView>
     <LinearLayout
         android:weightSum="5"

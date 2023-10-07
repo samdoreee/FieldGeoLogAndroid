@@ -4,9 +4,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <FrameLayout
+        android:background="@color/White"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <ImageView
+            android:id="@+id/background"
             tools:ignore="SpeakableTextPresentCheck"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -20,49 +22,49 @@
             android:layout_margin="20dp"
             tools:context=".LoginActivity">
 
-
-            <TextView
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="244dp"
-                android:fontFamily="@font/nanumsquareneoehv"
-                android:gravity="center"
-                android:lineSpacingExtra="15dp"
-                android:text="WELCOME!"
-                android:textColor="@color/Black"
-                android:textSize="24sp"
-                app:layout_constraintBottom_toTopOf="@+id/kakaoLogin"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.497"
-                app:layout_constraintStart_toStartOf="parent"></TextView>
+                app:layout_constraintStart_toStartOf="@id/ancestor"
+                app:layout_constraintEnd_toEndOf="@id/ancestor"
+                app:layout_constraintBottom_toBottomOf="@id/ancestor"
+                app:layout_constraintTop_toTopOf="@id/ancestor"
+                android:orientation="vertical">
 
-            <ImageView
-                android:layout_width="240sp"
-                android:layout_height="180sp"
-                android:layout_marginTop="212dp"
-                android:src="@drawable/logo"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.496"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                <TextView
+                    android:id="@+id/welcomeText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:fontFamily="@font/nanumsquareneoehv"
+                    android:lineSpacingExtra="15dp"
+                    android:text="WELCOME!"
+                    android:textColor="@color/Black"
+                    android:textSize="24sp"></TextView>
 
-            <ImageButton
-                android:id="@+id/kakaoLogin"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="160dp"
-                android:adjustViewBounds="true"
-                android:background="#00FFFFFF"
-                android:elevation="100sp"
-                android:scaleType="fitCenter"
-                android:src="@drawable/kakao_login_large_wide"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                tools:ignore="SpeakableTextPresentCheck"></ImageButton>
+                <ImageView
+                    android:layout_gravity="center_horizontal"
+                    android:id="@+id/logoimg"
+                    android:layout_width="240sp"
+                    android:layout_height="180sp"
+                    android:src="@drawable/logo"
+                    android:layout_marginBottom="100sp"/>
+
+                <ImageButton
+                    android:layout_gravity="center_horizontal"
+                    android:id="@+id/kakaoLogin"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:adjustViewBounds="true"
+                    android:background="#00FFFFFF"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/kakao_login_large_wide"
+                    tools:ignore="SpeakableTextPresentCheck">
+                </ImageButton>
+            </LinearLayout>
 
             <TextView
+                android:id="@+id/samdoreeCorporation"
                 android:lineSpacingExtra="5dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -75,7 +77,6 @@
                 android:fontFamily="@font/nanumsquareneobrg"
                 android:textSize="12sp">
             </TextView>
-
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </FrameLayout>
