@@ -5,8 +5,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
-import com.samdoreee.fieldgeolog.LoginActivity
-import com.samdoreee.fieldgeolog.R
 import com.samdoreee.fieldgeolog.databinding.ActivitySignUpBinding
 
 class SignUpActivity : AppCompatActivity() {

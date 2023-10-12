@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_height="250dp"
+    android:layout_width="210dp">
+    <!--배경카드뷰-->
+    <androidx.cardview.widget.CardView
+        android:id="@+id/backgorund"
+        android:layout_width="210dp"
+        android:layout_height="250dp"
+        app:cardCornerRadius="20dp">
+        <ImageView
+            android:src="@color/G5"
+            android:id="@+id/thumbnail"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop">
+        </ImageView>
+    </androidx.cardview.widget.CardView>
+    <!--설명카드뷰-->
+    <androidx.cardview.widget.CardView
+        app:cardBackgroundColor="#00FFFFFF"
+        android:id="@+id/description"
+        android:layout_gravity="bottom|center_horizontal"
+        app:cardCornerRadius="20dp"
+        android:layout_width="190dp"
+        android:layout_height="100dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginBottom="10dp">
+        <ImageView
+            android:id="@+id/gradation"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/white_gradation_background"
+            android:background="@drawable/white_gradation_background">
+        </ImageView>
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/container"
+            android:layout_width="190dp"
+            android:layout_height="100dp"
+            android:layout_marginBottom="10dp">
+
+            <TextView
+                android:id="@+id/title"
+                style="@style/Neo3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="10dp"
+                android:text="제목입니다"
+                app:layout_constraintStart_toStartOf="@+id/container"
+                app:layout_constraintTop_toTopOf="@+id/container"></TextView>
+
+            <ImageView
+                android:id="@+id/icon"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="5dp"
+                android:src="@drawable/pin"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/title"></ImageView>
+
+            <TextView
+                android:id="@+id/location"
+                style="@style/Neo4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="1dp"
+                android:layout_marginTop="5dp"
+                android:text="위치입니다"
+                app:layout_constraintStart_toEndOf="@+id/icon"
+                app:layout_constraintTop_toBottomOf="@+id/title"></TextView>
+
+            <TextView
+                android:id="@+id/date"
+                style="@style/Neo4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:text="날짜입니다"
+                app:layout_constraintBottom_toBottomOf="@+id/container"
+                app:layout_constraintEnd_toEndOf="@+id/container"></TextView>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+
+</FrameLayout>
+

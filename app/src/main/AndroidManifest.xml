@@ -33,8 +33,7 @@
 
         <activity
             android:name=".CommunityActivity"
-            android:exported="false"
-            android:theme="@style/Theme.AppCompat.NoActionBar">
+            android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
@@ -43,7 +42,7 @@
         <activity
             android:name=".DetailActivity"
             android:exported="false"
-            android:theme="@style/Theme.AppCompat.NoActionBar">
+             >
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
@@ -52,7 +51,7 @@
         <activity
             android:name=".GeoMapActivity"
             android:exported="false"
-            android:theme="@style/Theme.AppCompat.NoActionBar">
+             >
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
@@ -61,7 +60,7 @@
         <activity
             android:name=".LoginActivity"
             android:exported="true"
-            android:theme="@style/Theme.AppCompat.NoActionBar">
+             >
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
@@ -86,8 +85,7 @@
 
         <activity
             android:name=".MainActivity"
-            android:exported="true"
-            android:theme="@style/Theme.AppCompat.NoActionBar">
+            android:exported="true">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
@@ -96,7 +94,7 @@
         <activity
             android:name=".MyPageActivity"
             android:exported="true"
-            android:theme="@style/Theme.AppCompat.NoActionBar">
+             >
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
@@ -105,7 +103,7 @@
         <activity
             android:name=".MyRecordActivity"
             android:exported="false"
-            android:theme="@style/Theme.AppCompat.NoActionBar">
+             >
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
@@ -114,7 +112,7 @@
         <activity
             android:name=".NewRecordActivity"
             android:exported="false"
-            android:theme="@style/Theme.AppCompat.NoActionBar">
+             >
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
@@ -123,20 +121,20 @@
         <activity
             android:name=".OldNewRecordActivity"
             android:exported="true"
-            android:theme="@style/Theme.AppCompat.NoActionBar">
+             >
         </activity>
 
         <activity
             android:name=".OneArticleActivity"
             android:exported="true"
-            android:theme="@style/Theme.AppCompat.NoActionBar">
+             >
 
         </activity>
 
         <activity
             android:name=".OneRecordActivity"
             android:exported="true"
-            android:theme="@style/Theme.AppCompat.NoActionBar">
+             >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -147,7 +145,7 @@
         <activity
             android:name=".ProjectListActivity"
             android:exported="false"
-            android:theme="@style/Theme.AppCompat.NoActionBar">
+             >
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
@@ -156,7 +154,7 @@
         <activity
             android:name=".ReadArticleActivity"
             android:exported="false"
-            android:theme="@style/Theme.AppCompat.NoActionBar">
+             >
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
@@ -164,7 +162,7 @@
         <activity
             android:name=".ReadPersonalRecordActivity"
             android:exported="false"
-            android:theme="@style/Theme.AppCompat.NoActionBar">
+             >
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
@@ -173,7 +171,7 @@
         <activity
             android:name=".RecordWriteActivity"
             android:exported="false"
-            android:theme="@style/Theme.AppCompat.NoActionBar">
+             >
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
@@ -182,7 +180,7 @@
         <activity
             android:name=".SignUpActivity"
             android:exported="false"
-            android:theme="@style/Theme.AppCompat.NoActionBar">
+             >
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
@@ -191,7 +189,7 @@
         <activity
             android:name=".WriteActivity"
             android:exported="false"
-            android:theme="@style/Theme.AppCompat.NoActionBar">
+             >
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />

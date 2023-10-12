@@ -3,13 +3,7 @@ package com.samdoreee.fieldgeolog
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Handler
-import android.os.Parcel
-import android.os.Parcelable
 import android.widget.Toast
-import androidx.databinding.DataBindingUtil
-import com.samdoreee.fieldgeolog.SignUpActivity
-import com.samdoreee.fieldgeolog.R
 import com.samdoreee.fieldgeolog.databinding.ActivityLoginBinding
 import android.util.Log
 import android.view.View
@@ -76,6 +70,11 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
 
         setContentView(binding.root)
         binding.kakaoLogin.setOnClickListener(this)
+        /*카카오로그인없이메인가서 테스트용*/
+        binding.tomain.setOnClickListener {
+            startActivity(Intent(this, MainActivity::class.java))
+            finish()
+        }
     }
 
     private fun nextMainActivity() {

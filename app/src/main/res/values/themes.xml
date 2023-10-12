@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="Theme.FieldGeoLog" parent="Theme.AppCompat.Light">
+    <style name="Theme.FieldGeoLog" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="android:windowContentTransitions">true</item>
-        <item name="colorPrimary">@color/White</item>
-        <item name="colorPrimaryDark">@color/Gray1</item>
-        <item name="colorAccent">@color/G2</item>
+
     </style>
 </resources>
