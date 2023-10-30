@@ -8,6 +8,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <Button
+            android:background="#00FFFFFF"
             android:id="@+id/tomain"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -25,9 +26,10 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_margin="20dp"
-            tools:context=".LoginActivity">
+            tools:context=".ui.activity.LoginActivity">
 
             <LinearLayout
+                android:layout_marginTop="70dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:layout_constraintStart_toStartOf="@id/ancestor"
@@ -41,7 +43,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
-                    android:text="WELCOME!"
+                    android:text="환영합니다"
                     style="@style/Neo1"></TextView>
 
                 <ImageView
@@ -50,7 +52,7 @@
                     android:layout_width="240sp"
                     android:layout_height="180sp"
                     android:src="@drawable/logo"
-                    android:layout_marginBottom="100sp"/>
+                    android:layout_marginBottom="150dp"/>
 
                 <ImageButton
                     android:layout_gravity="center_horizontal"

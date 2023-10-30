@@ -1,231 +1,334 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
-
-
-    <data>
-
-    </data>
-
     <androidx.constraintlayout.widget.ConstraintLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_marginLeft="8dp"
-    android:layout_marginTop="8dp"
-    android:layout_marginRight="8dp"
-    android:layout_marginBottom="8dp"
-    android:background="@drawable/item_border">
-
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayout2"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:background="@drawable/item_border"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_height="match_parent">
 
         <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginTop="8dp"
-            android:src="@drawable/samdoree"
-            app:layout_constraintStart_toStartOf="@id/constraintLayout2"
-            app:layout_constraintTop_toTopOf="@id/constraintLayout2" />
+            android:id="@+id/mapView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:src="@drawable/mapsample2"></ImageView>
 
-        <TextView
-            android:id="@+id/title"
-            android:layout_width="300dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="8dp"
-            android:layout_marginTop="8dp"
-            android:background="@drawable/item_border"
-            android:minHeight="35dp"
-            android:textSize="25sp"
-            android:textStyle="bold"
-            app:layout_constraintStart_toEndOf="@id/imageView"
-            app:layout_constraintTop_toTopOf="@id/constraintLayout2" />
-
-        <TextView
-            android:id="@+id/date"
-            android:layout_width="300dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="8dp"
-            android:background="@drawable/item_border"
-            android:minHeight="35dp"
-            android:textSize="25sp"
-            android:textStyle="bold"
-            app:layout_constraintStart_toEndOf="@id/imageView"
-            app:layout_constraintTop_toBottomOf="@id/title" />
-
-        <TextView
-            android:id="@+id/location"
-            android:layout_width="300dp"
-            android:layout_height="35dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:background="@drawable/item_border"
-            android:minHeight="30dp"
-            android:textSize="20sp"
+        <!--header-->
+        <FrameLayout
+            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/imageView" />
+            android:layout_width="match_parent"
+            android:layout_height="90dp">
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/header_background"
+                ></ImageView>
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_gravity="center_vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="3">
+                <ImageButton
+                    android:id="@+id/back_to_home_btn"
+                    android:layout_marginStart="20dp"
+                    android:background="#00FFFFFF"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:src="@drawable/chevron_left"></ImageButton>
+                <TextView
+                    android:layout_weight="1"
+                    android:textAlignment="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="새로운 기록"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    style="@style/Neo2"></TextView>
 
-        <TextView
-            android:id="@+id/weather"
-            android:layout_width="78dp"
-            android:layout_height="35dp"
-            android:layout_marginTop="8dp"
-            android:background="@drawable/item_border"
-            android:minHeight="30dp"
-            android:textSize="20sp"
-            app:layout_constraintStart_toEndOf="@id/location"
-            app:layout_constraintTop_toBottomOf="@id/date" />
+                <Button
+                    android:id="@+id/btn_save"
+                    style="@style/Neo2"
+                    android:textSize="16sp"
+                    android:layout_width="40dp"
+                    android:layout_height="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:background="#00FFFFFF"
+                    android:text="저장"
+                    android:textColor="@color/G2"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"></Button>
 
-        <EditText
-            android:id="@+id/strike"
-            android:layout_width="187dp"
-            android:layout_height="30dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:background="@drawable/item_border"
-            android:minHeight="30dp"
-            android:hint="Strike"
-            android:textSize="15sp"
-            app:layout_constraintStart_toStartOf="@id/constraintLayout2"
-            app:layout_constraintTop_toBottomOf="@id/location" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+            <TextView
+                android:id="@+id/record_title"
+                style="Neo4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="청주지역 기초 지질 조사"
+                android:textAlignment="center"
+                android:textColor="@color/Black"
+                android:layout_gravity="bottom|center_horizontal"
+                android:layout_marginBottom="15dp"
+                ></TextView>
+        </FrameLayout>
 
-        <EditText
-            android:id="@+id/dip"
-            android:layout_width="187dp"
-            android:layout_height="30dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:background="@drawable/item_border"
-            android:minHeight="30dp"
-            android:hint="Dip"
-            android:textSize="15sp"
-            app:layout_constraintEnd_toEndOf="@id/constraintLayout2"
-            app:layout_constraintTop_toBottomOf="@id/location" />
-
-        <EditText
-            android:id="@+id/rocktype"
-            android:layout_width="187dp"
-            android:layout_height="30dp"
-            android:layout_marginStart="8dp"
-            android:background="@drawable/item_border"
-            android:minHeight="30dp"
-            android:hint="Rock Type"
-            android:textSize="15sp"
-            app:layout_constraintStart_toStartOf="@id/constraintLayout2"
-            app:layout_constraintTop_toBottomOf="@id/strike" />
-
-        <EditText
-            android:id="@+id/geo_struct"
-            android:layout_width="187dp"
-            android:layout_height="30dp"
-            android:layout_marginEnd="8dp"
-            android:background="@drawable/item_border"
-            android:minHeight="30dp"
-            android:hint="Geo Structure"
-            android:textSize="15sp"
-            app:layout_constraintEnd_toEndOf="@id/constraintLayout2"
-            app:layout_constraintTop_toBottomOf="@id/dip" />
-
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/memoconstraintLayout"
-        android:layout_width="match_parent"
-        android:layout_height="220dp"
-        android:background="@drawable/item_border"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/constraintLayout2">
-
-   <!--     <ImageButton
-
-            android:layout_width="75dp"
-            android:layout_height="75dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:background="@drawable/item_border"
-            android:src="@drawable/add_photo"
-            android:adjustViewBounds="true"
-            android:scaleType="fitCenter"
-            app:layout_constraintStart_toStartOf="@id/memoconstraintLayout"
-            app:layout_constraintTop_toTopOf="@id/memoconstraintLayout" />
-
-        <ImageView
-            android:id="@+id/photo0"
-            android:layout_width="75dp"
-            android:layout_height="75dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:background="@drawable/item_border"
-            app:layout_constraintStart_toEndOf="@id/camerabtn"
-            app:layout_constraintTop_toTopOf="@id/memoconstraintLayout" />
-
-        <ImageView
-            android:id="@+id/photo1"
-            android:layout_width="75dp"
-            android:layout_height="75dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:background="@drawable/item_border"
-            app:layout_constraintStart_toEndOf="@id/photo0"
-            app:layout_constraintTop_toTopOf="@id/memoconstraintLayout" />
-
-        <ImageView
-            android:id="@+id/photo2"
-            android:layout_width="75dp"
-            android:layout_height="75dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:background="@drawable/item_border"
-            app:layout_constraintStart_toEndOf="@id/photo1"
-            app:layout_constraintTop_toTopOf="@id/memoconstraintLayout" />
-        android:id="@+id/camerabtn"-->
-
-        <EditText
-            android:id="@+id/memo"
-            android:layout_width="375dp"
-            android:layout_height="107dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="12dp"
-            android:background="@drawable/item_border"
-            android:hint="Location Information"
-            android:minHeight="30dp"
-            android:textSize="20sp"
+        <FrameLayout
+            app:layout_constraintBottom_toTopOf="@+id/card"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/memoconstraintLayout" />
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:src="@drawable/header_background2"
+                ></ImageView>
+        </FrameLayout>
 
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card"
+            android:layout_width="match_parent"
+            android:layout_height="350dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="20dp"
+                android:orientation="vertical">
+                <TextView
+                    android:id="@+id/date"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="@style/Neo2"
+                    android:text="2022년 11월 24일"/>
+
+                <TextView
+                    android:layout_marginTop="10dp"
+                    android:id="@+id/location"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="@style/Neo4"
+                    android:text="충청북도 청주시 서원구 개신동 265-1"></TextView>
+
+                <TextView
+                    android:layout_marginTop="5dp"
+                    android:id="@+id/weather"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/Neo4"
+                    android:text="맑음 : 강우량 보통 남서풍"></TextView>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:background="@color/Gray2"
+                    android:layout_marginVertical="5dp" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:weightSum="4">
+                    <androidx.cardview.widget.CardView
+                        android:layout_margin="5dp"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_weight="1"
+                        app:cardBackgroundColor="@color/G2"
+                        app:cardCornerRadius="10dp">
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="주향"
+                            android:textAlignment="center"
+                            android:layout_margin="3dp"
+                            android:textColor="@color/White"
+                            android:textStyle="bold"></TextView>
+                        <EditText
+                            android:background="@color/White"
+                            android:layout_gravity="bottom|center_horizontal"
+                            android:id="@+id/strike"
+                            style="@style/Neo4"
+                            android:layout_width="match_parent"
+                            android:layout_height="30dp"
+                            android:hint="주향"
+                            android:textStyle="bold"
+                            android:textAlignment="center"></EditText>
+                    </androidx.cardview.widget.CardView>
+                    <androidx.cardview.widget.CardView
+                        android:layout_margin="5dp"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_weight="1"
+                        app:cardBackgroundColor="@color/G2"
+                        app:cardCornerRadius="10dp">
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="경사"
+                            android:textAlignment="center"
+                            android:layout_margin="3dp"
+                            android:textColor="@color/White"
+                            android:textStyle="bold"></TextView>
+                        <EditText
+                            android:background="@color/White"
+                            android:layout_gravity="bottom|center_horizontal"
+                            android:id="@+id/dip"
+                            style="@style/Neo4"
+                            android:layout_width="match_parent"
+                            android:layout_height="30dp"
+                            android:hint="경사"
+                            android:textStyle="bold"
+                            android:textAlignment="center"></EditText>
+                    </androidx.cardview.widget.CardView>                    <androidx.cardview.widget.CardView
+                    android:layout_margin="5dp"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_weight="1"
+                    app:cardBackgroundColor="@color/G2"
+                    app:cardCornerRadius="10dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="3dp"
+                        android:text="암종"
+                        android:textAlignment="center"
+                        android:textColor="@color/White"
+                        android:textStyle="bold"></TextView>
+                    <EditText
+                        android:background="@color/White"
+                        android:layout_gravity="bottom|center_horizontal"
+                        android:id="@+id/rocktype"
+                        style="@style/Neo4"
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
+                        android:hint="암종"
+                        android:textStyle="bold"
+                        android:textAlignment="center"></EditText>
+                </androidx.cardview.widget.CardView>
+                    <androidx.cardview.widget.CardView
+                        android:layout_margin="5dp"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_weight="1"
+                        app:cardBackgroundColor="@color/G2"
+                        app:cardCornerRadius="10dp">
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="지질구조"
+                            android:textAlignment="center"
+                            android:layout_margin="3dp"
+                            android:textColor="@color/White"
+                            android:textStyle="bold"></TextView>
+                        <EditText
+                            android:background="@color/White"
+                            android:layout_gravity="bottom|center_horizontal"
+                            android:id="@+id/geo_struct"
+                            style="@style/Neo4"
+                            android:layout_width="match_parent"
+                            android:layout_height="30dp"
+                            android:hint="지질구조"
+                            android:textStyle="bold"
+                            android:textAlignment="center"></EditText>
+                    </androidx.cardview.widget.CardView>
+
+
+
+
+                </LinearLayout>
+
+                <androidx.core.widget.NestedScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/memoconstraintLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <LinearLayout
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            android:id="@+id/photo_container"
+                            android:orientation="horizontal"
+                            android:weightSum="3"
+                            android:layout_width="match_parent"
+                            android:layout_height="90dp">
+
+                            <androidx.cardview.widget.CardView
+                                android:layout_margin="5dp"
+                                android:layout_weight="1"
+                                android:layout_width="90dp"
+                                android:layout_height="wrap_content"
+                                app:cardCornerRadius="10dp">
+                                <ImageView
+                                    android:src="@drawable/geo11"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="90dp"
+                                    android:scaleType="centerCrop"
+                                    android:layout_gravity="center">
+                                </ImageView>
+                            </androidx.cardview.widget.CardView>
+                            <androidx.cardview.widget.CardView
+                                android:layout_margin="5dp"
+                                android:layout_weight="1"
+                                android:layout_width="90dp"
+                                android:layout_height="wrap_content"
+                                app:cardCornerRadius="10dp">
+                                <ImageView
+                                    android:src="@drawable/geo8"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="90dp"
+                                    android:scaleType="centerCrop"
+                                    android:layout_gravity="center">
+                                </ImageView>
+                            </androidx.cardview.widget.CardView>
+                            <androidx.cardview.widget.CardView
+                                android:layout_margin="5dp"
+                                android:id="@+id/photo_create_btn"
+                                app:cardBackgroundColor="@color/White"
+                                android:layout_weight="1"
+                                android:layout_width="90dp"
+                                android:layout_height="wrap_content"
+                                app:cardCornerRadius="10dp">
+                                <ImageView
+                                    android:src="@drawable/camera_create"
+                                    android:layout_marginVertical="45dp"
+                                    android:layout_width="45dp"
+                                    android:layout_height="45dp"
+                                    android:scaleType="centerCrop"
+                                    android:layout_gravity="center"
+                                    app:tint="@color/G2">
+                                </ImageView>
+                            </androidx.cardview.widget.CardView>
+                        </LinearLayout>
+                        <androidx.cardview.widget.CardView
+                            android:backgroundTint="@color/G7"
+                            app:cardCornerRadius="10dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/photo_container">
+                        <EditText
+                            android:textAlignment="center"
+                            android:hint="메모를 입력하세요."
+                            android:id="@+id/memo"
+                            android:layout_width="match_parent"
+                            android:layout_height="130dp"
+                            android:layout_marginTop="5dp"
+                            style="@style/Neo4"/>
+                        </androidx.cardview.widget.CardView>
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </androidx.core.widget.NestedScrollView>
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <Button
-        android:id="@+id/btn_save"
-        android:layout_width="180dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:text="Save"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="@id/constraintLayout2" />
-
-    <Button
-        android:id="@+id/btn_cancel"
-        android:layout_width="180dp"
-        android:layout_height="40dp"
-        android:layout_marginEnd="16dp"
-        android:text="Cancel"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@id/constraintLayout2" />
-
-
-</androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

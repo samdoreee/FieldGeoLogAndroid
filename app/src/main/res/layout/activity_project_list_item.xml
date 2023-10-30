@@ -27,8 +27,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:textSize="20sp"
-        android:textStyle="bold"
+        style="@style/Neo2"
         app:layout_constraintTop_toTopOf="@+id/thumbnail"
         app:layout_constraintStart_toEndOf="@+id/thumbnail"
         android:text="This is title" />
@@ -38,7 +37,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:textSize="15sp"
+        style="@style/Neo3"
         app:layout_constraintTop_toBottomOf="@+id/title"
         app:layout_constraintStart_toEndOf="@+id/thumbnail"
         android:text="Author" />
@@ -48,7 +47,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="5dp"
-        android:textSize="15sp"
+        style="@style/Neo3"
         app:layout_constraintTop_toBottomOf="@+id/title"
         app:layout_constraintStart_toEndOf="@+id/author"
         android:text="Location Information" />

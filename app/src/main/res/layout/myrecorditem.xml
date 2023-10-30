@@ -1,99 +1,95 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+
+<androidx.cardview.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@drawable/item_border"
     android:layout_width="match_parent"
-    android:layout_height="100dp"
-    android:layout_marginTop="20dp"
-    android:layout_marginBottom="8dp"
-    android:layout_marginLeft="8dp"
-    android:layout_marginRight="8dp" >
+    android:layout_height="wrap_content"
+    app:cardCornerRadius="10dp"
+    android:background="@color/G2">
 
-    <ImageView
-        android:id="@+id/thumbnail"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:layout_marginBottom="10dp"
-        android:layout_marginTop="10dp"
 
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:src="@drawable/photo1"/>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:padding="10dp"
+        android:layout_height="match_parent">
 
-    <LinearLayout
-        android:id="@+id/content"
-        android:layout_width="255dp"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:orientation="vertical"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/thumbnail">
-
-        <TextView
-            android:layout_marginTop="10dp"
-            android:id="@+id/title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="This is title"
-            android:textSize="17sp"
-            android:textStyle="bold"
-            app:layout_constraintStart_toEndOf="@+id/thumbnail"
-            app:layout_constraintTop_toTopOf="@+id/thumbnail" />
-
-        <TextView
-            android:id="@+id/author"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Author"
-            android:textSize="12sp"
-            android:textStyle="bold"
-            app:layout_constraintStart_toEndOf="@+id/thumbnail"
-            app:layout_constraintTop_toBottomOf="@+id/title" />
-
-        <TextView
-            android:layout_marginTop="10dp"
-            android:id="@+id/location"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Location Information"
-            android:textSize="12sp"
-            app:layout_constraintStart_toEndOf="@+id/thumbnail"
-            app:layout_constraintTop_toBottomOf="@+id/author" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:weightSum="2"
-    android:layout_width="50dp"
-    android:layout_height="70dp"
-    android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp"
-    android:orientation="vertical"
-    app:layout_constraintTop_toTopOf="parent"
-    app:layout_constraintEnd_toEndOf="parent">
-        <TextView
-            android:gravity="center"
-            android:layout_weight="1"
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:layout_width="50dp"
-            android:layout_height="wrap_content"
-            android:text="M"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:background="@color/Gray1"/>
+            android:id="@+id/btn_delete"
+            android:layout_height="50dp"
+            android:src="@drawable/trash"
+            android:tint="@color/G2"
+            app:backgroundTint="@color/White"
+            android:scaleType="fitCenter"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_margin="10dp"
+            app:layout_constraintEnd_toStartOf="@+id/btn_modify"
+            app:fabCustomSize="50dp">
 
-        <TextView
-            android:gravity="center"
-            android:layout_weight="1"
+
+        </com.google.android.material.floatingactionbutton.FloatingActionButton>
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:layout_width="50dp"
+            android:id="@+id/btn_modify"
+            android:layout_height="50dp"
+            android:src="@drawable/pencilcreate"
+            android:tint="@color/White"
+            app:backgroundTint="@color/G2"
+            android:scaleType="fitCenter"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_margin="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:fabCustomSize="50dp">
+        </com.google.android.material.floatingactionbutton.FloatingActionButton>
+
+        <LinearLayout
+            android:id="@+id/info"
+            android:layout_marginVertical="10dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="X"
-            android:textStyle="bold"
-            android:textSize="20sp"
-            android:background="@color/Gray1"/>
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/title"
+                style="@style/Neo2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="레코드 제목 입니다.">
+            </TextView>
+            <TextView
+                android:id="@+id/location"
+                style="@style/Neo3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="충북 청주시 서원구 개신동"></TextView>
+            <TextView
+                android:id="@+id/date"
+                style="@style/Neo3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="2023.10.20"></TextView>
+        </LinearLayout>
+        <View
+            android:id="@+id/distributor"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_marginVertical="10dp"
+            android:background="@color/Gray2"
+            app:layout_constraintTop_toBottomOf="@+id/info"
+            app:layout_constraintBottom_toTopOf="@+id/thumbnail"></View>
 
-    </LinearLayout>
-
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <ImageView
+            android:id="@+id/thumbnail"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:src="@drawable/geo11"
+            android:scaleType="centerCrop"></ImageView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>

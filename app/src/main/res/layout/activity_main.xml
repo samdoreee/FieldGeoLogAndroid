@@ -2,87 +2,245 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
-
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/mainview"
+
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/White">
+        android:layout_height="match_parent">
+    <FrameLayout
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <!--header-->
 
-        <ImageView
-            android:id="@+id/logo"
-            android:layout_width="300dp"
-            android:layout_height="300dp"
-            android:src="@drawable/logo"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"></ImageView>
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-        <LinearLayout
-            android:id="@+id/linearLayout"
-            android:layout_width="0dp"
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+                <LinearLayout
+                    android:gravity="right"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginHorizontal="20dp"
+                    android:layout_marginTop="45dp">
+                    <TextView
+                        android:fontFamily="@font/nanumsquareneodeb"
+
+                        android:id="@+id/date"
+                        style="@style/Neo4"
+                        android:textColor="@color/G1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="2023년 11월 3일"></TextView>
+                    <TextView
+                        android:fontFamily="@font/nanumsquareneodeb"
+                        style="@style/Neo4"
+                        android:id="@+id/location"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="청주시 서원구 개신동"></TextView>
+                </LinearLayout>
+                <!--헤더영역-->
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/profile"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_marginEnd="20dp"
+                        android:background="@drawable/circle"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"></de.hdodenhof.circleimageview.CircleImageView>
+
+                    <LinearLayout
+                        android:layout_width="300dp"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="20dp"
+                        android:gravity="center_vertical"
+                        android:orientation="vertical"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+                        <TextView
+                            style="@style/Neo3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:hint="Field Geo Log"
+                            android:layout_marginBottom="5dp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/date"></TextView>
+                        <TextView
+                            style="@style/Neo1"
+                            android:fontFamily="@font/nanumsquareneodeb"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:text="안녕하세요👋 김정현님"></TextView>
+                    </LinearLayout>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+                <!--구분-->
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="20dp"
+                    android:elevation="10dp"
+                    app:cardCornerRadius="20dp">
+
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="45dp"
+                            android:scaleType="centerCrop"
+                            android:src="@color/G2"></ImageView>
+
+                        <TextView
+                            style="@style/Neo3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal|center_vertical"
+                            android:fontFamily="@font/nanumsquareneoehv"
+                            android:lineSpacingExtra="5sp"
+                            android:text="튜토리얼 바로가기"
+                            android:textAlignment="center"
+                            android:textColor="@color/White"></TextView>
+
+                        <ImageButton
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="top|end"
+                            android:layout_margin="10dp"
+                            android:background="#00FFFFFF"
+                            android:src="@drawable/chevron_right"
+                            app:tint="@color/White"></ImageButton>
+                    </FrameLayout>
+                </androidx.cardview.widget.CardView>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_marginHorizontal="20sp"
+                    android:background="@color/Gray2" />
+                <!--나의기록/기록공유 스크롤을 감싸는 전체 스크롤 영역-->
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="20dp"
+                    android:layout_marginBottom="20dp"
+                    android:layout_marginTop="50dp">
+
+                    <TextView
+                        android:fontFamily="@font/nanumsquareneodeb"
+                        style="@style/Neo1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="나의 기록"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"></TextView>
+
+                    <ImageButton
+                        android:layout_marginEnd="10dp"
+                        android:id="@+id/goto_myrecord_btn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="#00FFFFFF"
+                        android:src="@drawable/chevron_right"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"></ImageButton>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/RV1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingStart="10dp"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    tools:listitem="@layout/activity_main_my_record_list_item"></androidx.recyclerview.widget.RecyclerView>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="20dp"
+                    android:layout_marginBottom="20dp"
+                    android:layout_marginTop="50dp">
+
+                    <TextView
+                        style="@style/Neo1"
+                        android:fontFamily="@font/nanumsquareneodeb"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="더 많은 기록"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"></TextView>
+
+                    <ImageButton
+                        android:layout_marginEnd="10dp"
+                        android:id="@+id/goto_community_btn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="#00FFFFFF"
+                        android:src="@drawable/chevron_right"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"></ImageButton>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/RV2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    tools:listitem="@layout/activity_main_community_list_item"></androidx.recyclerview.widget.RecyclerView>
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="200dp"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/footer_2"></ImageView>
+
+                    <TextView
+                        style="@style/Neo4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:layout_margin="10dp"
+                        android:text="'@SamdoreeCorporation'\nFieldGeoLog : 김정현, 이진영, 풍혜림"
+                        android:textSize="10sp"></TextView>
+                </FrameLayout>
+            </LinearLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/goto_newrecord_btn"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="100dp"
-            android:orientation="vertical"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:weightSum="2">
-
-                <Button
-                    android:id="@+id/communitybtn"
-                    android:layout_width="150dp"
-                    android:layout_height="150dp"
-                    android:layout_weight="1"
-                    android:background="@color/Gray1"
-                    android:text="COMMUNITY"
-                    android:textColor="@color/Black"
-                    android:textSize="20sp"
-                    android:textStyle="bold"></Button>
-
-                <Button
-                    android:id="@+id/myrecordbtn"
-                    android:layout_width="150dp"
-                    android:layout_height="150dp"
-                    android:layout_weight="1"
-                    android:background="@color/Gray1"
-                    android:text="MY RECORD"
-                    android:textColor="@color/Black"
-                    android:textSize="20sp"
-                    android:textStyle="bold"></Button>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:weightSum="2">
-
-                <Button
-                    android:id="@+id/mypagebtn"
-                    android:layout_width="150dp"
-                    android:layout_height="150dp"
-                    android:layout_weight="1"
-                    android:background="@color/Gray1"
-                    android:text="MY PAGE"
-                    android:textColor="@color/Black"
-                    android:textSize="20sp"
-                    android:textStyle="bold"></Button>
-
-                <Button
-                    android:id="@+id/newrecordbtn"
-                    android:layout_width="150dp"
-                    android:layout_height="150dp"
-                    android:layout_weight="1"
-                    android:background="@color/Gray1"
-                    android:text="NEW RECORD"
-                    android:textColor="@color/Black"
-                    android:textSize="20sp"
-                    android:textStyle="bold"></Button>
-            </LinearLayout>
-        </LinearLayout>
+            android:layout_gravity="bottom|end"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="50dp"
+            app:borderWidth="0dp"
+            android:src="@drawable/plus"
+            android:tint="@color/White"
+            android:background="@color/G2"
+            app:backgroundTint="@color/G2"
+            app:fabCustomSize="60dp"></com.google.android.material.floatingactionbutton.FloatingActionButton>
+    </FrameLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

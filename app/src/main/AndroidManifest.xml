@@ -32,7 +32,7 @@
         </provider>
 
         <activity
-            android:name=".CommunityActivity"
+            android:name=".ui.activity.CommunityActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
@@ -40,7 +40,7 @@
         </activity>
 
         <activity
-            android:name=".DetailActivity"
+            android:name=".ui.activity.DetailActivity"
             android:exported="false"
              >
             <meta-data
@@ -49,7 +49,7 @@
         </activity>
 
         <activity
-            android:name=".GeoMapActivity"
+            android:name=".ui.activity.GeoMapActivity"
             android:exported="false"
              >
             <meta-data
@@ -58,7 +58,7 @@
         </activity>
 
         <activity
-            android:name=".LoginActivity"
+            android:name=".ui.activity.LoginActivity"
             android:exported="true"
              >
             <meta-data
@@ -84,7 +84,7 @@
         </activity>
 
         <activity
-            android:name=".MainActivity"
+            android:name=".ui.activity.MainActivity"
             android:exported="true">
             <meta-data
                 android:name="android.app.lib_name"
@@ -92,7 +92,7 @@
         </activity>
 
         <activity
-            android:name=".MyPageActivity"
+            android:name=".ui.activity.MyPageActivity"
             android:exported="true"
              >
             <meta-data
@@ -101,7 +101,7 @@
         </activity>
 
         <activity
-            android:name=".MyRecordActivity"
+            android:name=".ui.activity.MyRecordActivity"
             android:exported="false"
              >
             <meta-data
@@ -110,7 +110,7 @@
         </activity>
 
         <activity
-            android:name=".NewRecordActivity"
+            android:name=".ui.activity.NewRecordActivity"
             android:exported="false"
              >
             <meta-data
@@ -119,20 +119,20 @@
         </activity>
 
         <activity
-            android:name=".OldNewRecordActivity"
+            android:name=".ui.activity.OldNewRecordActivity"
             android:exported="true"
              >
         </activity>
 
         <activity
-            android:name=".OneArticleActivity"
+            android:name=".ui.activity.OneArticleActivity"
             android:exported="true"
              >
 
         </activity>
 
         <activity
-            android:name=".OneRecordActivity"
+            android:name=".ui.activity.OneRecordActivity"
             android:exported="true"
              >
             <intent-filter>
@@ -143,7 +143,7 @@
         </activity>
 
         <activity
-            android:name=".ProjectListActivity"
+            android:name=".ui.activity.ProjectListActivity"
             android:exported="false"
              >
             <meta-data
@@ -152,7 +152,7 @@
         </activity>
 
         <activity
-            android:name=".ReadArticleActivity"
+            android:name=".ui.activity.ReadArticleActivity"
             android:exported="false"
              >
             <meta-data
@@ -160,16 +160,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".ReadPersonalRecordActivity"
-            android:exported="false"
-             >
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-
-        <activity
-            android:name=".RecordWriteActivity"
+            android:name=".ui.activity.ReadPersonalRecordActivity"
             android:exported="false"
              >
             <meta-data
@@ -178,7 +169,7 @@
         </activity>
 
         <activity
-            android:name=".SignUpActivity"
+            android:name=".ui.activity.RecordWriteActivity"
             android:exported="false"
              >
             <meta-data
@@ -187,7 +178,16 @@
         </activity>
 
         <activity
-            android:name=".WriteActivity"
+            android:name=".ui.activity.SignUpActivity"
+            android:exported="false"
+             >
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+
+        <activity
+            android:name=".ui.activity.WriteActivity"
             android:exported="false"
              >
             <meta-data

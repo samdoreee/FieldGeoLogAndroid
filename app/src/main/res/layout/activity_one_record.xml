@@ -8,7 +8,7 @@
     android:layout_width="match_parent"
     android:background="@color/White"
     android:layout_height="match_parent"
-    tools:context=".OneRecordActivity">
+    tools:context=".ui.activity.OneRecordActivity">
 
     <LinearLayout
         android:id="@+id/toppart"
@@ -59,7 +59,7 @@
     <ImageView
         android:layout_marginTop="10dp"
         android:id="@+id/mapimage"
-        android:src="@drawable/map"
+        android:src="@drawable/geomap"
         app:layout_constraintTop_toBottomOf="@+id/toppart"
         android:layout_width="match_parent"
         android:layout_height="595dp"

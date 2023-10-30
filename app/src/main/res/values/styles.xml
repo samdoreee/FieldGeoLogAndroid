@@ -26,4 +26,8 @@
     <style name="CardItem1">
 
     </style>
+
+    <style name="Btn1">
+        <item name="android:background">@drawable/cornerround</item>
+    </style>
 </resources>
