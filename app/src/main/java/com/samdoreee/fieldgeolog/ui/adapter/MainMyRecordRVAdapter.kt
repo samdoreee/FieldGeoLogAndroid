@@ -9,6 +9,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.samdoreee.fieldgeolog.R
 import com.samdoreee.fieldgeolog.data.model.MyRecordModel
 import com.samdoreee.fieldgeolog.ui.activity.DetailActivity
@@ -23,11 +24,11 @@ class MainMyRecordRVAdapter(val context: Context, val List: List<MyRecordModel>)
     override fun onBindViewHolder(holder: Holder, position: Int) {
         val data = List[position]
         holder.bind(data, context)
-        /*Glide.with(context)
+        Glide.with(context)
             .load(data.thumbnail)
             .placeholder(R.drawable.circle_logo)
             .error(R.drawable.logo)
-            .into(holder.thumbnail!!)*/
+            .into(holder.thumbnail!!)
         holder.itemView.setOnClickListener {
             val intent = Intent(holder.itemView?.context, DetailActivity::class.java)
             ContextCompat.startActivity(holder.itemView.context, intent, null)
@@ -47,8 +48,8 @@ class MainMyRecordRVAdapter(val context: Context, val List: List<MyRecordModel>)
             /*text 데이터들 binding*/
             title?.text = mainmyrecord.title
             location?.text = mainmyrecord.location
-            date?.text = mainmyrecord.date
-            thumbnail?.setImageResource(mainmyrecord.thumbnail)
+            date?.text = mainmyrecord.date.take(10)
+            //thumbnail?.setImageResource(mainmyrecord.thumbnail)
         }
     }
 }

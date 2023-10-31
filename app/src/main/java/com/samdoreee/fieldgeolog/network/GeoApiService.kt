@@ -25,6 +25,8 @@ interface GeoApiService {
 
     @POST("api/users")
     suspend fun addUser(@Body userRequest: UserRequest): Response<UserResponse>
+    @GET("api/personalRecords")
+    suspend fun getAllRecords(): Response<List<PersonalRecordResponse>>
 }
 
 object GeoApi {
