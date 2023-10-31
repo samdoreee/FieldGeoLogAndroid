@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <!--헤더영역-->
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="250sp"
+                android:src="@drawable/back2"
+                android:scaleType="fitXY"/>
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/profile"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_width="70sp"
+                    android:layout_height="70sp"
+                    android:background="@drawable/circle"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:layout_marginTop="60sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent">
+                </de.hdodenhof.circleimageview.CircleImageView>
+                <TextView
+                    android:id="@+id/date"
+                    style="@style/Neo3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:hint="2022년 2월 22일"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/profile"
+                    android:layout_margin="10sp"></TextView>
+                <TextView
+                    android:id="@+id/location"
+                    style="@style/Neo3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:hint="충청북도 청주시 서원구 개신동"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/date"></TextView>
+
+                <TextView
+                    android:id="@+id/welcomeText"
+                    style="@style/Neo2"
+                    android:textSize="30sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:hint="안녕하세요, 김정현님"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/location"></TextView>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </FrameLayout>
+        <!--구분-->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_margin="20sp"
+            android:background="@color/Gray2"/>
+        <!--나의기록/기록공유 스크롤을 감싸는 전체 스크롤 영역-->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/Neo1"
+                android:text="나의 기록"
+                android:layout_marginStart="20dp"
+                android:layout_marginBottom="20dp"></TextView>
+            <ImageButton
+                android:id="@+id/goto_myrecord_btn"
+                android:layout_marginStart="5dp"
+                android:background="#00FFFFFF"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:src="@drawable/chevron_right"></ImageButton>
+        </LinearLayout>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/RV1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20sp"
+            android:scrollbars="horizontal"
+            android:layout_marginBottom="20sp">
+        </androidx.recyclerview.widget.RecyclerView>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_margin="20sp"
+            android:background="@color/Gray2"/>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/Neo1"
+                android:text="더 많은 기록"
+                android:layout_marginStart="20dp"
+                android:layout_marginBottom="20dp"></TextView>
+            <ImageButton
+                android:id="@+id/goto_community_btn"
+                android:layout_marginStart="5dp"
+                android:background="#00FFFFFF"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:src="@drawable/chevron_right"></ImageButton>
+        </LinearLayout>
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_weight="1"
+            android:id="@+id/RV2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20sp"
+            android:scrollbars="vertical">
+        </androidx.recyclerview.widget.RecyclerView>
+
+
+    </LinearLayout>
+
+</layout>

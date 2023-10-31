@@ -10,7 +10,7 @@
         android:id="@+id/constraintLayoutout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".OldNewRecordActivity">
+        tools:context=".ui.activity.OldNewRecordActivity">
 
         <net.daum.mf.map.api.MapView
             android:id="@+id/mapView"

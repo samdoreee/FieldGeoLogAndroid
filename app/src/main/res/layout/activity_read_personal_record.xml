@@ -86,7 +86,7 @@
             app:layout_constraintTop_toBottomOf="@id/date" />
 
         <TextView
-            android:backgroundTint="@color/orange_1"
+            android:backgroundTint="@color/Gray1"
             android:gravity="center"
             android:id="@+id/strike"
             android:layout_width="187dp"
@@ -101,7 +101,7 @@
             app:layout_constraintTop_toBottomOf="@id/location"/>
 
         <TextView
-            android:backgroundTint="@color/orange_1"
+            android:backgroundTint="@color/Gray1"
             android:gravity="center"
             android:id="@+id/dip"
             android:layout_width="187dp"
@@ -116,7 +116,7 @@
             app:layout_constraintTop_toBottomOf="@id/location" />
 
         <TextView
-            android:backgroundTint="@color/orange_1"
+            android:backgroundTint="@color/Gray1"
             android:gravity="center"
             android:id="@+id/rocktype"
             android:layout_width="187dp"
@@ -130,7 +130,7 @@
             app:layout_constraintTop_toBottomOf="@id/strike" />
 
         <TextView
-            android:backgroundTint="@color/orange_1"
+            android:backgroundTint="@color/Gray1"
             android:gravity="center"
             android:id="@+id/geo_struct"
             android:layout_width="187dp"
@@ -213,7 +213,7 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_margin="5dp"
-                android:background="@color/gray_1"
+                android:background="@color/Gray1"
                 android:text="D"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent" />
@@ -223,7 +223,7 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_margin="5dp"
-                android:background="@color/orange_1"
+                android:background="@color/Gray1"
                 android:text="M"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/btn_delete" />
@@ -234,7 +234,7 @@
                 android:layout_height="40dp"
                 android:layout_margin="5dp"
                 android:layout_marginBottom="8dp"
-                android:background="@color/yellow"
+                android:background="@color/Gray1"
                 android:text="S"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/btn_modify" />
