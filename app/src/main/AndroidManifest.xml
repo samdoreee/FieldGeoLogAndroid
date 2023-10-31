@@ -91,14 +91,7 @@
                 android:value="" />
         </activity>
 
-        <activity
-            android:name=".ui.activity.MyPageActivity"
-            android:exported="true"
-             >
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
+
 
         <activity
             android:name=".ui.activity.MyRecordActivity"
@@ -143,15 +136,6 @@
         </activity>
 
         <activity
-            android:name=".ui.activity.ProjectListActivity"
-            android:exported="false"
-             >
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-
-        <activity
             android:name=".ui.activity.ReadArticleActivity"
             android:exported="false"
              >
@@ -177,14 +161,6 @@
                 android:value="" />
         </activity>
 
-        <activity
-            android:name=".ui.activity.SignUpActivity"
-            android:exported="false"
-             >
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
 
         <activity
             android:name=".ui.activity.WriteActivity"

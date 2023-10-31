@@ -67,7 +67,7 @@ class OldNewRecordActivity : AppCompatActivity() {
 
         // (오른쪽) 기록시작 모드로 전환
         binding.btnRecordStart.setOnClickListener {
-            val intent = Intent(this, ProjectListActivity::class.java)
+            val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
         }
 

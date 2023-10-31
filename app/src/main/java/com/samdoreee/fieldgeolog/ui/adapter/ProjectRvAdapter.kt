@@ -17,7 +17,7 @@ class ProjectRvAdapter(val context: Context, val spotList: List<Spot>) : Recycle
 
     /*화면 최초 로딩시 만들어진 view가 없을 경우 .xml을 inflate시켜서 viewholder 생성*/
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
-        val view = LayoutInflater.from(context).inflate(R.layout.activity_project_list_item, parent, false)
+        val view = LayoutInflater.from(context).inflate(R.layout.activity_community_list_item, parent, false)
         return Holder(view)
     }
 

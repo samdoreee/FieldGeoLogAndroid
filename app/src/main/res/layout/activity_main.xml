@@ -11,125 +11,139 @@
         app:layout_constraintStart_toStartOf="parent"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        <!--header-->
+
 
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-
+            <!--header-->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical">
-                <LinearLayout
-                    android:gravity="right"
+                <FrameLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_marginHorizontal="20dp"
-                    android:layout_marginTop="45dp">
-                    <TextView
-                        android:fontFamily="@font/nanumsquareneodeb"
-
-                        android:id="@+id/date"
-                        style="@style/Neo4"
-                        android:textColor="@color/G1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="2023년 11월 3일"></TextView>
-                    <TextView
-                        android:fontFamily="@font/nanumsquareneodeb"
-                        style="@style/Neo4"
-                        android:id="@+id/location"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="청주시 서원구 개신동"></TextView>
-                </LinearLayout>
-                <!--헤더영역-->
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-                    <de.hdodenhof.circleimageview.CircleImageView
-                        android:id="@+id/profile"
-                        android:layout_width="60dp"
-                        android:layout_height="60dp"
-                        android:layout_marginEnd="20dp"
-                        android:background="@drawable/circle"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"></de.hdodenhof.circleimageview.CircleImageView>
-
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="250dp"
+                        android:backgroundTint="@color/G7"
+                        android:scaleType="fitXY"/>
                     <LinearLayout
-                        android:layout_width="300dp"
+                        android:gravity="right"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_margin="20dp"
-                        android:gravity="center_vertical"
                         android:orientation="vertical"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent">
+                        android:layout_marginHorizontal="20dp"
+                        android:layout_marginTop="45dp">
                         <TextView
-                            style="@style/Neo3"
+                            android:fontFamily="@font/nanumsquareneodeb"
+
+                            android:id="@+id/date"
+                            style="@style/Neo4"
+                            android:textColor="@color/G1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:hint="Field Geo Log"
-                            android:layout_marginBottom="5dp"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@id/date"></TextView>
+                            android:text="2023년 11월 3일"></TextView>
                         <TextView
-                            style="@style/Neo1"
                             android:fontFamily="@font/nanumsquareneodeb"
-                            android:layout_width="match_parent"
+                            style="@style/Neo4"
+                            android:id="@+id/location"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_gravity="center_vertical"
-                            android:text="안녕하세요👋 김정현님"></TextView>
+                            android:text="청주시 서원구 개신동"></TextView>
                     </LinearLayout>
-                </androidx.constraintlayout.widget.ConstraintLayout>
-                <!--구분-->
-
-                <androidx.cardview.widget.CardView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_margin="20dp"
-                    android:elevation="10dp"
-                    app:cardCornerRadius="20dp">
-
-                    <FrameLayout
+                    <!--헤더영역-->
+                    <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent">
 
-                        <ImageView
+                        <de.hdodenhof.circleimageview.CircleImageView
+                            android:id="@+id/profile"
+                            android:layout_width="60dp"
+                            android:layout_height="60dp"
+                            android:layout_marginEnd="20dp"
+                            android:background="@drawable/circle"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"></de.hdodenhof.circleimageview.CircleImageView>
+
+                        <LinearLayout
+                            android:layout_width="300dp"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="20dp"
+                            android:gravity="center_vertical"
+                            android:orientation="vertical"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent">
+                            <TextView
+                                style="@style/Neo4"
+                                android:fontFamily="@font/nanumsquareneodeb"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:hint="Field Geo Log"
+                                android:layout_marginBottom="5dp"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@id/date"></TextView>
+                            <TextView
+                                style="@style/Neo1"
+                                android:fontFamily="@font/nanumsquareneodeb"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:text="안녕하세요👋 김정현님"></TextView>
+                        </LinearLayout>
+
+                         <androidx.cardview.widget.CardView
+                            app:layout_constraintBottom_toBottomOf="parent"
                             android:layout_width="match_parent"
-                            android:layout_height="45dp"
-                            android:scaleType="centerCrop"
-                            android:src="@color/G2"></ImageView>
-
-                        <TextView
-                            style="@style/Neo3"
-                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_gravity="center_horizontal|center_vertical"
-                            android:fontFamily="@font/nanumsquareneoehv"
-                            android:lineSpacingExtra="5sp"
-                            android:text="튜토리얼 바로가기"
-                            android:textAlignment="center"
-                            android:textColor="@color/White"></TextView>
+                            android:layout_margin="20dp"
+                            android:elevation="10dp"
+                            app:cardCornerRadius="20dp">
 
-                        <ImageButton
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="top|end"
-                            android:layout_margin="10dp"
-                            android:background="#00FFFFFF"
-                            android:src="@drawable/chevron_right"
-                            app:tint="@color/White"></ImageButton>
-                    </FrameLayout>
-                </androidx.cardview.widget.CardView>
+                            <FrameLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
+
+                                <ImageView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="45dp"
+                                    android:scaleType="centerCrop"
+                                    android:src="@color/G2"></ImageView>
+
+                                <TextView
+                                    style="@style/Neo3"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center_horizontal|center_vertical"
+                                    android:fontFamily="@font/nanumsquareneoehv"
+                                    android:lineSpacingExtra="5sp"
+                                    android:text="튜토리얼 바로가기"
+                                    android:textAlignment="center"
+                                    android:textColor="@color/White"></TextView>
+
+                                <ImageButton
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="top|end"
+                                    android:layout_margin="10dp"
+                                    android:background="#00FFFFFF"
+                                    android:src="@drawable/chevron_right"
+                                    app:tint="@color/White"></ImageButton>
+                            </FrameLayout>
+                        </androidx.cardview.widget.CardView>
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                    <!--구분-->
+
+                </FrameLayout>
                 <View
+                    android:layout_marginTop="10dp"
                     android:layout_width="match_parent"
                     android:layout_height="0.5dp"
-                    android:layout_marginHorizontal="20sp"
+                    android:layout_marginHorizontal="20dp"
                     android:background="@color/Gray2" />
                 <!--나의기록/기록공유 스크롤을 감싸는 전체 스크롤 영역-->
                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -169,6 +183,13 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     tools:listitem="@layout/activity_main_my_record_list_item"></androidx.recyclerview.widget.RecyclerView>
+
+                <View
+                    android:layout_marginTop="20dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_marginHorizontal="20dp"
+                    android:background="@color/Gray2" />
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
