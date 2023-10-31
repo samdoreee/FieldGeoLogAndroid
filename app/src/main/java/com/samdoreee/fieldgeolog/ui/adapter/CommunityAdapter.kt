@@ -8,8 +8,9 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.samdoreee.fieldgeolog.data.model.MyRecordModel
 import com.samdoreee.fieldgeolog.R
+import com.samdoreee.fieldgeolog.data.model.CommunityModel
 
-class CommunityAdapter(val List:MutableList<MyRecordModel>) : BaseAdapter() {
+class CommunityAdapter(val List:MutableList<CommunityModel>) : BaseAdapter() {
     override fun getCount(): Int {
         return List.size
     }
@@ -30,9 +31,11 @@ class CommunityAdapter(val List:MutableList<MyRecordModel>) : BaseAdapter() {
         var title = convertview!!.findViewById<TextView>(R.id.title)
         var date = convertview!!.findViewById<TextView>(R.id.date)
         var location = convertview!!.findViewById<TextView>(R.id.location)
+        var author = convertview!!.findViewById<TextView>(R.id.author)
         title.text = List[position].title
         date.text = List[position].date
         location.text = List[position].location
+        author.text = List[position].author
         return  convertview!!
     }
 }

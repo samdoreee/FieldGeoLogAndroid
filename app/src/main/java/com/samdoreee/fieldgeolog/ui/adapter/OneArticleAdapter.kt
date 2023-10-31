@@ -27,10 +27,8 @@ class OneArticleAdapter(val List:MutableList<OneRecordModel>) : BaseAdapter() {
             convertview = LayoutInflater.from(parent?.context).inflate(R.layout.onerecorditem, parent, false)
         }
         val num = convertview!!.findViewById<TextView>(R.id.spotnum)
-        val prev = convertview!!.findViewById<TextView>(R.id.preview)
 
         num.text = List[position].spotnum.toString()
-        prev.text = List[position].preview
 
         return  convertview!!
     }

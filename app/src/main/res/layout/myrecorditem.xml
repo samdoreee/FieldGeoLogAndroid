@@ -7,9 +7,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     app:cardCornerRadius="10dp"
-    android:background="@color/G2">
-
-
+    android:background="@color/G2"
+    android:layout_margin="10dp">
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:padding="10dp"
@@ -20,24 +19,8 @@
             android:id="@+id/btn_delete"
             android:layout_height="50dp"
             android:src="@drawable/trash"
-            android:tint="@color/G2"
-            app:backgroundTint="@color/White"
-            android:scaleType="fitCenter"
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_margin="10dp"
-            app:layout_constraintEnd_toStartOf="@+id/btn_modify"
-            app:fabCustomSize="50dp">
-
-
-        </com.google.android.material.floatingactionbutton.FloatingActionButton>
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:layout_width="50dp"
-            android:id="@+id/btn_modify"
-            android:layout_height="50dp"
-            android:src="@drawable/pencilcreate"
             android:tint="@color/White"
             app:backgroundTint="@color/G2"
-            android:scaleType="fitCenter"
             app:layout_constraintBottom_toBottomOf="parent"
             android:layout_margin="10dp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -56,6 +39,8 @@
             <TextView
                 android:id="@+id/title"
                 style="@style/Neo2"
+                android:textColor="@color/G2"
+                android:layout_marginVertical="5dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="레코드 제목 입니다.">

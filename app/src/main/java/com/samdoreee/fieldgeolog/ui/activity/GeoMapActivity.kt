@@ -7,6 +7,7 @@ import android.webkit.WebView
 import android.webkit.WebViewClient
 import android.widget.ImageButton
 import android.widget.Toast
+import androidx.cardview.widget.CardView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.samdoreee.fieldgeolog.R
 
@@ -60,11 +61,7 @@ class GeoMapActivity : AppCompatActivity() {
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
         }
-        val current_position = findViewById<FloatingActionButton>(R.id.current_position)
-        current_position.setOnClickListener {
-            Toast.makeText(this, "GPS기록을 시작합니다",Toast.LENGTH_SHORT).show()
-        }
-        val floatingbtn = findViewById<FloatingActionButton>(R.id.add_new_spot_btn)
+        val floatingbtn = findViewById<CardView>(R.id.add_new_spot_btn)
         floatingbtn.setOnClickListener {
             val intent = Intent(this, RecordWriteActivity::class.java)
             startActivity(intent)
