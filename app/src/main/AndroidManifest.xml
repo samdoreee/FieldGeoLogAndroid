@@ -35,36 +35,35 @@
         </provider>
 
         <activity
-            android:name=".CommunityActivity"
-            android:exported="false"
-            android:theme="@style/Theme.AppCompat">
+            android:name=".ui.activity.CommunityActivity"
+            android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
 
         <activity
-            android:name=".DetailActivity"
+            android:name=".ui.activity.DetailActivity"
             android:exported="false"
-            android:theme="@style/Theme.AppCompat">
+             >
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
 
         <activity
-            android:name=".GeoMapActivity"
+            android:name=".ui.activity.GeoMapActivity"
             android:exported="false"
-            android:theme="@style/Theme.AppCompat">
+             >
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
 
         <activity
-            android:name=".LoginActivity"
+            android:name=".ui.activity.LoginActivity"
             android:exported="true"
-            android:theme="@style/Theme.AppCompat">
+             >
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
@@ -75,7 +74,8 @@
             </intent-filter>
         </activity>
 
-        <activity android:name="com.kakao.sdk.auth.AuthCodeHandlerActivity"
+        <activity
+            android:name="com.kakao.sdk.auth.AuthCodeHandlerActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
@@ -87,58 +87,48 @@
         </activity>
 
         <activity
-            android:name=".MainActivity"
-            android:exported="true"
-            android:theme="@style/Theme.AppCompat">
+            android:name=".ui.activity.MainActivity"
+            android:exported="true">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
 
         <activity
-            android:name=".MyPageActivity"
-            android:exported="true"
-            android:theme="@style/Theme.AppCompat">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-
-        <activity
-            android:name=".MyRecordActivity"
+            android:name=".ui.activity.MyRecordActivity"
             android:exported="false"
-            android:theme="@style/Theme.AppCompat">
+             >
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
 
         <activity
-            android:name=".NewRecordActivity"
+            android:name=".ui.activity.NewRecordActivity"
             android:exported="false"
-            android:theme="@style/Theme.AppCompat">
+             >
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
 
         <activity
-            android:name=".OldNewRecordActivity"
+            android:name=".ui.activity.OldNewRecordActivity"
             android:exported="true"
-            android:theme="@style/Theme.AppCompat">
+             >
         </activity>
 
         <activity
-            android:name=".OneArticleActivity"
+            android:name=".ui.activity.OneArticleActivity"
             android:exported="true"
-            android:theme="@style/Theme.AppCompat">
+             >
 
         </activity>
 
         <activity
-            android:name=".OneRecordActivity"
+            android:name=".ui.activity.OneRecordActivity"
             android:exported="true"
-            android:theme="@style/Theme.AppCompat">
+             >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -147,36 +137,18 @@
         </activity>
 
         <activity
-            android:name=".ProjectListActivity"
+            android:name=".ui.activity.ReadArticleActivity"
             android:exported="false"
-            android:theme="@style/Theme.AppCompat">
+             >
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
 
         <activity
-            android:name=".ReadArticleActivity"
+            android:name=".ui.activity.ReadPersonalRecordActivity"
             android:exported="false"
-            android:theme="@style/Theme.AppCompat">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-
-        <activity
-            android:name=".RockDicActivity"
-            android:exported="false"
-            android:theme="@style/Theme.AppCompat">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-
-        <activity
-            android:name=".RockDicDetailActivity"
-            android:exported="false"
-            android:theme="@style/Theme.AppCompat">
+             >
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
@@ -185,7 +157,28 @@
 
 
         <activity
-            android:name=".ReadPersonalRecordActivity"
+            android:name=".ui.activity.RecordWriteActivity"
+            android:exported="false"
+             >
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+
+        <activity
+            android:name=".ui.activity.WriteActivity"
+            android:exported="false"
+             >
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+
+        <service
+            android:name="com.amazonaws.mobileconnectors.s3.transferutility.TransferService"
+            android:enabled="true" />
+
+        <activity android:name=".S3Activity"
             android:exported="false"
             android:theme="@style/Theme.AppCompat">
             <meta-data
@@ -193,26 +186,7 @@
                 android:value="" />
         </activity>
 
-        <activity
-            android:name=".RecordWriteActivity"
-            android:exported="false"
-            android:theme="@style/Theme.AppCompat">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-
-        <activity
-            android:name=".SignUpActivity"
-            android:exported="false"
-            android:theme="@style/Theme.AppCompat">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-
-        <activity
-            android:name=".WriteActivity"
+        <activity android:name=".S3DownloadActivity"
             android:exported="false"
             android:theme="@style/Theme.AppCompat">
             <meta-data

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--폰트 스타일 정의-->
+    <style name="Neo1">
+        <item name="android:fontFamily">@font/nanumsquareneoehv</item>
+        <item name="android:textSize">24sp</item>
+        <item name="android:textColor">@color/Black</item>
+    </style>
+    <style name="Neo2">
+        <item name="android:fontFamily">@font/nanumsquareneodeb</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@color/Black</item>
+    </style>
+    <style name="Neo3">
+        <item name="android:fontFamily">@font/nanumsquareneobrg</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/Black</item>
+    </style>
+    <style name="Neo4">
+        <item name="android:fontFamily">@font/nanumsquareneoalt</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/Gray1</item>
+    </style>
+
+    <!--카드뷰 스타일 정의-->
+    <style name="CardItem1">
+
+    </style>
+
+    <style name="Btn1">
+        <item name="android:background">@drawable/cornerround</item>
+    </style>
+</resources>
