@@ -1,8 +1,10 @@
 package com.samdoreee.fieldgeolog.ui.activity
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.kakao.sdk.user.UserApiClient
@@ -11,12 +13,18 @@ import com.samdoreee.fieldgeolog.data.model.Constants
 import com.samdoreee.fieldgeolog.data.model.CommunityModel
 import com.samdoreee.fieldgeolog.data.model.MyRecordModel
 import com.samdoreee.fieldgeolog.databinding.ActivityMainBinding
+import com.samdoreee.fieldgeolog.network.GeoApi
+import com.samdoreee.fieldgeolog.network.UserRequest
+import com.samdoreee.fieldgeolog.network.UserResponse
 import com.samdoreee.fieldgeolog.ui.adapter.MainCommunityAdapter
 import com.samdoreee.fieldgeolog.ui.adapter.MainMyRecordRVAdapter
+import kotlinx.coroutines.runBlocking
+import retrofit2.Response
 
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding : ActivityMainBinding
+    @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -64,6 +72,7 @@ class MainActivity : AppCompatActivity() {
         }
 
 
+
         // 로그에 로그인 정보 데이터 출력
         UserApiClient.instance.me { user, error ->
             if (error != null) {
@@ -71,9 +80,38 @@ class MainActivity : AppCompatActivity() {
             } else if (user != null) {
                 Log.d(Constants.TAG, "사용자 정보 요청 성공 : $user")
 
+                val user = UserRequest(
+                    id = user.id ?: 0L,
+                    email = user.kakaoAccount?.email.toString(),
+                    nickName =  user.kakaoAccount?.profile?.nickname.toString(),
+                    profileImage = user.kakaoAccount?.profile?.thumbnailImageUrl.toString()
+                )
 
-            // 아래 코드처럼 데이터 활용하면 됨
-            // binding.txtNickName.text = user.kakaoAccount?.profile?.nickname
+                runBlocking {
+                    try {
+
+                        Log.d(Constants.TAG, "new~User = $user")
+                        val response: Response<UserResponse> = GeoApi.retrofitService.addUser(user)
+
+                        if (response.isSuccessful) {
+                            val userResponse: UserResponse? = response.body() // 성공한 경우 UserResponse를 추출
+
+                            if (userResponse != null) {
+                                // userResponse를 사용하여 필요한 작업 수행
+                                Log.d(Constants.TAG, "드디어ㅜㅜ : $userResponse")
+                            }
+                        } else {
+                            // 요청이 실패했을 때의 처리
+                            val errorBody = response.errorBody()?.string()
+                            // 에러 메시지 등을 처리
+                        }
+                    } catch (e: Exception) {
+                        // 예외 처리
+                    }
+
+                    val helloTextView: TextView = findViewById(R.id.hello_text)
+                    helloTextView.text = "안녕하세요👋 "+user.nickName+"님"
+                }
 
             }
         }
