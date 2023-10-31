@@ -7,6 +7,7 @@ import android.util.Log
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.kakao.sdk.user.UserApiClient
 import com.samdoreee.fieldgeolog.R
 import com.samdoreee.fieldgeolog.data.model.Constants
@@ -111,6 +112,10 @@ class MainActivity : AppCompatActivity() {
 
                     val helloTextView: TextView = findViewById(R.id.hello_text)
                     helloTextView.text = "안녕하세요👋 "+user.nickName+"님"
+
+                    Glide.with(this@MainActivity) // 현재의 Context 또는 Activity
+                        .load(user.profileImage)
+                        .into(binding.profile)
                 }
 
             }
