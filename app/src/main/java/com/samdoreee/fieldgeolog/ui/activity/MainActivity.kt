@@ -15,16 +15,24 @@ import com.samdoreee.fieldgeolog.data.model.CommunityModel
 import com.samdoreee.fieldgeolog.data.model.MyRecordModel
 import com.samdoreee.fieldgeolog.databinding.ActivityMainBinding
 import com.samdoreee.fieldgeolog.network.GeoApi
+import com.samdoreee.fieldgeolog.network.PersonalRecordResponse
 import com.samdoreee.fieldgeolog.network.UserRequest
 import com.samdoreee.fieldgeolog.network.UserResponse
 import com.samdoreee.fieldgeolog.ui.adapter.MainCommunityAdapter
 import com.samdoreee.fieldgeolog.ui.adapter.MainMyRecordRVAdapter
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.cancel
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.withContext
 import retrofit2.Response
 
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding : ActivityMainBinding
+    // 코루틴 스코프 정의
+    private val scope = CoroutineScope(Dispatchers.Main)
     @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,23 +40,14 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val fdata = mutableListOf<MyRecordModel>()
-        fdata.add(MyRecordModel(1, "테스트1 기록입니다.","2022.11.22","청주 기반 화강암 조사", R.drawable.geo1))
-        fdata.add(MyRecordModel(2, "테스트2 기록입니다.","2022.11.22","괴산 일대 조사",  R.drawable.geo2))
-        fdata.add(MyRecordModel(3, "테스트3 기록입니다.","2022.11.22","금강 일대 조사",  R.drawable.geo3))
-        fdata.add(MyRecordModel(4, "테스트4 기록입니다.","2022.11.22","옥천 누층군 조사",  R.drawable.geo4))
-        fdata.add(MyRecordModel(5, "테스트5 기록입니다.","2022.11.22","채석강 및 변산반도 조사_1",R.drawable.geo5))
-
+        var myId :Long = 0L
+      
         val fdata2 = mutableListOf<CommunityModel>()
         fdata2.add(CommunityModel(1, "테스트 기록1입니다.", "청주 기반 화강암 조사", "2022.11.22", "풍혜림", R.drawable.geo6))
         fdata2.add(CommunityModel(1, "테스트 기록2입니다.", "괴산 일대 조사", "2022.11.22","풍혜림", R.drawable.geo7))
         fdata2.add(CommunityModel(1, "테스트 기록3입니다.", "금강 일대 조사", "2022.11.22", "풍혜림", R.drawable.geo8))
         fdata2.add(CommunityModel(1, "테스트 기록4입니다.", "옥천 누층군 조사", "2022.11.22", "풍혜림", R.drawable.geo9))
         fdata2.add(CommunityModel(1, "테스트 기록5입니다.", "채석강 및 변산반도 조사_1","2022.11.22","풍혜림", R.drawable.geo10))
-
-        val myrecordlistadapter = MainMyRecordRVAdapter(this, fdata)
-        val myrecordlist = findViewById<RecyclerView>(R.id.RV1)
-        myrecordlist.adapter = myrecordlistadapter
 
         val communitylistadapter = MainCommunityAdapter(this, fdata2)
         val communitylist = findViewById<RecyclerView>(R.id.RV2)
@@ -61,6 +60,7 @@ class MainActivity : AppCompatActivity() {
 
         binding.gotoMyrecordBtn.setOnClickListener {
             val intent = Intent(this, MyRecordActivity::class.java)
+            intent.putExtra("myId", myId)
             startActivity(intent)
         }
         binding.gotoCommunityBtn.setOnClickListener {
@@ -88,40 +88,76 @@ class MainActivity : AppCompatActivity() {
                     profileImage = user.kakaoAccount?.profile?.thumbnailImageUrl.toString()
                 )
 
-                runBlocking {
+                scope.launch {
                     try {
-
-                        Log.d(Constants.TAG, "new~User = $user")
-                        val response: Response<UserResponse> = GeoApi.retrofitService.addUser(user)
+                        val isExists: Boolean = withContext(Dispatchers.IO) {
+                            GeoApi.retrofitService.existsByUserId(user.id)
+                        }
+                        val response: Response<UserResponse> = withContext(Dispatchers.IO) {
+                            if (isExists) {
+                                GeoApi.retrofitService.getUser(user.id)
+                            } else {
+                                GeoApi.retrofitService.addUser(user)
+                            }
+                        }
 
                         if (response.isSuccessful) {
-                            val userResponse: UserResponse? = response.body() // 성공한 경우 UserResponse를 추출
+                            val userResponse: UserResponse? =
+                                response.body() // 성공한 경우 UserResponse를 추출
 
                             if (userResponse != null) {
                                 // userResponse를 사용하여 필요한 작업 수행
                                 Log.d(Constants.TAG, "드디어ㅜㅜ : $userResponse")
+
+                                myId = userResponse.id
+                                val helloTextView: TextView = findViewById(R.id.hello_text)
+                                helloTextView.text = "안녕하세요👋 " + userResponse.nickName + "님"
+
+                                Glide.with(this@MainActivity) // 현재의 Context 또는 Activity
+                                    .load(user.profileImage)
+                                    .into(binding.profile)
                             }
                         } else {
                             // 요청이 실패했을 때의 처리
                             val errorBody = response.errorBody()?.string()
+                            Log.d(Constants.TAG, "오류ㅜ : $errorBody")
+                            // 에러 메시지 등을 처리
+                        }
+
+                        val response2: Response<List<PersonalRecordResponse>> = withContext(Dispatchers.IO) {
+                            GeoApi.retrofitService.getAllRecords()
+                        }
+                        Log.d(Constants.TAG, "여기는 : $response2")
+                        if (response2.isSuccessful) {
+                            val personalRecordResponse: List<PersonalRecordResponse>? = response2.body()
+
+                            if (personalRecordResponse != null) {
+                                Log.d(Constants.TAG, "드디어 : $personalRecordResponse")
+
+
+                                val fdata: MutableList<MyRecordModel> = personalRecordResponse.map { it.convertToMyRecordModel() }.toMutableList()
+                                val myrecordlistadapter = MainMyRecordRVAdapter(this@MainActivity, fdata)
+                                val myrecordlist = findViewById<RecyclerView>(R.id.RV1)
+                                myrecordlist.adapter = myrecordlistadapter
+
+                            }
+                        } else {
+                            // 요청이 실패했을 때의 처리
+                            val errorBody = response2.errorBody()?.string()
+                            Log.d(Constants.TAG, "오류ㅜ : $errorBody")
                             // 에러 메시지 등을 처리
                         }
                     } catch (e: Exception) {
                         // 예외 처리
+                        Log.e(Constants.TAG, "Error during network call", e)
                     }
-
-                    val helloTextView: TextView = findViewById(R.id.hello_text)
-                    helloTextView.text = "안녕하세요👋 "+user.nickName+"님"
-
-                    Glide.with(this@MainActivity) // 현재의 Context 또는 Activity
-                        .load(user.profileImage)
-                        .into(binding.profile)
+                    Log.d("", "")
                 }
-
             }
         }
-
-
-
+    }
+    override fun onDestroy() {
+        super.onDestroy()
+        scope.cancel()  // Activity 종료 시에 코루틴도 취소
     }
 }
