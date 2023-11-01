@@ -10,10 +10,12 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.kakao.sdk.user.UserApiClient
 import com.samdoreee.fieldgeolog.R
-import com.samdoreee.fieldgeolog.data.model.Constants
+import com.samdoreee.fieldgeolog.S3FileDownloader
 import com.samdoreee.fieldgeolog.data.model.CommunityModel
+import com.samdoreee.fieldgeolog.data.model.Constants
 import com.samdoreee.fieldgeolog.data.model.MyRecordModel
 import com.samdoreee.fieldgeolog.databinding.ActivityMainBinding
+import com.samdoreee.fieldgeolog.network.ArticleResponse
 import com.samdoreee.fieldgeolog.network.GeoApi
 import com.samdoreee.fieldgeolog.network.PersonalRecordResponse
 import com.samdoreee.fieldgeolog.network.UserRequest
@@ -24,7 +26,6 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withContext
 import retrofit2.Response
 
@@ -42,16 +43,7 @@ class MainActivity : AppCompatActivity() {
 
         var myId :Long = 0L
       
-        val fdata2 = mutableListOf<CommunityModel>()
-        fdata2.add(CommunityModel(1, "테스트 기록1입니다.", "청주 기반 화강암 조사", "2022.11.22", "풍혜림", R.drawable.geo6))
-        fdata2.add(CommunityModel(1, "테스트 기록2입니다.", "괴산 일대 조사", "2022.11.22","풍혜림", R.drawable.geo7))
-        fdata2.add(CommunityModel(1, "테스트 기록3입니다.", "금강 일대 조사", "2022.11.22", "풍혜림", R.drawable.geo8))
-        fdata2.add(CommunityModel(1, "테스트 기록4입니다.", "옥천 누층군 조사", "2022.11.22", "풍혜림", R.drawable.geo9))
-        fdata2.add(CommunityModel(1, "테스트 기록5입니다.", "채석강 및 변산반도 조사_1","2022.11.22","풍혜림", R.drawable.geo10))
 
-        val communitylistadapter = MainCommunityAdapter(this, fdata2)
-        val communitylist = findViewById<RecyclerView>(R.id.RV2)
-        communitylist.adapter = communitylistadapter
 
 
         //프로필 설정
@@ -65,10 +57,12 @@ class MainActivity : AppCompatActivity() {
         }
         binding.gotoCommunityBtn.setOnClickListener {
             val intent = Intent(this, CommunityActivity::class.java)
+            intent.putExtra("myId", myId)
             startActivity(intent)
         }
         binding.gotoNewrecordBtn.setOnClickListener {
             val intent = Intent(this, NewRecordActivity::class.java)
+            intent.putExtra("myId", myId)
             startActivity(intent)
         }
 
@@ -125,7 +119,7 @@ class MainActivity : AppCompatActivity() {
                         }
 
                         val response2: Response<List<PersonalRecordResponse>> = withContext(Dispatchers.IO) {
-                            GeoApi.retrofitService.getAllRecords()
+                            GeoApi.retrofitService.getRecordsByUserId(myId)
                         }
                         Log.d(Constants.TAG, "여기는 : $response2")
                         if (response2.isSuccessful) {
@@ -147,11 +141,45 @@ class MainActivity : AppCompatActivity() {
                             Log.d(Constants.TAG, "오류ㅜ : $errorBody")
                             // 에러 메시지 등을 처리
                         }
+
+
+                        val response3: Response<List<ArticleResponse>> = withContext(Dispatchers.IO) {
+                            GeoApi.retrofitService.getAllArticles()
+                        }
+                        Log.d(Constants.TAG, "아티클목록 : $response3")
+                        if (response3.isSuccessful) {
+                            val articleResponse: List<ArticleResponse>? = response3.body()
+
+                            if (articleResponse != null) {
+                                Log.d(Constants.TAG, "아티클 잘받아와짐 : $articleResponse")
+
+
+                                val fdata3: MutableList<CommunityModel> = articleResponse.map { it.convertToCommunityModel() }.toMutableList()
+                                val communitylistadapter = MainCommunityAdapter(this@MainActivity, fdata3)
+                                val communitylist = findViewById<RecyclerView>(R.id.RV2)
+                                communitylist.adapter = communitylistadapter
+
+                            }
+                        } else {
+                            // 요청이 실패했을 때의 처리
+                            val errorBody = response3.errorBody()?.string()
+                            Log.d(Constants.TAG, "오류ㅜ : $errorBody")
+                            // 에러 메시지 등을 처리
+                        }
+
+
+
                     } catch (e: Exception) {
                         // 예외 처리
                         Log.e(Constants.TAG, "Error during network call", e)
                     }
-                    Log.d("", "")
+
+                    val downloader = S3FileDownloader(context = this@MainActivity)
+                    downloader.downloadFile("0dde490d-6d4a-4333-9be2-049a9dab58ef_Screenshot_20230930-173737_My Files.jpg", object : S3FileDownloader.DownloadListener {
+                        override fun onDownloadCompleted(file: java.io.File?){
+                            Log.d(Constants.TAG, "파일 메인에 등장 : $file")
+                        }
+                    })
                 }
             }
         }

@@ -13,7 +13,6 @@ data class PersonalRecordResponse(
     val modifyDT: String,
     val spotResponseDTOList: List<SpotResponse>,
     val fileName: String,
-
     ){
     fun convertToMyRecordModel(): MyRecordModel {
         return MyRecordModel(
@@ -25,3 +24,5 @@ data class PersonalRecordResponse(
         )
     }
 }
+
+
