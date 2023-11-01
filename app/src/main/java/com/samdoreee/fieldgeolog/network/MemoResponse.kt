@@ -3,8 +3,8 @@ package com.samdoreee.fieldgeolog.network
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class File(
+data class MemoResponse(
     val id: Long,
-    val fileName: String,
-    val fileFolder: String
+    val description: String,
+    val pictureResponseDTOList: List<FileResponse>
 )
