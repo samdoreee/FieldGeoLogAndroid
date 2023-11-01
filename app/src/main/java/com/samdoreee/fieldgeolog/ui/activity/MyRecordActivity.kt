@@ -4,7 +4,8 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.widget.ListView
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.samdoreee.fieldgeolog.R
 import com.samdoreee.fieldgeolog.data.model.Constants
 import com.samdoreee.fieldgeolog.data.model.MyRecordModel
@@ -22,6 +23,7 @@ class MyRecordActivity : AppCompatActivity(), CoroutineScope {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        Log.d(Constants.TAG, "여기는 됨")
         setContentView(R.layout.activity_my_record)
 
         val myId: Long = intent.getLongExtra("myId", 0L)  // 0L은 기본값
@@ -30,25 +32,23 @@ class MyRecordActivity : AppCompatActivity(), CoroutineScope {
         launch {
             try {
                 val response2: Response<List<PersonalRecordResponse>> = withContext(Dispatchers.IO) {
-                    GeoApi.retrofitService.getAllRecords()
+                    GeoApi.retrofitService.getRecordsByUserId(myId)
                 }
 
                 if (response2.isSuccessful) {
-                    val myPersonalRecordResponse: List<PersonalRecordResponse>? = response2.body()?.filter { it.userId == myId }
+                    val myPersonalRecordResponse: List<PersonalRecordResponse>? = response2.body()
 
                     Log.d(Constants.TAG, "내기록 : ${response2.body()}")
                     if (myPersonalRecordResponse != null) {
                         Log.d(Constants.TAG, "내기록 : $myPersonalRecordResponse")
 
                         val myRecordModels: MutableList<MyRecordModel> = myPersonalRecordResponse.map { it.convertToMyRecordModel() }.toMutableList()
-                        val myrecordlistadapter = MyRecordAdapter(myRecordModels)
-                        val myrecordlist = findViewById<ListView>(R.id.myrecordlistview)
-                        myrecordlist.adapter = myrecordlistadapter
+                        val myRecordAdapter = MyRecordAdapter(myRecordModels, this@MyRecordActivity)
 
-                        myrecordlist.setOnItemClickListener { parent, view, position, id ->
-                            val intent = Intent(this@MyRecordActivity, OneRecordActivity::class.java)
-                            startActivity(intent)
-                        }
+                        // RecyclerView 설정
+                        val myRecordRecyclerView = findViewById<RecyclerView>(R.id.myrecordlistview)
+                        myRecordRecyclerView.layoutManager = LinearLayoutManager(this@MyRecordActivity)
+                        myRecordRecyclerView.adapter = myRecordAdapter
                     }
                 } else {
                     // 요청이 실패했을 때의 처리
@@ -59,7 +59,6 @@ class MyRecordActivity : AppCompatActivity(), CoroutineScope {
             } catch (e: Exception) {
                 // 예외 처리
             }
-            Log.d("", "")
         }
     }
 
