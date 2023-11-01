@@ -9,14 +9,14 @@
         android:layout_height="match_parent">
 
         <!--header-->
-        <ImageView
+        <com.kakao.vectormap.MapView
             android:id="@+id/mapView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scaleType="centerCrop"
             android:src="@drawable/mapsample2"
             tools:layout_editor_absoluteX="77dp"
-            tools:layout_editor_absoluteY="-27dp"></ImageView>
+            tools:layout_editor_absoluteY="-27dp"></com.kakao.vectormap.MapView>
 
         <FrameLayout
             android:id="@+id/header"

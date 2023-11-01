@@ -36,30 +36,32 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="제목입니다."
-                android:fontFamily="@font/nanumsquareneodeb"
+                android:fontFamily="@font/nanumsquareneoehv"
                 app:layout_constraintStart_toStartOf="@+id/container"
                 app:layout_constraintTop_toTopOf="@+id/container"></TextView>
+
             <LinearLayout
-                android:layout_marginTop="3dp"
                 android:id="@+id/date_container"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
                 android:orientation="horizontal"
-                app:layout_constraintTop_toBottomOf="@+id/title"
-                app:layout_constraintStart_toStartOf="parent">
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/title">
+
                 <ImageView
                     android:id="@+id/icon"
-                    android:layout_width="16dp"
+                    android:layout_width="15dp"
                     android:layout_height="16dp"
-                    android:src="@drawable/pin"
-                    ></ImageView>
+                    android:layout_marginEnd="3sp"
+                    android:src="@drawable/pin"></ImageView>
 
                 <TextView
-                    android:fontFamily="@font/nanumsquareneodeb"
                     android:id="@+id/location"
                     style="@style/Neo4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/nanumsquareneodeb"
                     android:text="위치 정보"></TextView>
             </LinearLayout>
 
@@ -70,6 +72,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="right"
+                android:fontFamily="@font/nanumsquareneobrg"
                 android:text="2022.10.11"></TextView>
         </androidx.constraintlayout.widget.ConstraintLayout>
 
