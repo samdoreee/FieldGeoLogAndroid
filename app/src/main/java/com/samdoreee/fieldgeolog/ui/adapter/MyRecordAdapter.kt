@@ -32,7 +32,7 @@ class MyRecordAdapter(val List:MutableList<MyRecordModel>) : BaseAdapter() {
         var location = convertview!!.findViewById<TextView>(R.id.location)
         var thumbnail = convertview!!.findViewById<ImageView>(R.id.thumbnail)
         title.text = List[position].title
-        date.text = List[position].date
+        date.text = List[position].date.take(10)
         location.text = List[position].location
         return  convertview!!
     }

@@ -7,14 +7,14 @@ import kotlinx.serialization.Serializable
 data class PersonalRecordResponse(
     val id: Long,
     val recordTitle: String,
-    val userId: Long,
-    val nickname: String,
+    val userId: Long? = null,
+    val nickname: String? = null,
     val createDT: String,
     val modifyDT: String,
-    val spotResponseDTOList: List<Spot>,
-    val thumbnailPath: String,
+    val spotResponseDTOList: List<SpotResponse>,
+    val fileName: String,
 
-){
+    ){
     fun convertToMyRecordModel(): MyRecordModel {
         return MyRecordModel(
             id = this.id,
