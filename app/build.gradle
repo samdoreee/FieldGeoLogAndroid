@@ -10,7 +10,7 @@ android {
 
     defaultConfig {
         applicationId "com.samdoreee.fieldgeolog"
-        minSdk 21
+        minSdk 23
         targetSdk 33
         versionCode 1
         versionName "1.0"
@@ -141,4 +141,7 @@ dependencies {
     implementation 'com.amazonaws:aws-android-sdk-cognito:2.20.1'
 
     implementation project(path: ':s3media_files_uploader')
+
+    //KaKao Map
+    implementation 'com.kakao.maps.open:android:2.6.0'
 }

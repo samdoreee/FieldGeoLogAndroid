@@ -41,14 +41,13 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         var myId :Long = 0L
-
-
+      
         val fdata2 = mutableListOf<CommunityModel>()
-        fdata2.add(CommunityModel(1, "테스트 기록1입니다.","풍혜림", "청주 기반 화강암 조사", "2022.11.22", R.drawable.geo6))
-        fdata2.add(CommunityModel(1, "테스트 기록2입니다.","풍혜림", "괴산 일대 조사", "2022.11.22",R.drawable.geo7))
-        fdata2.add(CommunityModel(1, "테스트 기록3입니다.","풍혜림", "금강 일대 조사", "2022.11.22", R.drawable.geo8))
-        fdata2.add(CommunityModel(1, "테스트 기록4입니다.","풍혜림", "옥천 누층군 조사", "2022.11.22", R.drawable.geo9))
-        fdata2.add(CommunityModel(1, "테스트 기록5입니다.","풍혜림", "채석강 및 변산반도 조사_1","2022.11.22", R.drawable.geo10))
+        fdata2.add(CommunityModel(1, "테스트 기록1입니다.", "청주 기반 화강암 조사", "2022.11.22", "풍혜림", R.drawable.geo6))
+        fdata2.add(CommunityModel(1, "테스트 기록2입니다.", "괴산 일대 조사", "2022.11.22","풍혜림", R.drawable.geo7))
+        fdata2.add(CommunityModel(1, "테스트 기록3입니다.", "금강 일대 조사", "2022.11.22", "풍혜림", R.drawable.geo8))
+        fdata2.add(CommunityModel(1, "테스트 기록4입니다.", "옥천 누층군 조사", "2022.11.22", "풍혜림", R.drawable.geo9))
+        fdata2.add(CommunityModel(1, "테스트 기록5입니다.", "채석강 및 변산반도 조사_1","2022.11.22","풍혜림", R.drawable.geo10))
 
         val communitylistadapter = MainCommunityAdapter(this, fdata2)
         val communitylist = findViewById<RecyclerView>(R.id.RV2)

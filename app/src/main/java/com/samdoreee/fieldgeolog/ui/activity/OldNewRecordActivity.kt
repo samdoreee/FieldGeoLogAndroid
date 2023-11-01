@@ -15,6 +15,7 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.samdoreee.fieldgeolog.R
+import com.samdoreee.fieldgeolog.databinding.ActivityNewRecordBinding
 import com.samdoreee.fieldgeolog.databinding.MainBinding
 import com.samdoreee.fieldgeolog.network.GeoApi
 import kotlinx.coroutines.Dispatchers
@@ -30,19 +31,23 @@ import net.daum.mf.map.api.MapView.CurrentLocationTrackingMode
 class OldNewRecordActivity : AppCompatActivity() {
     private lateinit var writeRecycler: RecyclerView
 
-    private lateinit var binding: MainBinding
-    private lateinit var mapView: MapView
+    private lateinit var binding: ActivityNewRecordBinding
+    private lateinit var mapView: com.kakao.vectormap.MapView
     private val ACCESS_FINE_LOCATION = 1000     // Request Code
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = MainBinding.inflate(layoutInflater)
-        val view = binding.root
+        binding = ActivityNewRecordBinding.inflate(layoutInflater)
         mapView = binding.mapView
-        setContentView(view)
+        setContentView(binding.root)
+
+    }
+}
         /*writeRecycler = findViewById(R.id.)*/
+/*
 
         permissionCheck()
+
 
         // (좌) 기록된 위치 표시
         binding.btnStart.setOnClickListener {
@@ -208,3 +213,4 @@ class OldNewRecordActivity : AppCompatActivity() {
         mapView.addPOIItem(marker)
     }
 }
+*/
