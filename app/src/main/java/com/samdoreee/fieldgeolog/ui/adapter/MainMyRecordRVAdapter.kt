@@ -38,7 +38,6 @@ class MainMyRecordRVAdapter(val context: Context, val List: List<MyRecordModel>)
         holder.itemView.setOnClickListener {
             val intent = Intent(holder.itemView?.context, DetailActivity::class.java)
             ContextCompat.startActivity(holder.itemView.context, intent, null)
-
         }
 
     }

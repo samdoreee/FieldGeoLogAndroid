@@ -153,7 +153,7 @@ class MainActivity : AppCompatActivity() {
 
 
                                 val fdata3: MutableList<CommunityModel> = articleResponse.map { it.convertToCommunityModel() }.toMutableList()
-                                val communitylistadapter = MainCommunityAdapter(this@MainActivity, fdata3)
+                                val communitylistadapter = MainCommunityAdapter(this@MainActivity, myId, fdata3)
                                 val communitylist = findViewById<RecyclerView>(R.id.RV2)
                                 communitylist.adapter = communitylistadapter
 
