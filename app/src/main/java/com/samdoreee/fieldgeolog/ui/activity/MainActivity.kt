@@ -128,7 +128,7 @@ class MainActivity : AppCompatActivity() {
 
 
                                 val fdata: MutableList<MyRecordModel> = personalRecordResponse.map { it.convertToMyRecordModel() }.toMutableList()
-                                val myrecordlistadapter = MainMyRecordRVAdapter(this@MainActivity, fdata)
+                                val myrecordlistadapter = MainMyRecordRVAdapter(this@MainActivity, myId, fdata)
                                 val myrecordlist = findViewById<RecyclerView>(R.id.RV1)
                                 myrecordlist.adapter = myrecordlistadapter
 
@@ -146,14 +146,14 @@ class MainActivity : AppCompatActivity() {
                         }
                         Log.d(Constants.TAG, "아티클목록 : $response3")
                         if (response3.isSuccessful) {
-                            val articleResponse: List<ArticleResponse>? = response3.body()
+                            val articleResponse: List<ArticleResponse>? = response3.body()?.filter { it.userId != myId }
 
                             if (articleResponse != null) {
                                 Log.d(Constants.TAG, "아티클 잘받아와짐 : $articleResponse")
 
 
                                 val fdata3: MutableList<CommunityModel> = articleResponse.map { it.convertToCommunityModel() }.toMutableList()
-                                val communitylistadapter = MainCommunityAdapter(this@MainActivity, fdata3)
+                                val communitylistadapter = MainCommunityAdapter(this@MainActivity, myId, fdata3)
                                 val communitylist = findViewById<RecyclerView>(R.id.RV2)
                                 communitylist.adapter = communitylistadapter
 

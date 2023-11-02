@@ -37,7 +37,7 @@ class CommentRvAdapter(val context: Context, val List: List<CommentModel>) : Rec
         fun bind(commentmodel: CommentModel, context: Context) {
             c_content?.text = commentmodel.comment_content.toString()
             c_author?.text = commentmodel.comment_author.toString()
-            c_date?.text = commentmodel.comment_date.toString()
+            c_date?.text = commentmodel.comment_date.toString().take(10)
             c_author_profile?.setImageResource(R.drawable.profile22)
         }
     }

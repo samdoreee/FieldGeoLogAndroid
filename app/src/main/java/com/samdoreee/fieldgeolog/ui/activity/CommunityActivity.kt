@@ -6,14 +6,20 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.ImageButton
 import android.widget.ListView
+import android.widget.TextView
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.samdoreee.fieldgeolog.R
 import com.samdoreee.fieldgeolog.data.model.CommunityModel
 import com.samdoreee.fieldgeolog.data.model.Constants
 import com.samdoreee.fieldgeolog.data.model.MyRecordModel
 import com.samdoreee.fieldgeolog.network.ArticleResponse
 import com.samdoreee.fieldgeolog.network.GeoApi
+import com.samdoreee.fieldgeolog.network.UserResponse
 import com.samdoreee.fieldgeolog.ui.adapter.CommunityAdapter
 import com.samdoreee.fieldgeolog.ui.adapter.MyRecordAdapter
+import de.hdodenhof.circleimageview.CircleImageView
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -36,6 +42,34 @@ class CommunityActivity : AppCompatActivity() , CoroutineScope {
 
         launch {
             try {
+//                val response: Response<UserResponse> = withContext(Dispatchers.IO) {
+//                    GeoApi.retrofitService.getUser(myId)
+//                }
+//                if (response.isSuccessful) {
+//                    val userResponse: UserResponse? =
+//                        response.body() // 성공한 경우 UserResponse를 추출
+//
+//                    if (userResponse != null) {
+//                        // userResponse를 사용하여 필요한 작업 수행
+//                        Log.d(Constants.TAG, "사람출력 : $userResponse")
+//
+//                        val nicknameTextView: TextView = findViewById(R.id.my_id)
+//                        val my_profileView: CircleImageView = findViewById(R.id.my_profile)
+//                        val profile_date = findViewById<TextView>(R.id.date)
+//                        nicknameTextView.text = userResponse.nickName
+//                        profile_date.text = "2023-11-03"
+//
+//                        Glide.with(this@CommunityActivity) // 현재의 Context 또는 Activity
+//                            .load(userResponse.profileImage)
+//                            .into(my_profileView)
+//                    }
+//                } else {
+//                    // 요청이 실패했을 때의 처리
+//                    val errorBody = response.errorBody()?.string()
+//                    Log.d(Constants.TAG, "오류ㅜ : $errorBody")
+//                    // 에러 메시지 등을 처리
+//                }
+
                 val response2: Response<List<ArticleResponse>> = withContext(Dispatchers.IO) {
                     GeoApi.retrofitService.getAllArticles()
                 }
@@ -43,20 +77,22 @@ class CommunityActivity : AppCompatActivity() , CoroutineScope {
                 if (response2.isSuccessful) {
                     val articleResponse: List<ArticleResponse>? = response2.body()?.filter { it.userId != myId }
 
-                    Log.d(Constants.TAG, "남의 글 : ${response2.body()}")
+                    Log.d(Constants.TAG, "남의 글. : ${response2.body()}")
                     if (articleResponse != null) {
-                        Log.d(Constants.TAG, "남의 글 널아님 : $articleResponse")
+                        Log.d(Constants.TAG, "남의 글 널아님. : $articleResponse")
 
                         val communityModels: MutableList<CommunityModel> = articleResponse.map { it.convertToCommunityModel() }.toMutableList()
-                        val communitylistadapter = CommunityAdapter(communityModels)
-                        val communitylist = findViewById<ListView>(R.id.communitylistview)
+                        val communitylistadapter = CommunityAdapter(communityModels, this@CommunityActivity, myId)
+
+                        val communitylist = findViewById<RecyclerView>(R.id.communitylistview)
+                        communitylist.layoutManager = LinearLayoutManager(this@CommunityActivity)
                         communitylist.adapter = communitylistadapter
 
-                        communitylist.setOnItemClickListener { parent, view, position, id ->
-                            val intent = Intent(this@CommunityActivity, OneRecordActivity::class.java)
-                            intent.putExtra("myId", myId)
-                            startActivity(intent)
-                        }
+//                        communitylist.setOnItemClickListener { parent, view, position, id ->
+//                            val intent = Intent(this@CommunityActivity, OneRecordActivity::class.java)
+//                            intent.putExtra("myId", myId)
+//                            startActivity(intent)
+//                        }
 
                     }
                 } else {

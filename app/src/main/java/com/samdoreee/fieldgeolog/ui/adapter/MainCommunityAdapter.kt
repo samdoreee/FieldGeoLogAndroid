@@ -20,7 +20,7 @@ import com.samdoreee.fieldgeolog.ui.activity.OneArticleActivity
 
 import java.io.File
 
-class MainCommunityAdapter(val context: Context, val List:MutableList<CommunityModel>) : RecyclerView.Adapter<MainCommunityAdapter.Holder>()  {
+class MainCommunityAdapter(val context: Context, val myId: Long, val List:MutableList<CommunityModel>) : RecyclerView.Adapter<MainCommunityAdapter.Holder>()  {
     private val s3FileDownloader = S3FileDownloader(context)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
@@ -39,6 +39,7 @@ class MainCommunityAdapter(val context: Context, val List:MutableList<CommunityM
         holder.itemView.setOnClickListener {
             val intent = Intent(holder.itemView?.context, OneArticleActivity::class.java)
             intent.putExtra("articleId", data.id)
+            intent.putExtra("myId", myId)
             ContextCompat.startActivity(holder.itemView.context, intent, null)
 
         }

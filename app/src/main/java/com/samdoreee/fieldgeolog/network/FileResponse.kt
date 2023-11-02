@@ -5,6 +5,6 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class FileResponse(
     val id: Long,
-    val fileFolder: String,
+    val fileFolder: String? = null,
     val fileName: String,
 )
