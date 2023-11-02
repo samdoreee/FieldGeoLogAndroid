@@ -6,7 +6,7 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class PersonalRecordRequest(
     val recordTitle: String,
-    val userId: Long? = null,
+    val userId: Long,
     )
 
 

@@ -41,7 +41,7 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        var myId :Long = 0L
+        var myId: Long = intent.getLongExtra("myId", 0L)
       
 
 

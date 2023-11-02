@@ -51,6 +51,20 @@
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     style="@style/Neo2"></TextView>
+
+                <Button
+                    android:id="@+id/btn_save"
+                    style="@style/Neo2"
+                    android:textSize="16sp"
+                    android:layout_width="40dp"
+                    android:layout_height="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:background="#00FFFFFF"
+                    android:text="저장"
+                    android:textColor="@color/G2"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"></Button>
+
             </androidx.constraintlayout.widget.ConstraintLayout>
             <TextView
                 android:id="@+id/record_title"
