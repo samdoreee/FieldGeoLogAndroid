@@ -48,7 +48,7 @@ fun SpotApp(modifier: Modifier = Modifier) {
 
 suspend fun addSpot(spotRequest: SpotRequest) {
     try {
-        GeoApi.retrofitService.addSpot(spotRequest)
+        GeoApi.retrofitService.addSpot(0L, spotRequest)
     } catch (e: IOException) {
         SpotUiState.Error
     }

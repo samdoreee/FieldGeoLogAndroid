@@ -7,6 +7,7 @@ import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.http.Body
 import retrofit2.http.GET
+import retrofit2.http.PATCH
 import retrofit2.http.POST
 import retrofit2.http.Path
 import retrofit2.http.Query
@@ -22,8 +23,14 @@ interface GeoApiService {
     @GET("api/spots")
     suspend fun getAllSpots(): List<Spot>
 
-    @POST("api/spots")
-    suspend fun addSpot(@Body spotRequest: SpotRequest)
+    @POST("api/personalRecords/{recordId}/spots")
+    suspend fun addSpot(@Path("recordId") recordId: Long, @Body spotRequest: SpotRequest): Response<SpotResponse>
+
+    @POST("api/personalRecords/{recordId}/spots/{spotId}/memos")
+    suspend fun addMemo(@Path("recordId") recordId: Long, @Path("spotId") spotId: Long, @Body memoRequest: MemoRequest): Response<MemoResponse>
+
+    @POST("api/personalRecords/{recordId}/spots/{spotId}/memos/{memoId}/pictures")
+    suspend fun addPicture(@Path("recordId") recordId: Long, @Path("spotId") spotId: Long, @Path("memoId") memoId: Long, @Body fileRequest: FileRequest): Response<FileResponse>
 
     @POST("api/users")
     suspend fun addUser(@Body userRequest: UserRequest): Response<UserResponse>
@@ -37,11 +44,17 @@ interface GeoApiService {
     @GET("api/personalRecords/user")
     suspend fun getRecordsByUserId(@Query("userId") userId: Long): Response<List<PersonalRecordResponse>>
 
+    @POST("api/personalRecords")
+    suspend fun addRecord(@Body personalRecordRequest: PersonalRecordRequest): Response<PersonalRecordResponse>
+
     @GET("api/personalRecords")
     suspend fun getAllRecords(): Response<List<PersonalRecordResponse>>
 
     @GET("api/personalRecords/{recordId}")
     suspend fun getRecord(@Path("recordId") recordId: Long): Response<PersonalRecordResponse>
+
+    @PATCH("api/personalRecords/{recordId}")
+    suspend fun modifyRecord(@Path("recordId") recordId: Long, @Body personalRecordRequest: PersonalRecordRequest): Response<PersonalRecordResponse>
 
     @GET("api/articles")
     suspend fun getAllArticles(): Response<List<ArticleResponse>>

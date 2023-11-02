@@ -92,7 +92,7 @@
 
                 <data
                     android:host="oauth"
-                    android:scheme="kakaoe2d71ca93d273e6e9a1071288155d4fd" />
+                    android:scheme="kakaoa3f0dc722ea78206ad1559c50984f049" />
             </intent-filter>
         </activity>
         <activity
@@ -199,7 +199,7 @@
 
         <meta-data
             android:name="com.kakao.vectormap.APP_KEY"
-            android:value="1782d3b44d3862cc5af2a2edf22793e7" />
+            android:value="a3f0dc722ea78206ad1559c50984f049" />
     </application>
 
 </manifest>
