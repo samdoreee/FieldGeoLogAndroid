@@ -6,7 +6,6 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
         <ImageView
             android:id="@+id/mapView"
             android:layout_width="match_parent"
@@ -89,7 +88,6 @@
                 android:src="@drawable/header_background2"
                 ></ImageView>
         </FrameLayout>
-
         <androidx.cardview.widget.CardView
             android:id="@+id/card"
             android:layout_width="match_parent"
@@ -237,10 +235,6 @@
                             android:textStyle="bold"
                             android:textAlignment="center"></EditText>
                     </androidx.cardview.widget.CardView>
-
-
-
-
                 </LinearLayout>
 
                 <androidx.core.widget.NestedScrollView
@@ -252,60 +246,89 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
                         <LinearLayout
-                            app:layout_constraintTop_toTopOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
                             android:id="@+id/photo_container"
                             android:orientation="horizontal"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
                             android:weightSum="3"
                             android:layout_width="match_parent"
-                            android:layout_height="90dp">
-
+                            android:layout_height="115dp">
                             <androidx.cardview.widget.CardView
                                 android:layout_margin="5dp"
-                                android:layout_weight="1"
-                                android:layout_width="90dp"
-                                android:layout_height="wrap_content"
-                                app:cardCornerRadius="10dp">
-                                <ImageView
-                                    android:src="@drawable/geo11"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="90dp"
-                                    android:scaleType="centerCrop"
-                                    android:layout_gravity="center">
-                                </ImageView>
-                            </androidx.cardview.widget.CardView>
-                            <androidx.cardview.widget.CardView
-                                android:layout_margin="5dp"
-                                android:layout_weight="1"
-                                android:layout_width="90dp"
-                                android:layout_height="wrap_content"
-                                app:cardCornerRadius="10dp">
-                                <ImageView
-                                    android:src="@drawable/geo8"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="90dp"
-                                    android:scaleType="centerCrop"
-                                    android:layout_gravity="center">
-                                </ImageView>
-                            </androidx.cardview.widget.CardView>
-                            <androidx.cardview.widget.CardView
-                                android:layout_margin="5dp"
-                                android:id="@+id/photo_create_btn"
                                 app:cardBackgroundColor="@color/White"
                                 android:layout_weight="1"
                                 android:layout_width="90dp"
-                                android:layout_height="wrap_content"
+                                android:layout_height="100dp"
                                 app:cardCornerRadius="10dp">
                                 <ImageView
-                                    android:src="@drawable/camera_create"
-                                    android:layout_marginVertical="45dp"
-                                    android:layout_width="45dp"
-                                    android:layout_height="45dp"
-                                    android:scaleType="centerCrop"
-                                    android:layout_gravity="center"
-                                    app:tint="@color/G2">
+                                    android:id="@+id/thumbnail1"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:scaleType="centerCrop">
                                 </ImageView>
+                                <ImageButton
+                                    android:id="@+id/click"
+                                     style="@style/Neo4"
+                                    android:src="@drawable/camera_create"
+                                    android:layout_gravity="bottom|center_horizontal"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="30dp"
+                                    android:background="@color/G2"
+                                    android:textColor="@color/White"
+                                    app:tint="@color/White">
+                                </ImageButton>
                             </androidx.cardview.widget.CardView>
+                            <androidx.cardview.widget.CardView
+                                android:layout_margin="5dp"
+                                app:cardBackgroundColor="@color/White"
+                                android:layout_weight="1"
+                                android:layout_width="90dp"
+                                android:layout_height="100dp"
+                                app:cardCornerRadius="10dp">
+                                <ImageView
+                                    android:id="@+id/thumbnail2"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:scaleType="centerCrop">
+                                </ImageView>
+                                <ImageButton
+                                    android:id="@+id/click2"
+                                    style="@style/Neo4"
+                                    android:src="@drawable/camera_create"
+                                    android:layout_gravity="bottom|center_horizontal"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="30dp"
+                                    android:background="@color/G2"
+                                    android:textColor="@color/White"
+                                    app:tint="@color/White">
+                                </ImageButton>
+                            </androidx.cardview.widget.CardView>
+                            <androidx.cardview.widget.CardView
+                                android:layout_margin="5dp"
+                                app:cardBackgroundColor="@color/White"
+                                android:layout_weight="1"
+                                android:layout_width="90dp"
+                                android:layout_height="100dp"
+                                app:cardCornerRadius="10dp">
+                                <ImageView
+                                    android:id="@+id/thumbnail3"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:scaleType="centerCrop">
+                                </ImageView>
+                                <ImageButton
+                                    android:id="@+id/click3"
+                                    style="@style/Neo4"
+                                    android:src="@drawable/camera_create"
+                                    android:layout_gravity="bottom|center_horizontal"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="30dp"
+                                    android:background="@color/G2"
+                                    android:textColor="@color/White"
+                                    app:tint="@color/White">
+                                </ImageButton>
+                            </androidx.cardview.widget.CardView>
+
                         </LinearLayout>
                         <androidx.cardview.widget.CardView
                             android:backgroundTint="@color/G7"
@@ -315,14 +338,15 @@
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@id/photo_container">
-                        <EditText
-                            android:textAlignment="center"
-                            android:hint="메모를 입력하세요."
-                            android:id="@+id/memo"
-                            android:layout_width="match_parent"
-                            android:layout_height="130dp"
-                            android:layout_marginTop="5dp"
-                            style="@style/Neo4"/>
+
+                            <EditText
+                                android:id="@+id/memo"
+                                style="@style/Neo4"
+                                android:layout_width="match_parent"
+                                android:layout_height="136dp"
+                                android:layout_marginTop="5dp"
+                                android:hint="메모를 입력하세요."
+                                android:textAlignment="center" />
                         </androidx.cardview.widget.CardView>
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
