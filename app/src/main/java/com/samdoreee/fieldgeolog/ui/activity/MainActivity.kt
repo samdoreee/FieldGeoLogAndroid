@@ -72,8 +72,6 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-
-
         // 로그에 로그인 정보 데이터 출력
         UserApiClient.instance.me { user, error ->
             if (error != null) {

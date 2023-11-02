@@ -12,6 +12,8 @@ import android.widget.ImageView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.samdoreee.fieldgeolog.ui.activity.DetailActivity
+import com.samdoreee.fieldgeolog.ui.activity.OneArticleActivity
+
 class MainCommunityAdapter(val context: Context, val List:MutableList<CommunityModel>) : RecyclerView.Adapter<MainCommunityAdapter.Holder>()  {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
         val view = LayoutInflater.from(context).inflate(R.layout.activity_main_community_list_item, parent, false)
@@ -27,7 +29,7 @@ class MainCommunityAdapter(val context: Context, val List:MutableList<CommunityM
             .into(holder.thumbnail!!)*/
 
         holder.itemView.setOnClickListener {
-            val intent = Intent(holder.itemView?.context, DetailActivity::class.java)
+            val intent = Intent(holder.itemView?.context, OneArticleActivity::class.java)
             ContextCompat.startActivity(holder.itemView.context, intent, null)
 
         }

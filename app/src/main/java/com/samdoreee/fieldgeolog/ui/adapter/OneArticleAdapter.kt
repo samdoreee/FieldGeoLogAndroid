@@ -24,12 +24,10 @@ class OneArticleAdapter(val List:MutableList<OneRecordModel>) : BaseAdapter() {
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
         var convertview = convertView
         if (convertview == null) {
-            convertview = LayoutInflater.from(parent?.context).inflate(R.layout.onerecorditem, parent, false)
+            convertview = LayoutInflater.from(parent?.context).inflate(R.layout.onespot_item, parent, false)
         }
         val num = convertview!!.findViewById<TextView>(R.id.spotnum)
-
         num.text = List[position].spotnum.toString()
-
         return  convertview!!
     }
 }

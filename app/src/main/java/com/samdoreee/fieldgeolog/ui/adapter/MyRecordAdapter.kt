@@ -25,7 +25,7 @@ class MyRecordAdapter(val List:MutableList<MyRecordModel>) : BaseAdapter() {
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
         var convertview = convertView
         if (convertview == null) {
-            convertview = LayoutInflater.from(parent?.context).inflate(R.layout.myrecorditem, parent, false)
+            convertview = LayoutInflater.from(parent?.context).inflate(R.layout.activity_myrecord_list_item, parent, false)
         }
         var title = convertview!!.findViewById<TextView>(R.id.title)
         var date = convertview!!.findViewById<TextView>(R.id.date)

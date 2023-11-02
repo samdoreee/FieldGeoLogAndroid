@@ -12,11 +12,7 @@
         <com.kakao.vectormap.MapView
             android:id="@+id/mapView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scaleType="centerCrop"
-            android:src="@drawable/mapsample2"
-            tools:layout_editor_absoluteX="77dp"
-            tools:layout_editor_absoluteY="-27dp"></com.kakao.vectormap.MapView>
+            android:layout_height="match_parent"></com.kakao.vectormap.MapView>
 
         <FrameLayout
             android:id="@+id/header"
@@ -82,28 +78,6 @@
                 android:tint="@color/White"
                 android:layout_margin="10dp"
                 app:borderWidth="0dp"></com.google.android.material.floatingactionbutton.FloatingActionButton>
-
-        <!--
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:background="@drawable/window_radius_top"
-            app:layout_constraintBottom_toBottomOf="parent">
-
-        </ImageView>
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:layout_marginBottom="4dp"
-            android:orientation="horizontal"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:layout_constraintBottom_toTopOf="@+id/add_new_spot_btn"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            tools:listitem="@layout/onerecorditem"></androidx.recyclerview.widget.RecyclerView>-->
 
         <androidx.cardview.widget.CardView
             android:id="@+id/add_new_spot_btn"
