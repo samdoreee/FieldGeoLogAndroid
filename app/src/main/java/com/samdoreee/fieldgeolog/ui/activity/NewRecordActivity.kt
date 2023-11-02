@@ -63,6 +63,7 @@ class NewRecordActivity : AppCompatActivity(), CoroutineScope {
             intent.putExtra("recordId", recordId)
             intent.putExtra("latitude", 36.64)
             intent.putExtra("longitude", 127.49)
+
             startActivity(intent)
         }
         binding.onGeomapBtn.setOnClickListener {
