@@ -27,7 +27,7 @@ class NewRecordActivity : AppCompatActivity() {
             startActivity(intent)
         }
         binding.addNewSpotBtn.setOnClickListener {
-            val intent = Intent(this, RecordWriteActivity::class.java)
+            val intent = Intent(this, WriteActivity::class.java)
             startActivity(intent)
         }
         binding.onGeomapBtn.setOnClickListener {

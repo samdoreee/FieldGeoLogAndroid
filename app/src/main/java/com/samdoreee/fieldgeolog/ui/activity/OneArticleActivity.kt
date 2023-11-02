@@ -59,6 +59,8 @@ class OneArticleActivity : AppCompatActivity() {
         commentList.adapter = commentlistadapter
 
 
+
+
         val mapView = findViewById<MapView>(R.id.mapView)
         mapView.start(object : MapLifeCycleCallback() {
             override fun onMapDestroy() {

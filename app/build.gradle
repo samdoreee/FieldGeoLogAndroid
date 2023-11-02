@@ -11,7 +11,7 @@ android {
     defaultConfig {
         applicationId "com.samdoreee.fieldgeolog"
         minSdk 23
-        targetSdk 33
+        targetSdk 32
         versionCode 1
         versionName "1.0"
 
@@ -70,7 +70,7 @@ dependencies {
     implementation 'androidx.compose.material:material:1.1.1'
     implementation 'androidx.navigation:navigation-runtime-ktx:2.5.3'
     implementation 'androidx.appcompat:appcompat:1.5.1'
-    implementation 'com.google.android.material:material:1.4.0'
+    implementation 'com.google.android.material:material:1.9.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     implementation 'androidx.appcompat:appcompat:1.7.0-alpha01'
     testImplementation 'junit:junit:4.13.2'
@@ -102,7 +102,7 @@ dependencies {
     implementation 'com.kakao.sdk:v2-user:2.10.0'
 
     // S3
-    implementation 'androidx.core:core-ktx:1.10.1'
+    /*implementation 'androidx.core:core-ktx:1.10.1'*/
     implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'com.google.android.material:material:1.9.0'
     testImplementation 'junit:junit:4.13.2'
@@ -127,7 +127,7 @@ dependencies {
 
 
     // S3
-    implementation 'androidx.core:core-ktx:1.10.1'
+    /*implementation 'androidx.core:core-ktx:1.7.1'*/
     implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'com.google.android.material:material:1.9.0'
     testImplementation 'junit:junit:4.13.2'
@@ -144,4 +144,7 @@ dependencies {
 
     //KaKao Map
     implementation 'com.kakao.maps.open:android:2.6.0'
+
+    //tedpermission
+    implementation 'io.github.ParkSangGwon:tedpermission-normal:3.3.0'
 }
