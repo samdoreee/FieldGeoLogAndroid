@@ -12,8 +12,8 @@ import com.samdoreee.fieldgeolog.R
 import com.samdoreee.fieldgeolog.data.model.OneRecordModel
 import com.samdoreee.fieldgeolog.ui.activity.OneArticleDetailActivity
 
-class SpotListRvAdapter(val context: Context, val List: List<OneRecordModel>) : RecyclerView.Adapter<SpotListRvAdapter.Holder>() {
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SpotListRvAdapter.Holder {
+class CommunitySpotListRvAdapter(val context: Context, val List: List<OneRecordModel>) : RecyclerView.Adapter<CommunitySpotListRvAdapter.Holder>() {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CommunitySpotListRvAdapter.Holder {
         val view = LayoutInflater.from(context).inflate(R.layout.onespot_item, parent, false)
         return Holder(view)
     }
