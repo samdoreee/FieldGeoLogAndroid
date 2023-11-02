@@ -1,111 +1,164 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools">
+
 <androidx.constraintlayout.widget.ConstraintLayout
-    android:orientation="vertical"
-    android:layout_margin="5dp"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/ancestor"
     android:layout_width="match_parent"
-    android:background="@color/White"
-    android:layout_height="match_parent"
-    tools:context=".ui.activity.OneRecordActivity">
-
-    <LinearLayout
-        android:id="@+id/toppart"
+    android:layout_height="match_parent">
+    <FrameLayout
+        android:id="@+id/mapheader"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
+        android:layout_height="match_parent"
         app:layout_constraintTop_toTopOf="parent">
+        <!--MapView_background-->
         <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginTop="8dp"
-            android:src="@drawable/photo1"
-            app:layout_constraintStart_toStartOf="@id/constraintLayout2"
-            app:layout_constraintTop_toTopOf="@id/constraintLayout2"
-            android:contentDescription="TODO" />
-        <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/mapView"
+            android:src="@drawable/mapsample2"
+            android:scaleType="centerCrop"
+            app:layout_constraintTop_toTopOf="parent">
+        </ImageView>
+        <androidx.cardview.widget.CardView
+            android:layout_marginTop="90dp"
+            android:id="@+id/author_container"
+            android:layout_width="100dp"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            app:cardBackgroundColor="@color/G2"
+            app:cardCornerRadius="50dp"
+            android:layout_marginEnd="15dp"
+            android:layout_gravity="right">
             <TextView
-                android:text="03.27.청주 기반 화강암 조사"
-                android:gravity="center_vertical"
-                android:id="@+id/title"
-                android:layout_width="300dp"
+                android:id="@+id/author"
+                android:layout_gravity="center"
+                android:layout_margin="10dp"
+                style="@style/Neo4"
+                android:fontFamily="@font/nanumsquareneoehv"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="8dp"
-                android:layout_marginTop="8dp"
-                android:background="@drawable/item_border"
-                android:minHeight="35dp"
-                android:textSize="22sp"
-                android:textStyle="bold"/>
-            <TextView
-                android:text="2023.01.02"
-                android:id="@+id/date"
-                android:gravity="center_vertical"
-                android:layout_width="300dp"
+                android:text="기록공유"
+                android:textColor="@color/White"></TextView>
+        </androidx.cardview.widget.CardView>
+
+        <!--Header-->
+        <FrameLayout
+            android:id="@+id/header"
+            android:layout_width="match_parent"
+            android:layout_height="90dp">
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/header_background"
+                ></ImageView>
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_gravity="center_vertical"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="8dp"
-                android:background="@drawable/item_border"
-                android:minHeight="35dp"
-                android:textSize="17sp"
-                android:textStyle="bold"/>
-        </LinearLayout>
-    </LinearLayout>
+                android:orientation="horizontal"
+                android:weightSum="3">
+                <ImageButton
+                    android:id="@+id/back_to_home_btn"
+                    android:layout_marginStart="20dp"
+                    android:layout_weight="1"
+                    android:background="#00FFFFFF"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:src="@drawable/chevron_left"></ImageButton>
+                <TextView
+                    android:layout_weight="1"
+                    android:textAlignment="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="나의 기록"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    style="@style/Neo2"></TextView>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </FrameLayout>
+        <!--지도위에 효과 + 게시글로 전환 버튼-->
+        <FrameLayout
+            android:id="@+id/info"
+            android:layout_gravity="bottom"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/header_background2"
+                ></ImageView>
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <LinearLayout
+                    app:layout_constraintBottom_toTopOf="@+id/spotlist"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginHorizontal="20dp"
+                    android:orientation="vertical">
 
-    <ImageView
-        android:layout_marginTop="10dp"
-        android:id="@+id/mapimage"
-        android:src="@drawable/geomap"
-        app:layout_constraintTop_toBottomOf="@+id/toppart"
-        android:layout_width="match_parent"
-        android:layout_height="595dp"
-        android:scaleType="centerCrop">
-    </ImageView>
+                    <TextView
+                        android:paddingVertical="5dp"
+                        android:id="@+id/record_title"
+                        style="@style/Neo2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="청주지역 기초 지질 조사"
+                        android:textColor="@color/Black"
+                        android:layout_gravity="bottom|center_horizontal"
+                        ></TextView>
+                    <TextView
+                        android:paddingVertical="5dp"
+                        android:textStyle="bold"
+                        android:id="@+id/record_location"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        style="@style/Neo4"
+                        android:text="충청북도 청주시 서원구 개신동 265-1"></TextView>
+                    <TextView
+                        android:paddingVertical="5dp"
+                        android:id="@+id/record_date"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        style="@style/Neo4"
+                        android:text="2022년 11월 24일"/>
+                    <TextView
+                        android:paddingVertical="5dp"
+                        android:id="@+id/record_weather"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        style="@style/Neo4"
+                        android:text="맑음 : 강우량 보통 남서풍"></TextView>
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="0.5dp"
+                        android:background="@color/Gray2"
+                        android:layout_marginVertical="10dp" />
+                </LinearLayout>
+                <androidx.recyclerview.widget.RecyclerView
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:id="@+id/spotlist"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:layout_marginBottom="4dp"
+                    android:orientation="horizontal"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    tools:listitem="@layout/onespot_item"
+                    android:layout_gravity="bottom"></androidx.recyclerview.widget.RecyclerView>
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <!--<net.daum.mf.map.api.MapView
-        android:id="@+id/mapView"
-        android:layout_width="match_parent"
-        android:layout_height="0px"
-        app:layout_constraintBottom_toTopOf="@+id/incslayout">
-    </net.daum.mf.map.api.MapView>-->
-
-    <ListView
-        android:background="@drawable/window_radius_top"
-        android:id="@+id/spotlist"
-        android:layout_width="match_parent"
-        android:layout_height="350dp"
-        app:cardCornerRadius="30dp"
-        app:layout_constraintBottom_toTopOf="@+id/twobtn">
-    </ListView>
-
-    <LinearLayout
-        android:weightSum="2"
-        android:id="@+id/twobtn"
+        </FrameLayout>
+    </FrameLayout>
+    <!--<androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/mapimage">
-        <Button
-            android:textStyle="bold"
-            android:layout_weight="1"
-            android:background="@color/Gray1"
-            android:id="@+id/btn_record_start"
-            android:layout_width="60dp"
-            android:layout_height="wrap_content"
-            android:text="ToPDF"
-            android:textAllCaps="false"/>
-        <Button
-            android:textStyle="bold"
-            android:layout_weight="1"
-            android:background="@color/Gray1"
-            android:id="@+id/btn_start"
-            android:layout_width="60dp"
-            android:layout_height="wrap_content"
-            android:text="게시글 등록" />
-    </LinearLayout>
-
+        app:layout_constraintTop_toBottomOf="@id/mapheader">-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
