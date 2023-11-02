@@ -4,10 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.widget.ArrayAdapter
 import android.widget.ImageButton
-import android.widget.ListView
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.kakao.vectormap.KakaoMap
@@ -17,11 +14,8 @@ import com.kakao.vectormap.MapView
 import com.samdoreee.fieldgeolog.R
 import com.samdoreee.fieldgeolog.data.model.CommentModel
 import com.samdoreee.fieldgeolog.data.model.OneRecordModel
-import com.samdoreee.fieldgeolog.databinding.ActivityNewRecordBinding
-import com.samdoreee.fieldgeolog.databinding.ActivityOneArticleBinding
 import com.samdoreee.fieldgeolog.ui.adapter.CommentRvAdapter
-import com.samdoreee.fieldgeolog.ui.adapter.OneArticleAdapter
-import com.samdoreee.fieldgeolog.ui.adapter.SpotListRvAdapter
+import com.samdoreee.fieldgeolog.ui.adapter.MyRecordSpotListRvAdapter
 
 class OneArticleActivity : AppCompatActivity() {
 
@@ -43,7 +37,7 @@ class OneArticleActivity : AppCompatActivity() {
         num_preview.add(OneRecordModel(7))
 
         /*spot num list-중앙 RV 어댑터 연결*/
-        val spotlistadapter = SpotListRvAdapter(this, num_preview)
+        val spotlistadapter = MyRecordSpotListRvAdapter(this, num_preview)
         val spotlist = findViewById<RecyclerView>(R.id.spotlist)
         spotlist.adapter = spotlistadapter
 
