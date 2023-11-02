@@ -16,9 +16,10 @@ import com.samdoreee.fieldgeolog.S3FileDownloader
 import com.samdoreee.fieldgeolog.data.model.Constants
 import com.samdoreee.fieldgeolog.data.model.MyRecordModel
 import com.samdoreee.fieldgeolog.ui.activity.DetailActivity
+import com.samdoreee.fieldgeolog.ui.activity.OneRecordActivity
 import java.io.File
 
-class MainMyRecordRVAdapter(val context: Context, val List: List<MyRecordModel>) : RecyclerView.Adapter<MainMyRecordRVAdapter.Holder>() {
+class MainMyRecordRVAdapter(val context: Context, val myId: Long, val List: List<MyRecordModel>) : RecyclerView.Adapter<MainMyRecordRVAdapter.Holder>() {
 
     /*화면 최초 로딩시 만들어진 view가 없을 경우 .xml을 inflate시켜서 viewholder 생성*/
     private val s3FileDownloader = S3FileDownloader(context)
@@ -29,15 +30,17 @@ class MainMyRecordRVAdapter(val context: Context, val List: List<MyRecordModel>)
     }
     override fun onBindViewHolder(holder: Holder, position: Int) {
         val data = List[position]
-        holder.bind(data, context)
+        holder.bind(data, myId, context)
 //        Glide.with(context)
 //            .load(data.thumbnail)
 //            .placeholder(R.drawable.circle_logo)
 //            .error(R.drawable.logo)
 //            .into(holder.thumbnail!!)
         holder.itemView.setOnClickListener {
-            val intent = Intent(holder.itemView?.context, DetailActivity::class.java)
-            ContextCompat.startActivity(holder.itemView.context, intent, null)
+            val intent = Intent(holder.itemView?.context, OneRecordActivity::class.java)
+            intent.putExtra("myId", myId)
+            intent.putExtra("recordId", data.id)
+            context.startActivity(intent)
         }
 
     }
@@ -49,7 +52,7 @@ class MainMyRecordRVAdapter(val context: Context, val List: List<MyRecordModel>)
         val location = itemView?.findViewById<TextView>(R.id.location)
         val date = itemView?.findViewById<TextView>(R.id.date)
         val thumbnail = itemView?.findViewById<ImageView>(R.id.thumbnail)
-        fun bind(mainmyrecord:MyRecordModel, context: Context) {
+        fun bind(mainmyrecord:MyRecordModel, myId: Long, context: Context) {
             /*text 데이터들 binding*/
             title?.text = mainmyrecord.title
             location?.text = mainmyrecord.location

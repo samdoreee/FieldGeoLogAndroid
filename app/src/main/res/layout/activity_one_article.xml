@@ -124,14 +124,15 @@
                 app:cardCornerRadius="50dp"
                 android:layout_marginBottom="100dp"
                 android:layout_marginEnd="20dp">
+
                 <TextView
                     android:id="@+id/author"
-                    android:layout_gravity="center"
-                    android:layout_margin="10dp"
                     style="@style/Neo4"
-                    android:fontFamily="@font/nanumsquareneoehv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="10dp"
+                    android:fontFamily="@font/nanumsquareneoehv"
                     android:text="김정현"
                     android:textColor="@color/White"></TextView>
             </androidx.cardview.widget.CardView>
