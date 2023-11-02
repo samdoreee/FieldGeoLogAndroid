@@ -40,8 +40,18 @@ interface GeoApiService {
     @GET("api/personalRecords")
     suspend fun getAllRecords(): Response<List<PersonalRecordResponse>>
 
+    @GET("api/personalRecords/{recordId}")
+    suspend fun getRecord(@Path("recordId") recordId: Long): Response<PersonalRecordResponse>
+
     @GET("api/articles")
     suspend fun getAllArticles(): Response<List<ArticleResponse>>
+
+    @GET("api/articles/{articleId}")
+    suspend fun getArticle(@Path("articleId") articleId: Long) : Response<ArticleResponse>
+
+    @GET("api/articles/{articleId}/comments")
+    suspend fun getAllComments(@Path("articleId") articleId: Long) : Response<List<CommentResponse>>
+
 
 }
 

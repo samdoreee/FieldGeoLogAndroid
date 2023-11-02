@@ -43,7 +43,7 @@ class MyRecordActivity : AppCompatActivity(), CoroutineScope {
                         Log.d(Constants.TAG, "내기록 : $myPersonalRecordResponse")
 
                         val myRecordModels: MutableList<MyRecordModel> = myPersonalRecordResponse.map { it.convertToMyRecordModel() }.toMutableList()
-                        val myRecordAdapter = MyRecordAdapter(myRecordModels, this@MyRecordActivity)
+                        val myRecordAdapter = MyRecordAdapter(myRecordModels, this@MyRecordActivity, myId)
 
                         // RecyclerView 설정
                         val myRecordRecyclerView = findViewById<RecyclerView>(R.id.myrecordlistview)
