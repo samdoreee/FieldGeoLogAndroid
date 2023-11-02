@@ -75,7 +75,7 @@
 
     <ListView
         android:background="@drawable/window_radius_top"
-        android:id="@+id/cardView"
+        android:id="@+id/spotlist"
         android:layout_width="match_parent"
         android:layout_height="350dp"
         app:cardCornerRadius="30dp"

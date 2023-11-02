@@ -7,6 +7,6 @@ import com.samdoreee.fieldgeolog.R
 class ReadPersonalRecordActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_read_personal_record)
+        setContentView(R.layout.activity_one_record_detail)
     }
 }

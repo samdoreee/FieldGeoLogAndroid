@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.ImageButton
 import android.widget.ListView
 import com.samdoreee.fieldgeolog.R
 import com.samdoreee.fieldgeolog.data.model.CommunityModel
@@ -68,6 +69,12 @@ class CommunityActivity : AppCompatActivity() , CoroutineScope {
                 // 예외 처리
             }
             Log.d("", "")
+        }
+
+        val back_to_home_btn = findViewById<ImageButton>(R.id.back_to_home_btn)
+        back_to_home_btn.setOnClickListener {
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
         }
     }
 }

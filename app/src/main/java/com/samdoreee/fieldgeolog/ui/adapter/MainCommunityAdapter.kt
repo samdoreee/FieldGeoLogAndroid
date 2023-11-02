@@ -16,6 +16,8 @@ import com.bumptech.glide.Glide
 import com.samdoreee.fieldgeolog.S3FileDownloader
 import com.samdoreee.fieldgeolog.data.model.Constants
 import com.samdoreee.fieldgeolog.ui.activity.DetailActivity
+import com.samdoreee.fieldgeolog.ui.activity.OneArticleActivity
+
 import java.io.File
 
 class MainCommunityAdapter(val context: Context, val List:MutableList<CommunityModel>) : RecyclerView.Adapter<MainCommunityAdapter.Holder>()  {
@@ -35,7 +37,7 @@ class MainCommunityAdapter(val context: Context, val List:MutableList<CommunityM
             .into(holder.thumbnail!!)*/
 
         holder.itemView.setOnClickListener {
-            val intent = Intent(holder.itemView?.context, DetailActivity::class.java)
+            val intent = Intent(holder.itemView?.context, OneArticleActivity::class.java)
             intent.putExtra("articleId", data.id)
             ContextCompat.startActivity(holder.itemView.context, intent, null)
 

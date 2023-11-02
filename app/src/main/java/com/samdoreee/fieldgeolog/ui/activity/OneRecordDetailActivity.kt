@@ -4,9 +4,9 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.samdoreee.fieldgeolog.R
 
-class ReadArticleActivity : AppCompatActivity() {
+class OneRecordDetailActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_one_article_detail)
+        setContentView(R.layout.activity_one_record_detail)
     }
 }
