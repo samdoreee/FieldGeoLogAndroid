@@ -8,6 +8,8 @@ import retrofit2.Retrofit
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
+import retrofit2.http.Path
+import retrofit2.http.Query
 
 private const val BASE_URL = "http://172.20.10.2:8080"
 
@@ -25,6 +27,22 @@ interface GeoApiService {
 
     @POST("api/users")
     suspend fun addUser(@Body userRequest: UserRequest): Response<UserResponse>
+
+    @GET("api/users/{userId}/is-existing")
+    suspend fun existsByUserId(@Path("userId") userId: Long) : Boolean
+
+    @GET("api/users/{userId}")
+    suspend fun getUser(@Path("userId") userId: Long) : Response<UserResponse>
+
+    @GET("api/personalRecords/user")
+    suspend fun getRecordsByUserId(@Query("userId") userId: Long): Response<List<PersonalRecordResponse>>
+
+    @GET("api/personalRecords")
+    suspend fun getAllRecords(): Response<List<PersonalRecordResponse>>
+
+    @GET("api/articles")
+    suspend fun getAllArticles(): Response<List<ArticleResponse>>
+
 }
 
 object GeoApi {

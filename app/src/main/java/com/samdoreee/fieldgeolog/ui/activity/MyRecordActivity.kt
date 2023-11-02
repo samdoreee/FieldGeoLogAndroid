@@ -3,33 +3,67 @@ package com.samdoreee.fieldgeolog.ui.activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.ListView
+import android.util.Log
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.samdoreee.fieldgeolog.R
+import com.samdoreee.fieldgeolog.data.model.Constants
 import com.samdoreee.fieldgeolog.data.model.MyRecordModel
+import com.samdoreee.fieldgeolog.network.GeoApi
+import com.samdoreee.fieldgeolog.network.PersonalRecordResponse
 import com.samdoreee.fieldgeolog.ui.adapter.MyRecordAdapter
+import kotlinx.coroutines.*
+import retrofit2.Response
 
-class MyRecordActivity : AppCompatActivity() {
+class MyRecordActivity : AppCompatActivity(), CoroutineScope {
+
+    private val job = Job()
+
+    override val coroutineContext = Dispatchers.Main + job
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        Log.d(Constants.TAG, "여기는 됨")
         setContentView(R.layout.activity_my_record)
 
-        val data = mutableListOf<MyRecordModel>()
-        data.add(MyRecordModel(1,"03.27.청주 기반 화강암 조사", "2022.11.22", "청주시 개신동", R.drawable.geo1))
-        data.add(MyRecordModel(2,"03.30.괴산 일대 조사", "2022.11.22", "청주시 개신동", R.drawable.geo1))
-        data.add(MyRecordModel(3,"04.21.금강 일대 조사", "2022.11.22", "청주시 개신동", R.drawable.geo1))
-        data.add(MyRecordModel(4,"05.01.옥천 누층군 조사", "2022.11.22", "청주시 개신동", R.drawable.geo1))
-        data.add(MyRecordModel(5,"06.22.채석강 및 변산반도 조사_1", "2022.11.22", "청주시 개신동", R.drawable.geo1))
-        data.add(MyRecordModel(6,"06.24.채석강 및 변산반도 조사_2", "2022.11.22", "청주시 개신동", R.drawable.geo1))
-        data.add(MyRecordModel(7,"06.26.채석강 및 변산반도 조사_3", "2022.11.22", "청주시 개신동", R.drawable.geo1))
-        data.add(MyRecordModel(8,"07.01.지진 위험 지역 조사", "2022.11.22", "청주시 개신동", R.drawable.geo1))
+        val myId: Long = intent.getLongExtra("myId", 0L)  // 0L은 기본값
+        Log.d(Constants.TAG, "인텐트 : $myId")
 
-        val myrecordlistadapter = MyRecordAdapter(data)
-        val myrecordlist = findViewById<ListView>(R.id.myrecordlistview)
-        myrecordlist.adapter = myrecordlistadapter
+        launch {
+            try {
+                val response2: Response<List<PersonalRecordResponse>> = withContext(Dispatchers.IO) {
+                    GeoApi.retrofitService.getRecordsByUserId(myId)
+                }
 
-        myrecordlist.setOnItemClickListener { parent, view, position, id ->
-            val intent = Intent(this, OneRecordActivity::class.java)
-            startActivity(intent)
+                if (response2.isSuccessful) {
+                    val myPersonalRecordResponse: List<PersonalRecordResponse>? = response2.body()
+
+                    Log.d(Constants.TAG, "내기록 : ${response2.body()}")
+                    if (myPersonalRecordResponse != null) {
+                        Log.d(Constants.TAG, "내기록 : $myPersonalRecordResponse")
+
+                        val myRecordModels: MutableList<MyRecordModel> = myPersonalRecordResponse.map { it.convertToMyRecordModel() }.toMutableList()
+                        val myRecordAdapter = MyRecordAdapter(myRecordModels, this@MyRecordActivity)
+
+                        // RecyclerView 설정
+                        val myRecordRecyclerView = findViewById<RecyclerView>(R.id.myrecordlistview)
+                        myRecordRecyclerView.layoutManager = LinearLayoutManager(this@MyRecordActivity)
+                        myRecordRecyclerView.adapter = myRecordAdapter
+                    }
+                } else {
+                    // 요청이 실패했을 때의 처리
+                    val errorBody = response2.errorBody()?.string()
+                    Log.d(Constants.TAG, "오류ㅜ : $errorBody")
+                    // 에러 메시지 등을 처리
+                }
+            } catch (e: Exception) {
+                // 예외 처리
+            }
         }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        job.cancel()
     }
 }

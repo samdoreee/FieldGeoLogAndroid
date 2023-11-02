@@ -33,7 +33,7 @@ class CommunityAdapter(val List:MutableList<CommunityModel>) : BaseAdapter() {
         var location = convertview!!.findViewById<TextView>(R.id.location)
         var author = convertview!!.findViewById<TextView>(R.id.author)
         title.text = List[position].title
-        date.text = List[position].date
+        date.text = List[position].date.take(10)
         location.text = List[position].location
         author.text = List[position].author
         return  convertview!!
