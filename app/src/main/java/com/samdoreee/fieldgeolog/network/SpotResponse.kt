@@ -15,6 +15,6 @@ data class SpotResponse(
     val geoStructure: String,
     val dip: Int,
     val direction: String,
-    val memoResponseDTOList: List<Memo>,
+    val memoResponseDTOList: List<MemoResponse>,
     val fileName:String,
 )

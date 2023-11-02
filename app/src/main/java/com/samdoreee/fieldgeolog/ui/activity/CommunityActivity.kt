@@ -6,6 +6,8 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.ImageButton
 import android.widget.ListView
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.samdoreee.fieldgeolog.R
 import com.samdoreee.fieldgeolog.data.model.CommunityModel
 import com.samdoreee.fieldgeolog.data.model.Constants
@@ -48,15 +50,17 @@ class CommunityActivity : AppCompatActivity() , CoroutineScope {
                         Log.d(Constants.TAG, "남의 글 널아님 : $articleResponse")
 
                         val communityModels: MutableList<CommunityModel> = articleResponse.map { it.convertToCommunityModel() }.toMutableList()
-                        val communitylistadapter = CommunityAdapter(communityModels)
-                        val communitylist = findViewById<ListView>(R.id.communitylistview)
+                        val communitylistadapter = CommunityAdapter(communityModels, this@CommunityActivity, myId)
+
+                        val communitylist = findViewById<RecyclerView>(R.id.communitylistview)
+                        communitylist.layoutManager = LinearLayoutManager(this@CommunityActivity)
                         communitylist.adapter = communitylistadapter
 
-                        communitylist.setOnItemClickListener { parent, view, position, id ->
-                            val intent = Intent(this@CommunityActivity, OneRecordActivity::class.java)
-                            intent.putExtra("myId", myId)
-                            startActivity(intent)
-                        }
+//                        communitylist.setOnItemClickListener { parent, view, position, id ->
+//                            val intent = Intent(this@CommunityActivity, OneRecordActivity::class.java)
+//                            intent.putExtra("myId", myId)
+//                            startActivity(intent)
+//                        }
 
                     }
                 } else {
