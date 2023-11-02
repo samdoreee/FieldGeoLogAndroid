@@ -18,7 +18,7 @@ import java.io.File
 class MyRecordAdapter(val dataList: MutableList<MyRecordModel>, val context: Context) : RecyclerView.Adapter<MyRecordAdapter.MyRecordViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyRecordViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.myrecorditem, parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.activity_myrecord_list_item, parent, false)
         return MyRecordViewHolder(view)
     }
 
